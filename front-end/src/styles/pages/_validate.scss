@@ -1,0 +1,20 @@
+.confirmation {
+   
+    &__content {
+        width: 50%;
+        height: 450px;
+        padding: 50px 40px 0 40px;
+        background: #fff;
+        font-family: $navFont;
+        font-size: 30px;
+        font-weight: bold;
+        color: $colorPrimary;
+        @include centrageH;
+        &--justify {
+            text-align: justify;
+        }
+        &--center {
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://use.fontawesome.com/4dc3b97e0a.js"></script>
+        <script src="https://kit.fontawesome.com/9a9df02442.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+        <script src="../src/pagesjs/script.js" type="module" defer></script>
+        <link rel="stylesheet" href="../src/styles/style.css">
+        
+        <title>Panier Orinoco</title>
+    </head>
+    <body class="panier">
+        <header>
+            <div class="banniere__content"></div>
+            <p class="banniere__content--slogan">Un réconfort pour les enfants</p>
+            
+            <div class="banniere__content--share">
+                <ul>
+                    <li><a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-instagram" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-pinterest" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-share-alt" aria-hidden="true"></span></a></li>
+                </ul>            
+            </div>
+
+            <nav class="banniere__content--navigation">
+                <ul>
+                    <li><a href="#" class="accueilNav" id="accueilNav"><span class="fa fa-home" aria-hidden="true"></span></a></li>
+                    <li><a href="#" id="panierNav"><span class="fas fa-shopping-cart" aria-hidden="true"></span></a></li>
+                </ul>
+            </nav>
+        </header>
+
+    <main>
+        <h1>Votre panier</h1>
+        <section>
+            <div>
+                <table>
+                    <tr>
+                        <th class="panier__produit">Produit</th>
+                        <th class="panier__produit--nom"></th>
+                        <th class="panier__couleur">Couleur</th>
+                        <th class="panier__prix">Prix</th>
+                        <th class="panier__total">Net à payer</th>
+                    </tr>
+                    <!-- En attente d'injection dans le JS
+                    <tr>
+                        <td><img src="../images/Smokey.jpg" alt="Nounours Smokey marron noisette"></td>
+                        <td><h2>Smokey</h2></td>
+                        <td>
+                            <Select name="taille">
+                                <option value="10cm">10cm</option>
+                                <option value="30cm">30cm</option>
+                            </Select>
+                        </td>
+                        <td>15€</td>
+                        <td>15€</td>
+                    </tr>
+                </table>                                
+            </div> -->
+
+            
+                <form>
+                    <fieldset>
+                        <legend><strong>Formulaire client</strong> </legend>
+                            <label>Nom</label>
+                            <input type="text" name="nom" id="nom"/>
+                            <label>Prénom</label>
+                            <input type="text" name="prenom" id="prenom"/>
+                            <label>Adresse</label>
+                            <input type="text" name="adresse" id="adresse"/>
+                            <label>Code Postal</label>
+                            <input type="number" name="codepostal" id="codePostal"/>
+                            <label>Ville</label>
+                            <input type="text" name="ville" id="ville"/>
+                            <label>E-mail</label>
+                            <input type="email" name="mail" id="mail"/>
+
+                            <button id="validForm">VALIDER</button>
+                    </fieldset>
+                </form>             
+        </section>
+        
+        <section class="service">
+            <div class="service__content">
+                <div class="service__content--clients">
+                    <span class="fa fa-phone service__clients--telephone" aria-hidden="true"></span>
+                    <p>Service Clients <br> 0 805 02 02 02</p>
+                </div>
+
+                <div class="service__content--appels">
+                    <p>Service et appel gratuit <br> (Du dimanche au vendredi <br> De 8h à 19h)</p>
+                </div>                
+            </div>
+
+            <div class="service__content">
+                <div class="service__content--livraison">
+                    <img src="../images/7550vans-Grafikingenieur_pix.png" alt="camion de livraison">
+                    <p>Livraison <br> 48h</p>
+                </div>
+            </div>
+
+            <div class="service__content">
+                <div class="service__content--paiement">
+                    <div class="service__content--security">
+                        <img src="../images/7575bank-card-Grafikingenieur_pix.png" alt="cartebancaire">
+                        <img src="../images/757575keyhole-OpenClipart-Vectors_pix.png" alt="cadenas">
+                    </div>
+                    <p>Paiement <br> sécurisé</p>
+                </div>
+            </div>
+
+            <div class="service__content">   
+                <div class="service__content--satisfaction">
+                    <img src="../images/7575comic-OpenClipart-Vectors_pix.png" alt="smiley">
+                    <p>Satisfait <br> ou remboursé</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="infos">
+            <div class="infos__generales">
+                <ul>
+                    <li><a href="#">Cgv</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Retours</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Plan du site</a></li>
+                    <li><a href="#">Service clients</a></li>
+                    <li><a href="#">Contactez-nous</a></li>
+                </ul>
+            </div>
+
+            <div class="infos__follow">
+                <p>Suivez-nous</p>
+
+                <ul>
+                    <li><a href="#"><span class="fa fa-facebook" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
+                    <li><a href="#"><span class="fa fa-instagram" aria-hidden="true"></span></a></li>
+                </ul>    
+            </div>
+
+            <div class="infos__newsletter">
+                <p>Newsletter</p>
+                
+                <div>
+                    <input placeholder="Votre email">
+                    <button>S'inscrire</button>
+                </div>
+            </div>
+        </section>
+    </footer>   
+</body>
+</html>

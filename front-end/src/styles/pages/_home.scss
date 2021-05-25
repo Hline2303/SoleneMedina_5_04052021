@@ -1,0 +1,105 @@
+body {
+    background: $colorSecondary;
+}
+
+#conteneur {    
+    max-width: 1400px;
+    margin: auto;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    padding: 25px 25px 76px;
+}
+.produitImage {
+    object-fit: cover;
+    border-radius: 25px 25px 0 0;
+    height: 263px;
+    width: 100%;
+}
+.card {
+    // display: none;
+    /*display: grid; /******** A REVOIR ****************/
+    display: flex;/*****************************Remettre quand j'enlève display none ******************************/
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    &__produit {
+        background: white;
+        text-decoration: none;
+        padding: 4px;
+        border-radius: 25px;
+        position: relative;
+        top: 0;
+        width: 30%;
+        height: 428px;
+        &--content {
+            padding: 5px;
+            background: white;
+            border-radius: 0 0 25px 25px;
+        }
+        &--stock {
+            color: $green;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        &--price {
+            color: $red;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 20px;
+        }
+        // &--img {
+        //     // background-size: cover;
+        //     // border-radius: 25px 25px 0 0;
+        //     width: 100%;
+        //     height: 200px;
+        //     // background-image: url(../images/Smokey.jpg);
+        // }
+        // &--img1 {
+        //     width: 100%;
+        //     height: 200px;
+        //     background-position: center bottom;  /******* A modif media queries ******/
+        //     // background-image: url(../images/Smokey.jpg);
+        // }
+        // &--img2 {
+        //     width: 100%;
+        //     height:200px;
+        //     background-position: center;
+        //     // background-image: url(../images/Oscar_et_Poupy.jpg);
+        // }
+        // &--img3 {
+        //     width: 100%;
+        //     height: 200px;
+        //     // background-image: url(../images/Fenton.jpg);
+        // }
+        // &--img4 {
+        //     width: 100%;
+        //     height: 200px;
+        //     // background-image: url(../images/Rowen.jpg);
+        // }
+        // &--img5 {
+        //     width: 100%;
+        //     height: 200px;
+        //     background-image: url(../images/Teddy.jpg);
+        // }
+    }
+    & h2 {
+        font-size: 30px;
+        margin: 0;
+        color: $colorPrimary;
+    }
+    & p {
+        margin: 0;
+        flex: 1; 
+    }
+    & span {
+        color: $yellow;
+    }
+    & i {
+        color: $colorPrimary;
+
+    }
+}

@@ -1,0 +1,54 @@
+.fiche {
+    max-width: 1400px;
+    .ficheImage {
+        object-fit: cover;
+        width: 100%;
+        height: 300px;
+        border-radius: 25px 0 0 25px;
+    }
+    &__produit {
+        background: white;
+        border-radius: 25px;
+        position: relative;
+        top: 0;
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding-left: 150px;
+        &--content {
+            width: 50%;
+            padding: 25px;
+        }
+        &--stock {
+            @include ficheStock;
+        }
+        &--price {
+            @include fichePrice;
+        }
+        &--global {
+            display: flex;
+            justify-content: space-between;
+        }
+        &--selection {
+            display: flex;
+            flex-direction: column;
+            margin-top: 70px;
+        }
+        &--panier {
+            @include btn;
+        }
+        & h2 {
+            @include ficheH2;
+        }
+        & p {
+            text-align: justify;
+        }
+        & span {
+            color: $yellow;
+        }
+        & i {
+            color: $colorPrimary;    
+        }
+    }
+}

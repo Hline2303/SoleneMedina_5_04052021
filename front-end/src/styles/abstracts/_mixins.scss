@@ -1,0 +1,88 @@
+@mixin lien {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@mixin centrage {
+    display: flex;
+    align-items: center;
+}
+
+@mixin btn {
+    width: 188px;
+    padding: 14px;
+    margin: 14px;
+    border: 0;
+    color: white;
+    background: green;
+    @include centrageH;
+}
+
+@mixin card {
+    border-radius: 25px 25px 0 0;   
+    background-size: cover;
+    overflow: hidden;
+    padding-bottom: 134px;
+}
+
+@mixin ficheH2 {
+    font-size: 30px;
+    margin: 0;
+    color: $colorPrimary;
+}
+
+@mixin fichePrice {
+    color: $red;
+    font-weight: bold;
+    text-align: center;
+}
+
+@mixin ficheStock {
+    color: $green;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+@mixin ficheContent {
+    padding: 5px;
+    background: white;
+    border-radius: 0 0 25px 25px;
+}
+
+@mixin ficheImg {
+    background-size: cover;
+    border-radius: 25px 25px 0 0;
+}
+
+@mixin new {
+    background-color: rgba(0, 255, 179, 0.979);
+    color: green;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5%;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+@mixin centrageH {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+@mixin input {
+    width: 150px;
+    height: 30px;
+    padding-left: 10px;
+    padding-bottom: hidden;
+    border-right: hidden;
+    border-left: hidden;
+    border-width: 0 0 2px;
+    border-radius: 10px;
+    border-color: #fff;
+    /*input:focus {
+        outline: dashed black;
+    } a rajouter pour le mode accessibilité*/
+}
+
