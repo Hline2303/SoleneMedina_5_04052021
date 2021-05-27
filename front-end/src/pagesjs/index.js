@@ -29,7 +29,7 @@ const clicHomepage = document.querySelector('#accueilNav');
 clicHomepage.addEventListener('click', ouvreHomepage);
 // function ouvreHomepage() {
 function ouvreHomepage() {
-    window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+    window.location.href="http://127.0.0.1:5500/front-end/index.html";
 }
 
 /////////// Menu panier Orinoco
@@ -59,7 +59,7 @@ const openPanier = document.querySelector("#panierNav");
 openPanier.addEventListener('click', panierWindow);
 
 function panierWindow () {
-window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
 }
 
 
@@ -68,13 +68,13 @@ window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
     
     fetch("http://localhost:3000/api/teddies")
     .then((response) => response.json()) // Convertir en json
-    .then((data) => { // Sélectionner cette partie pour injecter les données
+    .then((data) => { // Récupération de la réponse et affichage des produits 
         const cardHtml = document.querySelector("section.card");
 
         console.log(data);
     // Récupérer les données suivantes de chaque produit pour les afficher
         data.forEach((produit) => {
-            cardHtml.innerHTML += `<a href="" class="card__produit" id="clicProduit">
+            cardHtml.innerHTML += `<a href="pages/produit.html?id=${produit._id}" class="card__produit" id="clicProduit">
             <div class="card__produit--img card__produit--img1"><img src=${produit.imageUrl} class="produitImage"></div>
             <div class="card__produit--content">
                 <h2>${produit.name}</h2> 
@@ -95,13 +95,13 @@ window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
         
     });
 
-    //  Clic pour ouvrir la page du produit sélectionné
-    const clicPdt = document.querySelector("#clicProduit");
-        clicPdt.addEventListener("clic", afficheProduit);
+    // //  Clic pour ouvrir la page du produit sélectionné
+    // const clicPdt = document.querySelector("#clicProduit");
+    //     clicPdt.addEventListener("clic", afficheProduit);
 
-        function afficheProduit() {
-            window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
-        }
+    //     function afficheProduit() {
+    //         window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+    //     }
 
 });
 

@@ -28,7 +28,7 @@ const clicHomepage = document.querySelector('#accueilNav');
 clicHomepage.addEventListener('click', ouvreHomepage);
 // function ouvreHomepage() {
 function ouvreHomepage() {
-    window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+window.location.href="http://127.0.0.1:5500/front-end/index.html";
 }
 
 /////////// Menu panier Orinoco
@@ -58,7 +58,7 @@ const openPanier = document.querySelector("#panierNav");
 openPanier.addEventListener('click', panierWindow);
 
 function panierWindow () {
-window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
 }
 
 // Création d'un objet avec le constructeur
@@ -98,23 +98,23 @@ function tableList() {
         listOfProduits += `
         <tr class="liste">
             <td><img src=${prod.produit} class="liste__img"></td>
-            <td class="liste__produits"><h2>Smokey</h2></td>
+            <td class="liste__produits"><h2>${prod.name}</h2></td>
             <td>
 
             </td>
-            <td class="liste__produits">15€</td>
-            <td>15€</td>
+            <td class="liste__produits">${prod.price}€</td>
+            <td>${prod.price}€</td>
         </tr>
         `
     )
     document.getElementById("productList").innerHTML = listOfProducts;
 }
 // Envoi du formulaire
-const validation = document.querySelector("validForm");
+const validation = document.querySelector("#validForm");
 console.log(validation);
 // Stocker les données dans le localStorage
 validation.addEventListener("click", stockData);
-
+console.log(validation);
 function stockData() {
 localStorage.setItem("Nom", document.querySelector("#nom").value);
 localStorage.setItem("Prénom", document.querySelector("#prenom").value);

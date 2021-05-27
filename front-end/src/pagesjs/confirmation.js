@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     clicHomepage.addEventListener('click', ouvreHomepage);
     // function ouvreHomepage() {
     function ouvreHomepage() {
-        window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+window.location.href="http://127.0.0.1:5500/front-end/index.html";
     }
 
     /////////// Menu panier Orinoco
@@ -58,11 +58,29 @@ document.addEventListener("DOMContentLoaded", function() {
     openPanier.addEventListener('click', panierWindow);
 
     function panierWindow () {
-    window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
+    window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
     }
 
     // Stocker les saisies dans le localStorage
-    document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
-    document.querySelector("#prenom").innerHTML = localStorage.getItem("Prénom");
+    // document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
+    // document.querySelector("#prenom").innerHTML = localStorage.getItem("Prénom");
+    const nomClient = localStorage.getItem("Nom");
+    console.log(nomClient);
+    const prenomClient = localStorage.getItem("Prénom");
+    console.log(prenomClient);
+    // Récupérer l'id de la commande 
+    const orderId = localStorage.getItem("orderId");
+    console.log(orderId);
+
+    // Confirmation
+    const msgConfirmation = document.querySelector(".confirmation");
+    console.log(msgConfirmation);
+    msgConfirmation.innerHTML += `
+    <div class="confirmation__content">
+                <p class="confirmation__content--justify">nom prenom</p>
+                <p class="confirmation__content--justify">Votre commande d'un montant de prix € a bien été enregistrée sous le :</p>
+                <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <br>L'équipe d'Orinoco</p><img src="../images/logo_orinoco.png    ">
+            </div> 
+    `;
     
 });
