@@ -87,7 +87,7 @@ window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
 
                 <p class="card__produit--stock">En stock</p>
 
-                <p class="card__produit--price">${produit.price}€</p>
+                <p class="card__produit--price">${produit.price/100}€</p>
             </div>                    
         </a>
             `;

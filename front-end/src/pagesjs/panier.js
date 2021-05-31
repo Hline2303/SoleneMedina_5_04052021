@@ -7,9 +7,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const menuHover = document.querySelector('#accueilNav');
+const clicHomepage = document.querySelector('#accueilNav');
+const panierHover = document.querySelector('#panierNav');
+const openPanier = document.querySelector("#panierNav");
+
+
 // p2.addEventListener('click', changeTexte);
 menuHover.addEventListener('mouseover', changeTexte1);
 menuHover.addEventListener('mouseout', changeTexte2);
+
+// p2.addEventListener('click', ouvreHomepage);
+clicHomepage.addEventListener('click', ouvreHomepage);
+
+// p2.addEventListener('click', changeTexte);
+panierHover.addEventListener('mouseover', changeTexte1);
+panierHover.addEventListener('mouseout', changeTexte2);
+
+openPanier.addEventListener('click', panierWindow);
+
 
 function changeTexte1() {
     this.style.color = 'white';
@@ -23,21 +38,10 @@ function changeTexte2() {
     this.style.backgroundColor = '';
 }
 
-const clicHomepage = document.querySelector('#accueilNav');
-// p2.addEventListener('click', ouvreHomepage);
-clicHomepage.addEventListener('click', ouvreHomepage);
 // function ouvreHomepage() {
 function ouvreHomepage() {
 window.location.href="http://127.0.0.1:5500/front-end/index.html";
 }
-
-/////////// Menu panier Orinoco
-
-const panierHover = document.querySelector('#panierNav');
-
-// p2.addEventListener('click', changeTexte);
-panierHover.addEventListener('mouseover', changeTexte1);
-panierHover.addEventListener('mouseout', changeTexte2);
 
 function changeTexte1() {
     this.style.color = 'white';
@@ -51,11 +55,6 @@ function changeTexte2() {
     this.style.padding = '';
     this.style.backgroundColor = '';
 }
-
-// function openPanier() {
-const openPanier = document.querySelector("#panierNav");
-
-openPanier.addEventListener('click', panierWindow);
 
 function panierWindow () {
 window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
@@ -96,7 +95,7 @@ function tableList() {
     // Itérer la liste de produits pour récupérer chaque produit et leurs données
     produits.forEach(prod =>
         listOfProduits += `
-        <tr class="liste">
+        <tr class="listeProuits" id="listeProduits">
             <td><img src=${prod.produit} class="liste__img"></td>
             <td class="liste__produits"><h2>${prod.name}</h2></td>
             <td>
@@ -108,7 +107,25 @@ function tableList() {
         `
     )
     document.getElementById("productList").innerHTML = listOfProducts;
+const ajoutProduit = document.querySelector("#listeProduits");
+
+for (const i = 0; i < ajoutProduit.length; i++) {
+    ajoutProduit[i].addEventListener("click", () => {
+        quantityPanier();
+    })
 }
+
+function quantityPanier() {
+    const quantityProduit = localStorage.getItem("quantitiesPanier");
+    quantityProduit = parseInt(quantityProduit);
+    if(quantityProduit) {
+        localStorage.setItem("quantitiesPanier", quantityProduit + 1);
+    } else {
+        localStorage.setItem("quantitiesPanier", 1);
+    }
+}
+
+
 // Envoi du formulaire
 const validation = document.querySelector("#validForm");
 console.log(validation);
@@ -123,6 +140,8 @@ localStorage.setItem("Code Postal", document.querySelector("#codePostal").value)
 localStorage.setItem("Ville", document.querySelector("#ville").value);
 localStorage.setItem("E-mail", document.querySelector("#mail").value);
 };
+stockData();
+}
 
 
 });

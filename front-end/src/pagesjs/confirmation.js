@@ -61,13 +61,13 @@ window.location.href="http://127.0.0.1:5500/front-end/index.html";
     window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
     }
 
-    // Stocker les saisies dans le localStorage
+    
     // document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
     // document.querySelector("#prenom").innerHTML = localStorage.getItem("Prénom");
     const nomClient = localStorage.getItem("Nom");
     console.log(nomClient);
     const prenomClient = localStorage.getItem("Prénom");
-    console.log(prenomClient);
+    // console.log(prenomClient);
     // Récupérer l'id de la commande 
     const orderId = localStorage.getItem("orderId");
     console.log(orderId);
@@ -77,9 +77,9 @@ window.location.href="http://127.0.0.1:5500/front-end/index.html";
     console.log(msgConfirmation);
     msgConfirmation.innerHTML += `
     <div class="confirmation__content">
-                <p class="confirmation__content--justify">nom prenom</p>
+                <p class="confirmation__content--justify">${msgConfirmation.prenomClient}</p>
                 <p class="confirmation__content--justify">Votre commande d'un montant de prix € a bien été enregistrée sous le :</p>
-                <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <br>L'équipe d'Orinoco</p><img src="../images/logo_orinoco.png    ">
+                <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <br>L'équipe d' <img src="../images/logo_orinoco.png"></p>
             </div> 
     `;
     

@@ -37,6 +37,9 @@
         }
         &--panier {
             @include btn;
+            &:hover {
+                background: rgb(0, 162, 0);
+            }
         }
         & h2 {
             @include ficheH2;

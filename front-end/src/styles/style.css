@@ -258,6 +258,10 @@ header .banniere__content--navigation .nbQuantity {
   margin-right: auto;
 }
 
+.fiche__produit--panier:hover {
+  background: #00a200;
+}
+
 .fiche__produit h2 {
   font-size: 30px;
   margin: 0;

@@ -42,11 +42,12 @@
             <div>
                 <table>
                     <tr>
-                        <th class="panier__produit">Produit</th>
+                        <th class="panier__produit" id="productBasket">Produit</th>
                         <th class="panier__produit--nom"></th>
-                        <th class="panier__couleur">Couleur</th>
-                        <th class="panier__prix">Prix</th>
-                        <th class="panier__total">Net à payer</th>
+                        <th class="panier__couleur" id="colorBasket">Couleur</th>
+                        <th class="panier__quantity" id="quantityBasket">Quantité</th>
+                        <th class="panier__prix" id="priceBasket">Prix</th>
+                        <th class="panier__total" id="totalBasket">Net à payer</th>
                     </tr>
                     <!-- En attente d'injection dans le JS
                     <tr>
@@ -77,7 +78,7 @@
                             <input type="text" name="adresse" id="adresse"/>
                             <br>
                             <label>Code Postal</label>
-                            <input type="number" name="codepostal" id="codePostal"/>
+                            <input type="number" name="codepostal" id="codePostal" pattern="[0-9]"/>
                             <label>Ville</label>
                             <input type="text" name="ville" id="ville"/>
                             <br>
