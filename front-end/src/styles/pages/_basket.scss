@@ -1,0 +1,50 @@
+#bodyPanier {
+  display: grid;
+}
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+tbody {
+}
+
+th {
+  background: $colorTertiary;
+  color: $colorSecondary;
+  border: none;
+  height: 100px;
+  padding: 0;
+}
+
+
+
+
+
+/**************** FORMULAIRE *******************/
+fieldset {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  display: inline-block;
+  min-width: 100px;
+  height: 30px;
+  padding-left: 25px;
+  padding-right: 10px;
+}
+
+input {
+  height: 20px;
+  width: 60%;
+}
+
+.buttonForm {
+    margin-left: 27px;
+    margin-top: 5px;
+    width: 88%;
+    height: 30px;
+}

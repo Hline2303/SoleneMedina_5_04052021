@@ -125,14 +125,16 @@ function quantityPanier() {
     }
 }
 
+// Validation du formulaire 
+
 
 // Envoi du formulaire
-const validation = document.querySelector("#validForm");
-console.log(validation);
+const envoiForm = document.querySelector("#validForm");
+console.log(envoiForm);
 // Stocker les données dans le localStorage
-validation.addEventListener("click", stockData);
-console.log(validation);
-function stockData() {
+envoiForm.addEventListener("click", stockForm);
+console.log(envoiForm);
+function stockForm() {
 localStorage.setItem("Nom", document.querySelector("#nom").value);
 localStorage.setItem("Prénom", document.querySelector("#prenom").value);
 localStorage.setItem("Adresse", document.querySelector("#adresse").value);
@@ -140,9 +142,22 @@ localStorage.setItem("Code Postal", document.querySelector("#codePostal").value)
 localStorage.setItem("Ville", document.querySelector("#ville").value);
 localStorage.setItem("E-mail", document.querySelector("#mail").value);
 };
-stockData();
+stockForm();
 }
+// const recupForm = document.querySelector(stockForm);
+// console.log(recupForm);
+document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
+document.querySelector("#prenom").innerHTML = localStorage.getItem("Prénom");
+document.querySelector("#adresse").innerHTML = localStorage.getItem("Adresse");
+document.querySelector("#codePostal").innerHTML = localStorage.getItem("Code Postal");
+document.querySelector("#ville").innerHTML = localStorage.getItem("Ville");
+document.querySelector("#mail").innerHTML = localStorage.getItem("E-mail");
 
+// Calcul du panier
+// quantité * prix TTC = Net à payer
+// Net à payer = result
 
 });
+
+
 

@@ -38,15 +38,15 @@
 
     <main>
         <h1>Votre panier</h1>
-        <section>
+        <section id="bodyPanier">
             <div>
-                <table>
+                <table cellspacing="3">
                     <tr>
                         <th class="panier__produit" id="productBasket">Produit</th>
-                        <th class="panier__produit--nom"></th>
+                        <th class="panier__produit--nom">Référence</th>
                         <th class="panier__couleur" id="colorBasket">Couleur</th>
                         <th class="panier__quantity" id="quantityBasket">Quantité</th>
-                        <th class="panier__prix" id="priceBasket">Prix</th>
+                        <th class="panier__prix" id="priceBasket">Prix TTC</th>
                         <th class="panier__total" id="totalBasket">Net à payer</th>
                     </tr>
                     <!-- En attente d'injection dans le JS
@@ -66,7 +66,7 @@
             </div> -->
 
             
-                <form>
+                <form method="post" action="" id="clientForm">
                     <fieldset>
                         <legend><strong>Formulaire client</strong> </legend>
                             <label>Nom</label>
@@ -75,17 +75,17 @@
                             <input type="text" name="prenom" id="prenom"/>
                             <br>
                             <label>Adresse</label>
-                            <input type="text" name="adresse" id="adresse"/>
+                            <input type="text" name="adresse" class="adresse" id="adresse"/>
                             <br>
                             <label>Code Postal</label>
-                            <input type="number" name="codepostal" id="codePostal" pattern="[0-9]"/>
+                            <input type="^text" name="codepostal" id="codePostal"/>
                             <label>Ville</label>
                             <input type="text" name="ville" id="ville"/>
                             <br>
                             <label>E-mail</label>
-                            <input type="email" name="mail" id="mail"/>
+                            <input type="email" name="mail" class="mail" id="mail"/>
                             <br>
-                            <button id="validForm">VALIDER</button>
+                            <button type="submit" class="buttonForm" id="validForm">VALIDER</button>
                     </fieldset>
                 </form>             
         </section>
