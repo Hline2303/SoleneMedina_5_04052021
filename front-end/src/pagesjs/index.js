@@ -53,7 +53,7 @@ function changeTexte2() {
     this.style.backgroundColor = '';
 }
 
-// function openPanier() {
+// function openPanier() 
 const openPanier = document.querySelector("#panierNav");
 
 openPanier.addEventListener('click', panierWindow);

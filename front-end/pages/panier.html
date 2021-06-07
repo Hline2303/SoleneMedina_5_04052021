@@ -44,10 +44,9 @@
                     <tr>
                         <th class="panier__produit" id="productBasket">Produit</th>
                         <th class="panier__produit--nom">Référence</th>
-                        <th class="panier__couleur" id="colorBasket">Couleur</th>
                         <th class="panier__quantity" id="quantityBasket">Quantité</th>
-                        <th class="panier__prix" id="priceBasket">Prix TTC</th>
-                        <th class="panier__total" id="totalBasket">Net à payer</th>
+                        <th class="panier__prix" id="priceBasket">Prix</th>
+                        <th class="panier__total" id="totalBasket">Montant</th>
                     </tr>
                     <!-- En attente d'injection dans le JS
                     <tr>
@@ -65,27 +64,27 @@
                 </table>                                
             </div> -->
 
-            
-                <form method="post" action="" id="clientForm">
+                <!-- A mettre dans la balise form => method="post" action="" id="clientForm"-->
+                <form>
                     <fieldset>
-                        <legend><strong>Formulaire client</strong> </legend>
+                        <legend><strong>Formulaire client</strong></legend>
                             <label>Nom</label>
-                            <input type="text" name="nom" id="nom"/>
+                            <input type="text" name="nomClient" id="nomClient" min-length="3" placeholder="Entrez votre nom"/>
                             <label>Prénom</label>
-                            <input type="text" name="prenom" id="prenom"/>
+                            <input type="text" name="prenomClient" id="prenomClient" min-length="3" placeholder="Entrez votre prénom"/>
                             <br>
                             <label>Adresse</label>
-                            <input type="text" name="adresse" class="adresse" id="adresse"/>
+                            <input type="text" name="adresseClient" class="adresse" id="adresseClient" min-length="3" placeholder="Entrez votre adresse"/>
                             <br>
                             <label>Code Postal</label>
-                            <input type="^text" name="codepostal" id="codePostal"/>
+                            <input type="text" name="codepostalClient" id="codePostalClient" min-length="5" placeholder="Entrez votre code postal"/>
                             <label>Ville</label>
-                            <input type="text" name="ville" id="ville"/>
+                            <input type="text" name="villeClient" id="villeClient" min-length="3" placeholder="Entrez votre ville"/>
                             <br>
                             <label>E-mail</label>
-                            <input type="email" name="mail" class="mail" id="mail"/>
+                            <input type="email" name="mailClient" class="mail" id="mailClient" placeholder="Entrez votre e-mail"/>
                             <br>
-                            <button type="submit" class="buttonForm" id="validForm">VALIDER</button>
+                            <button type="submit" class="buttonFormClient" id="validFormClient">VALIDER</button>
                     </fieldset>
                 </form>             
         </section>

@@ -62,22 +62,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
   // document.querySelector("#prenom").innerHTML = localStorage.getItem("Prénom");
-  const nomClient = localStorage.getItem("Nom");
-  console.log(nomClient);
-  const prenomClient = localStorage.getItem("Prénom");
-  console.log(prenomClient);
-  // Récupérer l'id de la commande
-  const orderId = localStorage.getItem("orderId");
-  console.log(orderId);
+  // let nomClient = localStorage.getItem("Nom");
+  // let prenomClient = localStorage.getItem("Prénom");
+  // let montantClient = localStorage.getItem("Montant");
+  // // const personalConfirmation = document.querySelector("#confirmation");
+  // // Récupérer l'id de la commande
+  // let orderId = localStorage.getItem("orderId");
 
+  // // Définir la fonction orderDisplayCheck()
+  // function orderDisplayCheck() {
+  //   // Affichage message perso
+  //   personalConfirmation.textContent =
+  //     nomClient +
+  //     prenomClient +
+  //     "Votre commande d'un montant de " +
+  //     montantClient +
+  //     "€ a bien été enregistrée sous le : N° " +
+  //     orderId +
+  //     ". Nous vous remercions de votre confiance. L'équipe d'";
+  // }
+  // // console.log(orderDisplayCheck);
+  // // orderDisplayCheck();
+  // document.getElementById("confirmation").textContent = orderDisplayCheck;
   // Confirmation
-  const msgConfirmation = document.querySelector(".confirmation");
-  console.log(msgConfirmation);
-  msgConfirmation.innerHTML += `
-    <div class="confirmation__content">
-                <p class="confirmation__content--justify">${msgConfirmation.prenomClient}</p>
-                <p class="confirmation__content--justify">Votre commande d'un montant de  € a bien été enregistrée sous le :</p>
-                <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <p>L'équipe d' <img src="../images/logo_orinoco.png"></p>
-            </div> 
-    `;
+  function orderValidation() {
+    const msgConfirmation = document.querySelector("#confirmation");
+    let nomClient = localStorage.getItem("Nom");
+    let prenomClient = localStorage.getItem("Prénom");
+    let montantClient = localStorage.getItem("Montant");
+    let orderId = localStorage.getItem("orderId");
+
+    msgConfirmation.innerHTML +=
+      nomClient +
+      prenomClient +
+      "Votre commande d'un montant de " +
+      montantClient +
+      "€ a bien été enregistrée sous le : N° " +
+      orderId +
+      "Nous vous remercion de votre confiance. L'équipe d'";
+  }
+  orderValidation();
+  // const msgConfirmation = document.querySelector(".confirmation");
+  // function orderId() {
+  //   msgConfirmation.innerHTML += `
+  //   <div class="confirmation__content">
+  //     <p class="confirmation__content--justify">prenomClient</p>
+  //     <p class="confirmation__content--justify">Votre commande d'un montant de  price.value€ a bien été enregistrée sous le :</p>
+  //     <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <p>L'équipe d' <img src="../images/logo_orinoco.png"></p>
+  //   </div>
+  //   `;}
+  //   orderId();
 });

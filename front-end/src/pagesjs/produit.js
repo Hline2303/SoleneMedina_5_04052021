@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.backgroundColor = "";
   }
 
-  // function openPanier() {
+  // function openPanier() 
   const openPanier = document.querySelector("#panierNav");
 
   openPanier.addEventListener("click", panierWindow);
@@ -154,10 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
         );
       });
       // Stocker le produit dans le local storage
-      ajouterPanier.addEventListener("click", function () {
+        ajouterPanier.addEventListener("click", function () {
         localStorage.setItem("Image",(data.imageUrl));
-        localStorage.setItem("Nom",(data.name));
-        localStorage.setItem("Price",(data.price));
+        localStorage.setItem("Name",(data.name));
+        localStorage.setItem("Prix",(data.price)/100);
       });
       
       // Exécuter la fonction quand le bouton Ajouter au panier est cliqué
