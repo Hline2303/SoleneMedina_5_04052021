@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.backgroundColor = "";
   }
 
-  // function openPanier() 
+  // function openPanier()
   const openPanier = document.querySelector("#panierNav");
 
   openPanier.addEventListener("click", panierWindow);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const fiche = document.querySelector("section.fiche");
       // console.log(fiche);
 
-      fiche.innerHTML += `
+      const bodyFiche = `
     <div class="fiche__produit">
                 <div class="fiche__produit--img"><img src="${
                   data.imageUrl
@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </div>
     `;
+      fiche.innerHTML = bodyFiche;
       // // Gestion des options de couleur
       // const colorOption = data.options;
       // const displayChoice = [];
@@ -146,68 +147,126 @@ document.addEventListener("DOMContentLoaded", function () {
       // Sélection de la quantité
       const quantitySelect = document.querySelector("#quantity");
       const ajouterPanier = document.querySelector("#btnAjouter");
-      quantitySelect.addEventListener("click", function () {
-        // Stocker la quantité dans le local Storage
-        localStorage.setItem(
-          "Quantité",
-          document.querySelector("#quantity").value
-        );
+
+      // Staockage dans le localStorage
+      ajouterPanier.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const choixQuantity = quantitySelect.value;
+        console.log(choixQuantity);
+
+        const quantityLocalStorage = parseInt(choixQuantity);
+        console.log(quantity);
+        // Récupération des valeurs du panier
+        const choixProduit = {
+          image: data.imageUrl,
+          nom: data.name,
+          quantity: quantityLocalStorage,
+          prix: data.price / 100,
+        };
+        console.log(choixProduit);
+
+        // Contenu du localStorage
+        let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
+
+        const ajoutProduit = () => {
+          contentLocalStorage.push(choixProduit);
+          localStorage.setItem("article", JSON.stringify(contentLocalStorage));
+        }
+        // Vérification contenu présent dans le localStorage
+        if (contentLocalStorage) {
+          ajoutProduit();
+        } else {
+          contentLocalStorage = [];
+          ajoutProduit();
+        }
       });
-      // Stocker le produit dans le local storage
-        ajouterPanier.addEventListener("click", function () {
-        localStorage.setItem("Image",(data.imageUrl));
-        localStorage.setItem("Name",(data.name));
-        localStorage.setItem("Prix",(data.price)/100);
-      });
-      
-      // Exécuter la fonction quand le bouton Ajouter au panier est cliqué
-      // function quantityStock() {
-      //     localStorage.setItem("Quantité", document.querySelector("#quantity").value);
-      // }
-      // quantityStock();
-
-      //   const clickButton = document.querySelector()
-
-      //   const observerBtn = document.querySelector("#btnAjouter");
-      //   const panier = JSON.parse(localStorage.getItem("produit"));
-
-      //   const observer = new MutationObserver(function () {
-      //     observerBtn.addEventListener("click", (e) => {
-      //       e.preventDefault();
-
-      //       // Si le localstorage existe
-      //       if (panier) {
-      //         panier.push(quantityStock);
-      //         localStorage.setItem("produit", JSON.stringify(panier));
-      //       } else {
-      //         // Si le localstorage n'existe pas
-      //         panier = [];
-      //         panier.push(quantityStock);
-      //         localStorage.setItem("produit", JSON.stringify(panier));
-      //       }
-      //     });
-      //     observer.disconnect();
-      //   });
-
-      //   observer.observe(document.body, {
-      //     childList: true,
-      //     subtree: true,
-      //   });
-
-      // Sélection de la couleur
-      // const colorSelect = document.querySelector("#listColors");
-      // console.log(colorSelect);
-      // // Sélection du bouton ajouter
-      // const btnAjout = document.querySelector("#btn_ajouter");
-      // // Ecoute du bouton pour envoyer au panier
-      // btnAjout.addEventListener("click", ajoutPanier);
-      // console.log(btnAjout);
-      // // Récuperation des valeurs du formulaires
-      // // function ajoutPanier {
-
-      // // }
     });
 });
+
+// // Stocker la quantité dans le local Storage
+// localStorage.setItem(
+//   "Quantité",
+//   document.querySelector("#quantity").value
+// );
+//   // Stocker le produit dans le local storage
+//     ajouterPanier.addEventListener("click", (e) {
+//       e.preventDefault();
+//     localStorage.setItem("Image",(data.imageUrl));
+//     localStorage.setItem("Name",(data.name));
+//     localStorage.setItem("Prix",(data.price)/100);
+//      // Récupération des valeurs du panier
+// const choixProduit = {
+//   image: data.imageUrl,
+//   nom: data.name,
+//   quantité: 1,
+//   prix: data.price / 100
+// }
+
+// console.log(choixProduit);
+
+// // Contenu du localStorage
+// const contentLocalStorage = JSON.parse(localStorage.getItem("produit"));
+// console.log(contentLocalStorage);
+// // Vérification contenu présent dans le localStorage
+// if(contentLocalStorage){
+//   contentLocalStorage.push(choixProduit);
+//   localStorage.setItem("produit", JSON.stringify(contentLocalStorage));
+// } else {
+//   contentLocalStorage = [];
+//   contentLocalStorage.push(choixProduit);
+//   localStorage.setItem("produit", JSON.stringify(contentLocalStorage));
+//   console.log(contentLocalStorage);
+
+// }
+//   });
+
+// Exécuter la fonction quand le bouton Ajouter au panier est cliqué
+// function quantityStock() {
+//     localStorage.setItem("Quantité", document.querySelector("#quantity").value);
+// }
+// quantityStock();
+
+//   const clickButton = document.querySelector()
+
+//   const observerBtn = document.querySelector("#btnAjouter");
+//   const panier = JSON.parse(localStorage.getItem("produit"));
+
+//   const observer = new MutationObserver(function () {
+//     observerBtn.addEventListener("click", (e) => {
+//       e.preventDefault();
+
+//       // Si le localstorage existe
+//       if (panier) {
+//         panier.push(quantityStock);
+//         localStorage.setItem("produit", JSON.stringify(panier));
+//       } else {
+//         // Si le localstorage n'existe pas
+//         panier = [];
+//         panier.push(quantityStock);
+//         localStorage.setItem("produit", JSON.stringify(panier));
+//       }
+//     });
+//     observer.disconnect();
+//   });
+
+//   observer.observe(document.body, {
+//     childList: true,
+//     subtree: true,
+//   });
+
+// Sélection de la couleur
+// const colorSelect = document.querySelector("#listColors");
+// console.log(colorSelect);
+// // Sélection du bouton ajouter
+// const btnAjout = document.querySelector("#btn_ajouter");
+// // Ecoute du bouton pour envoyer au panier
+// btnAjout.addEventListener("click", ajoutPanier);
+// console.log(btnAjout);
+// // Récuperation des valeurs du formulaires
+// // function ajoutPanier {
+
+// // }
 
 // // for(i = 0; i < 11; i++) {
 //     quantitySelect = quantitySelect + i;
