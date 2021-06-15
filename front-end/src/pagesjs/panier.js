@@ -207,8 +207,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
+      const envoiFormulaire = document.querySelector("#validFormClient");
+
+      envoiFormulaire.addEventListener("click", (e) => {
+        e.preventDefault();
+      
       ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
-      localStorage.setItem("nomClient", JSON.stringify(contentLocalStorage));
-      localStorage.setItem("prenomClient", JSON.stringify(contentLocalStorage));
-      localStorage.setItem("total", JSON.stringify(contentLocalStorage));
+      const formulaire = {
+        nom : document.querySelector("#nomClient").value,
+        prenom : document.querySelector("#prenomClient").value,
+        adresse : document.querySelector("#adresseClient").value,
+        codePostal : document.querySelector("#codePostalClient").value,
+        ville : document.querySelector("#villeClient").value,
+        mail: document.querySelector("#mailClient").value
+      }
+
+      localStorage.setItem("formulaire", JSON.stringify(formulaire));
+      })
 });

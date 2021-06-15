@@ -64,22 +64,27 @@
             </div>
 
                 <!-- A mettre dans la balise form => method="post" action="" id="clientForm"-->
-                <form method="POST" action="traitement.php" id="myForm">
+                <form action="#" id="myForm">
                     <fieldset>
                         <legend><strong>Formulaire client</strong></legend>
                             <label>Nom</label>
                             <input type="text" name="nomClient" id="nomClient" min-length="3" placeholder="Entrez votre nom"/>
+                            <span id="alert"></span>
                             <label>Prénom</label>
                             <input type="text" name="prenomClient" id="prenomClient" min-length="3" placeholder="Entrez votre prénom"/>
                             <br>
+                            <span id="alert"></span>
                             <label>Adresse</label>
                             <input type="text" name="adresseClient" class="adresse" id="adresseClient" min-length="3" placeholder="Entrez votre adresse"/>
                             <br>
+                            <span id="alert"></span>
                             <label>Code Postal</label>
                             <input type="text" name="codepostalClient" id="codePostalClient" min-length="5" placeholder="Entrez votre code postal"/>
+                            <span id="alert"></span>
                             <label>Ville</label>
                             <input type="text" name="villeClient" id="villeClient" min-length="3" placeholder="Entrez votre ville"/>
                             <br>
+                            <span id="alert"></span>
                             <label>E-mail</label>
                             <input type="email" name="mailClient" class="mail" id="mailClient" placeholder="Entrez votre e-mail"/>
                             <br>
