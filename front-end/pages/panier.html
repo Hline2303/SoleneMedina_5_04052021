@@ -41,34 +41,30 @@
         <section id="bodyPanier">
             <div>
                 <table cellspacing="3">
-                    <tr>
-                        <th class="panier__produit" id="productBasket">Produit</th>
-                        <th class="panier__produit--nom">Référence</th>
-                        <th class="panier__quantity" id="quantityBasket">Quantité</th>
-                        <th class="panier__prix" id="priceBasket">Prix</th>
-                        <th class="panier__total" id="totalBasket">Montant</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th class="panier__produit" id="productBasket">Produit</th>
+                            <th class="panier__produit--nom">Référence</th>
+                            <th class="panier__quantity" id="quantityBasket">Quantité</th>
+                            <th class="panier__prix" id="priceBasket">Prix</th>
+                            <th class="panier__total" id="totalBasket">Montant</th>
+                        </tr>
+                    </thead>
                     <!-- En attente d'injection dans le JS -->
-                    <tr class="bodycart" id="bodyCart">
-                        <!-- <td><img src="../images/Smokey.jpg" alt="Nounours Smokey marron noisette"></td>
-                        <td><h2>Smokey</h2></td>
-                        <td>
-                            <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="0"/>
-                        </td>
-                        <td>15€</td>
-                        <td>15€</td> -->
-                    </tr>
-
-                    <tr>    
-                        <td colspan="3"></td>
-                        <td>Montant Total du panier</td>
-                        <td>15€</td>
-                    </tr>
+                    <tbody class="bodycart" id="bodyCart">
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>    
+                            <td colspan="4">Montant Total du panier</td>
+                            <td id="total"></td>
+                        </tr>
+                    </tfoot>
                 </table>                                
             </div>
 
                 <!-- A mettre dans la balise form => method="post" action="" id="clientForm"-->
-                <form>
+                <form method="POST" action="traitement.php" id="myForm">
                     <fieldset>
                         <legend><strong>Formulaire client</strong></legend>
                             <label>Nom</label>
@@ -87,6 +83,7 @@
                             <label>E-mail</label>
                             <input type="email" name="mailClient" class="mail" id="mailClient" placeholder="Entrez votre e-mail"/>
                             <br>
+                            <span id="alert"></span>
                             <button type="submit" class="buttonFormClient" id="validFormClient">VALIDER</button>
                     </fieldset>
                 </form>             

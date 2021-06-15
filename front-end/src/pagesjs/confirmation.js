@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
       montantClient +
       "€ a bien été enregistrée sous le : N° " +
       orderId +
-      "Nous vous remercion de votre confiance. L'équipe d'";
+      "Nous vous remercions de votre confiance. L'équipe d'";
   }
   orderValidation();
   // const msgConfirmation = document.querySelector(".confirmation");

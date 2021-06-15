@@ -59,15 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "http://127.0.0.1:5500/front-end/pages/panier.html";
   }
 
-  // Récupération de la chaîne de requête dans l'url
-  // const idExtraction = window.location.search;
-  // console.log(idExtraction);
-  // const myUrl = new URL("http://127.0.0.1:5500/front-end/pages/produit.html?id=5be9c8541c9d440000665243");
-  // console.log(myUrl);
-
-  // const urlActuelle = window.location.search;
-  // console.log(urlActuelle);
-
   // Extraction de l'id
   const params = new URLSearchParams(window.location.search);
   // // console.log(params);
@@ -127,24 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     `;
       fiche.innerHTML = bodyFiche;
-      // // Gestion des options de couleur
-      // const colorOption = data.options;
-      // const displayChoice = [];
-
-      // // Affichage de toutes les options
-
-      // for (dataColor = 0; dataColor < colorOption.length; dataColor++) {
-      //     displayChoice.innerHTML += `
-      //         <option value="${dataColor}">${colorOption[dataColor]}</option>
-      //     `;
-      // }
-      // console.log(displayChoice);
-      // Récupérer les données du client pour envoyer au panier
-      // const colorChoice = document.querySelector("#listColors");
-      // console.log(colorChoice);
-      // Sélection du formulaire
-      // Choix du client dans une variable
-      // Sélection de la quantité
+      
       const quantitySelect = document.querySelector("#quantity");
       const ajouterPanier = document.querySelector("#btnAjouter");
 
@@ -184,109 +158,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// // Stocker la quantité dans le local Storage
-// localStorage.setItem(
-//   "Quantité",
-//   document.querySelector("#quantity").value
-// );
-//   // Stocker le produit dans le local storage
-//     ajouterPanier.addEventListener("click", (e) {
-//       e.preventDefault();
-//     localStorage.setItem("Image",(data.imageUrl));
-//     localStorage.setItem("Name",(data.name));
-//     localStorage.setItem("Prix",(data.price)/100);
-//      // Récupération des valeurs du panier
-// const choixProduit = {
-//   image: data.imageUrl,
-//   nom: data.name,
-//   quantité: 1,
-//   prix: data.price / 100
-// }
-
-// console.log(choixProduit);
-
-// // Contenu du localStorage
-// const contentLocalStorage = JSON.parse(localStorage.getItem("produit"));
-// console.log(contentLocalStorage);
-// // Vérification contenu présent dans le localStorage
-// if(contentLocalStorage){
-//   contentLocalStorage.push(choixProduit);
-//   localStorage.setItem("produit", JSON.stringify(contentLocalStorage));
-// } else {
-//   contentLocalStorage = [];
-//   contentLocalStorage.push(choixProduit);
-//   localStorage.setItem("produit", JSON.stringify(contentLocalStorage));
-//   console.log(contentLocalStorage);
-
-// }
-//   });
-
-// Exécuter la fonction quand le bouton Ajouter au panier est cliqué
-// function quantityStock() {
-//     localStorage.setItem("Quantité", document.querySelector("#quantity").value);
-// }
-// quantityStock();
-
-//   const clickButton = document.querySelector()
-
-//   const observerBtn = document.querySelector("#btnAjouter");
-//   const panier = JSON.parse(localStorage.getItem("produit"));
-
-//   const observer = new MutationObserver(function () {
-//     observerBtn.addEventListener("click", (e) => {
-//       e.preventDefault();
-
-//       // Si le localstorage existe
-//       if (panier) {
-//         panier.push(quantityStock);
-//         localStorage.setItem("produit", JSON.stringify(panier));
-//       } else {
-//         // Si le localstorage n'existe pas
-//         panier = [];
-//         panier.push(quantityStock);
-//         localStorage.setItem("produit", JSON.stringify(panier));
-//       }
-//     });
-//     observer.disconnect();
-//   });
-
-//   observer.observe(document.body, {
-//     childList: true,
-//     subtree: true,
-//   });
-
-// Sélection de la couleur
-// const colorSelect = document.querySelector("#listColors");
-// console.log(colorSelect);
-// // Sélection du bouton ajouter
-// const btnAjout = document.querySelector("#btn_ajouter");
-// // Ecoute du bouton pour envoyer au panier
-// btnAjout.addEventListener("click", ajoutPanier);
-// console.log(btnAjout);
-// // Récuperation des valeurs du formulaires
-// // function ajoutPanier {
-
-// // }
-
-// // for(i = 0; i < 11; i++) {
-//     quantitySelect = quantitySelect + i;
-// }
-
-// const quantityOption = document.querySelector("#quantity");
-
-// const btnAjout = document.querySelector("#btn_ajouter");
-// btnAjout.addEventListener("click", (event) => {
-// event.preventDefault();
-
-// const quantityChoice = quantityOption.value;
-// console.log(quantityChoice);
-
-// const produitPanier = {
-//     imageUrl: data.imageUrl,
-//     name: data.name,
-//     colors: data.colors,
-//     quantityOption: 0,
-//     price: data.price / 100
-// }
-// console.log(produitPanier);
-// });

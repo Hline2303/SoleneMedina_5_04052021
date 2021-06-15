@@ -13,3 +13,6 @@ MutationObserver
 1. Making a new MutationObserver object
 2. Tell it what to observe
 3. What to do with the observed changes/mutations
+
+ATTENTION
+Supprimer fichier traitement php et dans le html (action="traitement.php")

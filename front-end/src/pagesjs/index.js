@@ -95,29 +95,4 @@ window.location.href="http://127.0.0.1:5500/front-end/pages/panier.html";
         
     });
 
-    // //  Clic pour ouvrir la page du produit sélectionné
-    // const clicPdt = document.querySelector("#clicProduit");
-    //     clicPdt.addEventListener("clic", afficheProduit);
-
-    //     function afficheProduit() {
-    //         window.location.href="https://hline2303.github.io/SoleneMedina_2_07012021/";
-    //     }
-
 });
-
-// Déclarer une fonction :
-// function actionFait() {
-//     console.log("Je fais ce que l'on me dit");
-// }
-// Appeler obligatoirement la fonction après l'avoir déclarée
-// actionFait();
-// // Pseudo-code
-// loop(nourriture = 0; besoinNourriture = 10) {
-// 	if (nourrirure = besoinNourriture) {
-// 		exit loop;
-// 		// Nous avons assez de nourriture, on rentre
-// 	} else {
-// 		nourriture += 2; // On doit rester 1 heure de plus
-// 		// La boucle se répète ensuite
-// 	}
-// }
