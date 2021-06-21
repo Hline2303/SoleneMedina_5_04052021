@@ -85,22 +85,24 @@ document.addEventListener("DOMContentLoaded", function () {
   // // orderDisplayCheck();
   // document.getElementById("confirmation").textContent = orderDisplayCheck;
   // Confirmation
-  let formulaireStorage = JSON.parse(localStorage.getItem("formulaire"));
+  const formulaireStorage = JSON.parse(localStorage.getItem("formulaire"));
+  console.log(formulaireStorage);
   function orderValidation() {
     const msgConfirmation = document.querySelector("#confirmation");
-    let nomClient = localStorage.getItem("nom");
-    let prenomClient = localStorage.getItem("prenom");
-    let montantClient = localStorage.getItem("total");
-    let orderId = localStorage.getItem("orderId");
+    // const nomClient = localStorage.getItem("nom");
+    // const prenomClient = localStorage.getItem("prenom");
+    // const montantClient = localStorage.getItem("total");
+    // const orderId = localStorage.getItem("orderId");
 
-    msgConfirmation.innerHTML +=
-      nomClient +
-      prenomClient +
+    msgConfirmation.innerHTML +=`
+      ${formulaireStorage.nom} +
+      ${formulaireStorage.prenom} +
       "Votre commande d'un montant de " +
       montantClient +
       "€ a bien été enregistrée sous le : N° " +
       orderId +
-      "Nous vous remercions de votre confiance. L'équipe d'";
+      "Nous vous remercions de votre confiance. L'équipe d'"
+      `;
   }
   orderValidation();
   // const msgConfirmation = document.querySelector(".confirmation");

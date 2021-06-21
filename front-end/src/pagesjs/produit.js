@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Récupération des valeurs du panier
         const choixProduit = {
           image: data.imageUrl,
+          idProduit: data._id,
           nom: data.name,
           quantity: quantityLocalStorage,
           prix: data.price / 100,
