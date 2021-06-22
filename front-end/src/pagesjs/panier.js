@@ -178,67 +178,82 @@ document.addEventListener("DOMContentLoaded", function () {
   // const errorMail = document.querySelector("#errorMail");
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    
+    function validationInputs() {
+      const formNomValue = formNom.value.trim();
+      const formPrenomValue = formPrenom.value.trim();
+      const formAdresseValue = formAdresse.value.trim();
+      const formCodePostalValue = formCodePostal.value.trim();
+      const formVilleValue = formVille.value.trim();
+      const formMailValue = formMail.value.trim();
   
+      if (formNomValue === "") {
+        erreur(formNom, "Le champs nom doit être complété.");
+        e.preventDefault();
+      } else if (!testFormNom(formNomValue)) {
+        erreur(formNom, "Le nom doit comporter entre 3 à 20 lettres majuscules.");
+        e.preventDefault();
+      } else {
+        success(formNom);
+      }
+  
+      if (formPrenomValue === "") {
+        erreur(formPrenom, "Le champs prénom doit être complété.");
+        e.preventDefault();
+      } else if (!testFormPrenom(formPrenomValue)) {
+        erreur(formPrenom, "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3.");
+        e.preventDefault();
+      } else {
+        success(formPrenom);
+      }
+  
+      if (formAdresseValue === "") {
+        erreur(formAdresse, "Le champs adresse doit être complété.");
+        e.preventDefault();
+      } else if (!testFormAdresse(formAdresseValue)) {
+        erreur(formAdresse, "Veuillez entrer une adresse valide.");
+        e.preventDefault();
+      } else {
+        success(formAdresse);
+      }
+  
+      if (formCodePostalValue === "") {
+        erreur(formCodePostal, "Le champs code postal doit être complété.");
+        e.preventDefault();
+      } else if (!testFormCodePostal(formCodePostalValue)) {
+        erreur(formCodePostal, "Le code postal doit contenir 5 chiffres.");
+        e.preventDefault();
+      } else {
+        success(formCodePostal);
+      }
+  
+      if (formVilleValue === "") {
+        erreur(formVille, "Le champs ville doit être complété.");
+        e.preventDefault();
+      } else if (!testFormVille(formVilleValue)) {
+        erreur(formVille, "La ville doit contenir uniquement des majuscules, 3 minimum.");
+        e.preventDefault();
+      } else {
+        success(formVille);
+      }
+  
+      if (formMailValue === "") {
+        erreur(formMail, "Le champs email doit être complété.");
+        e.preventDefault();
+      } else if (!testFormMail(formMailValue)) {
+        erreur(formMail, "L'email doit être composé sous cette forme : email@nomdedomaine.fr");
+        e.preventDefault();
+      } else {
+        success(formMail);
+      }
+    }
+
     validationInputs();
+
+
   });
 
-  function validationInputs() {
-    const formNomValue = formNom.value.trim();
-    const formPrenomValue = formPrenom.value.trim();
-    const formAdresseValue = formAdresse.value.trim();
-    const formCodePostalValue = formCodePostal.value.trim();
-    const formVilleValue = formVille.value.trim();
-    const formMailValue = formMail.value.trim();
-
-    if (formNomValue === "") {
-      erreur(formNom, "Le champs nom doit être complété.");
-    } else if (!testFormNom(formNomValue)) {
-      erreur(formNom, "Le nom doit comporter entre 3 à 20 lettres majuscules.");
-    } else {
-      success(formNom);
-    }
-
-    if (formPrenomValue === "") {
-      erreur(formPrenom, "Le champs prénom doit être complété.");
-    } else if (!testFormPrenom(formPrenomValue)) {
-      erreur(formPrenom, "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3.");
-    } else {
-      success(formPrenom);
-    }
-
-    if (formAdresseValue === "") {
-      erreur(formAdresse, "Le champs adresse doit être complété.");
-    } else if (!testFormAdresse(formAdresseValue)) {
-      erreur(formAdresse, "Veuillez entrer une adresse valide.");
-    } else {
-      success(formAdresse);
-    }
-
-    if (formCodePostalValue === "") {
-      erreur(formCodePostal, "Le champs code postal doit être complété.");
-    } else if (!testFormCodePostal(formCodePostalValue)) {
-      erreur(formCodePostal, "Le code postal doit contenir 5 chiffres.");
-    } else {
-      success(formCodePostal);
-    }
-
-    if (formVilleValue === "") {
-      erreur(formVille, "Le champs ville doit être complété.");
-    } else if (!testFormVille(formVilleValue)) {
-      erreur(formVille, "La ville doit contenir uniquement des majuscules, 3 minimum.");
-    } else {
-      success(formVille);
-    }
-
-    if (formMailValue === "") {
-      erreur(formMail, "Le champs email doit être complété.");
-    } else if (!testFormMail(formMailValue)) {
-      erreur(formMail, "L'email doit être composé sous cette forme : email@nomdedomaine.fr");
-    } else {
-      success(formMail);
-    }
-  }
+  
 
   function erreur(input, message) {
     const formValidation = input.parentElement;
@@ -278,6 +293,35 @@ document.addEventListener("DOMContentLoaded", function () {
     return /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/.test(formMail);
   }
  
+    ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
+    const formulaire = {
+      nom: document.querySelector("#nomClient").value,
+      prenom: document.querySelector("#prenomClient").value,
+      adresse: document.querySelector("#adresseClient").value,
+      codePostal: document.querySelector("#codePostalClient").value,
+      ville: document.querySelector("#villeClient").value,
+      mail: document.querySelector("#mailClient").value,
+    };
+  
+  
+    /// if valid form and content localstorage ???
+    localStorage.setItem("formulaire", JSON.stringify(formulaire));
+  
+  /////////////////////If pdt cmd and valid form then POST
+    const envoiFormulaire = {
+      contentLocalStorage,
+      formulaire,
+    }
+  console.log(envoiFormulaire);
+  
+    const envoiServer = fetch("http://url-service-web.com/api/teddies", {
+      method : "POST",
+      body: JSON.stringify(envoiFormulaire),
+      headers: { 
+        "Content-Type": "application/json",
+      },
+    });
+    envoiServer();
   // form.addEventListener("submit")
   // function validNom() {
   //   const regexNom = /[A-Z]{3,20}/;
@@ -496,33 +540,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   },
   //   false
   // );
-  ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
-  const formulaire = {
-    nom: document.querySelector("#nomClient").value,
-    prenom: document.querySelector("#prenomClient").value,
-    adresse: document.querySelector("#adresseClient").value,
-    codePostal: document.querySelector("#codePostalClient").value,
-    ville: document.querySelector("#villeClient").value,
-    mail: document.querySelector("#mailClient").value,
-  };
 
-  localStorage.setItem("formulaire", JSON.stringify(formulaire));
-
-/////////////////////If pdt cmd and valid form then POST
-  // const envoiFormulaire = {
-  //   pdtCmd,
-  //   validForm,
-  // }
-
-
-  // const envoi = fetch("http://url-service-web.com/api/teddies", {
-  //   method : "POST",
-  //   body: JSON.stringify(envoiFormulaire),
-  //   headers: { 
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // envoi();
   ////////////////////////////////////////////////////
   //   const envoi = fetch("http://url-service-web.com/api/teddies", {
   //   method: “POST”,
