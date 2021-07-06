@@ -331,6 +331,29 @@ input {
   height: 30px;
 }
 
+.form-validation.success input {
+  border-color: #2ecc71;
+}
+
+.form-validation.erreur input {
+  border-color: #e74c3c;
+}
+
+.form-validation.success i.check {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-validation.erreur i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.form-validation.erreur small {
+  color: #e74c3c;
+  visibility: visible;
+}
+
 .confirmation__content {
   width: 50%;
   height: 450px;

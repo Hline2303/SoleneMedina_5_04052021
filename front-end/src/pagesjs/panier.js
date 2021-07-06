@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const panier = document.querySelector("body.panier");
   if (!panier) return;
-  console.log(panier);
+  // console.log(panier);
 
   /////////// Menu navigation Orinoco ATTENTION DOIT SE REPETER SUR TT LES PAGES
 
@@ -59,43 +59,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Contenu du localStorage
   let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
-  console.log(contentLocalStorage);
+  // console.log(contentLocalStorage);
 
   const fillCart = document.querySelector("#bodyCart");
-  console.log(fillCart);
+  // console.log(fillCart);
 
   let fullCart = [];
-  console.log(fullCart);
+  // console.log(fullCart);
 
   const totalPanier = [];
-  console.log(totalPanier);
+  // console.log(totalPanier);
 
   const netAPayer = document.querySelector("#total");
-  console.log(netAPayer);
+  // console.log(netAPayer);
 
-  var i;
-
-  // function displayCartQuantity(){
-
-  // }
-
-  // function idemProducts () {
-  //   const idemProducts = localStorage.getItem("article");
-
-  //   if(idemProducts) {
-  //     localStorage.setItem("article", idemProducts + 1);
-  //     document.querySelector("#nbQuantity").textContent = idemProducts + 1;
-  //   } else {
-  //     localStorage.setItem("article", 1);
-  //     document.querySelector("#nbQuantity").textContent = 1;
-  //   }
-  // }
-
-  // if(peluchesQuantity) {
-
-  // } else {
-  //   localStorage.setItem(contentLocalStorage.quantity);
-  // }
+  let i;
 
   if (contentLocalStorage === null) {
     const emptyCart = `
@@ -103,55 +81,81 @@ document.addEventListener("DOMContentLoaded", function () {
      `;
     fillCart.innerHTML = emptyCart;
   } else {
-    for (i = 0; i < contentLocalStorage.length; i++) {
-      const montantArticles =
-        contentLocalStorage[i].quantity * contentLocalStorage[i].prix;
-      console.log(montantArticles);
 
-      function groupByName(contentLocalStorage, propriete) {
-        return contentLocalStorage.reduce(function (collector, article) {
-          const key = article[propriete];
-          if (!collector[key]) {
-            collector[key] = [];
-          }
-          collector[key].push(article);
-          return collector;
-        }, {});
+    let result = contentLocalStorage.reduce(function (array, item) {
+      array[item.idProduit] = array[item.idProduit] || [];
+      array[item.idProduit].push(item);
+      return array;
+    }, Object.create(null));
+
+    //
+    console.log(result);
+
+    const addTeddie = function(image, name, price) {
+      const oldTeddies = JSON.parse(localStorage.getItem('article')) || [];
+      const match = oldTeddies.find(function (teddie) {
+        return teddie['product-image'] === image;
+      });
+      if(match) {
+        match['product-name'] += name;
+        match['product-price'] += price;
+      } else {
+        const newTeddie = {
+          'product-image': image,
+          'product-name': name,
+          'product-price'  : price 
+        };
+        oldTeddies.push(newTeddie);
       }
-      // console.log(groupByName(obj[propriete]));
-      const peluchesQuantity = groupByName(contentLocalStorage, "nom");
-      console.log(peluchesQuantity);
+      localStorage.setItem('article', JSON.stringify(oldTeddies));
+    };
+    
+    addTeddie();
+    // if (!result) {
+    //   result();
+    // } else {
+    //   contentLocalStorage = [];
+    //   result += result + 1;
+    // }
 
-      fullCart =
-        fullCart +
-        `
+    // for (let i = 0; i < result.length; i++) {
+    //   if (result[i].id === idProduit) {
+    //     result();
+    //   } else {
+    //     result + [];
+    //     result = result + 1;
+    //   }
+      // let products = [];
+      // objet[item.idProduit] = objet[item.idProduit] + i;
+      addTeddie.forEach((idProduit) => {
+        console.log(idProduit);
+        fullCart += `
               <tr>
-                <td><img src="${contentLocalStorage[i].image}" width="200"></td>
-                <td><h2>${contentLocalStorage[i].nom}</h2></td>
-                <td>
-                    <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${contentLocalStorage[i].quantity}"/>
-                </td>
-                <td id="price">${contentLocalStorage[i].prix}€</td>
-                <td id="montant">${montantArticles}€</td>
+                <td><img src="${result.image}" width="200"></td>
+                <td><h2>${result.nom}</h2></td>
+                <td id="price">${contentLocalStorage.prix}€</td>
+                <td id="montant">€</td>
               </tr>
               `;
       // fillCart.innerHTML = fullCart;
+    
+    // const montant =
+    //   contentLocalStorage[i].prix * contentLocalStorage[i].quantity;
+    // totalPanier.push(montant);
+    //       console.log(totalPanier);
+    // } a remettre
 
-      const montant =
-        contentLocalStorage[i].prix * contentLocalStorage[i].quantity;
-      totalPanier.push(montant);
-      //       console.log(totalPanier);
-    }
-
-    if (i == contentLocalStorage.length) {
+    if (i == result.length) {
       fillCart.innerHTML = fullCart;
     }
+  });
   }
+
   const total = (collect, montantInitial) => collect + montantInitial;
-  console.log(total);
+  // console.log(total);
 
   const montantTotal = totalPanier.reduce(total, 0);
-  console.log(montantTotal);
+  // console.log(montantTotal);
 
   const amountOrder = `
      <td>${montantTotal} €</td>
@@ -159,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
   netAPayer.innerHTML = amountOrder;
 
   localStorage.setItem("article", JSON.stringify(contentLocalStorage));
-
-
 
   const form = document.getElementById("form");
   const formNom = document.getElementById("nomClient");
@@ -170,15 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const formVille = document.getElementById("villeClient");
   const formMail = document.getElementById("mailClient");
 
-  // const errorNom = document.querySelector("#errorNom");
-  // const errorPrenom = document.querySelector("#errorPrenom");
-  // const errorAdresse = document.querySelector("#errorAdresse");
-  // const errorCodePostal = document.querySelector("#errorCodePostal");
-  // const errorVille = document.querySelector("#errorVille");
-  // const errorMail = document.querySelector("#errorMail");
-
   form.addEventListener("submit", (e) => {
-    
     function validationInputs() {
       const formNomValue = formNom.value.trim();
       const formPrenomValue = formPrenom.value.trim();
@@ -186,27 +180,33 @@ document.addEventListener("DOMContentLoaded", function () {
       const formCodePostalValue = formCodePostal.value.trim();
       const formVilleValue = formVille.value.trim();
       const formMailValue = formMail.value.trim();
-  
+
       if (formNomValue === "") {
         erreur(formNom, "Le champs nom doit être complété.");
         e.preventDefault();
       } else if (!testFormNom(formNomValue)) {
-        erreur(formNom, "Le nom doit comporter entre 3 à 20 lettres majuscules.");
+        erreur(
+          formNom,
+          "Le nom doit comporter entre 3 à 20 lettres majuscules."
+        );
         e.preventDefault();
       } else {
         success(formNom);
       }
-  
+
       if (formPrenomValue === "") {
         erreur(formPrenom, "Le champs prénom doit être complété.");
         e.preventDefault();
       } else if (!testFormPrenom(formPrenomValue)) {
-        erreur(formPrenom, "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3.");
+        erreur(
+          formPrenom,
+          "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3."
+        );
         e.preventDefault();
       } else {
         success(formPrenom);
       }
-  
+
       if (formAdresseValue === "") {
         erreur(formAdresse, "Le champs adresse doit être complété.");
         e.preventDefault();
@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         success(formAdresse);
       }
-  
+
       if (formCodePostalValue === "") {
         erreur(formCodePostal, "Le champs code postal doit être complété.");
         e.preventDefault();
@@ -226,22 +226,28 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         success(formCodePostal);
       }
-  
+
       if (formVilleValue === "") {
         erreur(formVille, "Le champs ville doit être complété.");
         e.preventDefault();
       } else if (!testFormVille(formVilleValue)) {
-        erreur(formVille, "La ville doit contenir uniquement des majuscules, 3 minimum.");
+        erreur(
+          formVille,
+          "La ville doit contenir uniquement des majuscules, 3 minimum."
+        );
         e.preventDefault();
       } else {
         success(formVille);
       }
-  
+
       if (formMailValue === "") {
         erreur(formMail, "Le champs email doit être complété.");
         e.preventDefault();
       } else if (!testFormMail(formMailValue)) {
-        erreur(formMail, "L'email doit être composé sous cette forme : email@nomdedomaine.fr");
+        erreur(
+          formMail,
+          "L'email doit être composé sous cette forme : email@nomdedomaine.fr"
+        );
         e.preventDefault();
       } else {
         success(formMail);
@@ -249,11 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     validationInputs();
-
-
   });
-
-  
 
   function erreur(input, message) {
     const formValidation = input.parentElement;
@@ -269,59 +271,63 @@ document.addEventListener("DOMContentLoaded", function () {
     formValidation.className = "form-validation success";
   }
 
-  function testFormNom(formNom) {
-    return /^[A-Z-\s]{3,20}$/.test(formNom);
-  }
+  // function testFormNom(formNom) {
+  //   return /^[A-Z-\s]{3,20}$/.test(formNom);
+  // }
 
-  function testFormPrenom(formPrenom) {
-    return /^[A-Z-\s][a-z\xc0-\xff-\s]{3,20}$/.test(formPrenom);
-  }
+  // function testFormPrenom(formPrenom) {
+  //   return /^[A-Z-\s][a-z\xc0-\xff-\s]{3,20}$/.test(formPrenom);
+  // }
 
-  function testFormAdresse(formAdresse) {
-    return /^[0-9a-zA-Z\xc0-\xff-\s]{5,50}$/.test(formAdresse);
-  }
+  // function testFormAdresse(formAdresse) {
+  //   return /^[0-9a-zA-Z\xc0-\xff-\s]{5,50}$/.test(formAdresse);
+  // }
 
-  function testFormCodePostal(formCodePostal) {
-    return /^[0-9]{5}$/.test(formCodePostal);
-  }
+  // function testFormCodePostal(formCodePostal) {
+  //   return /^[0-9]{5}$/.test(formCodePostal);
+  // }
 
-  function testFormVille(formVille) {
-    return /^[A-Z-]{3,20}$/.test(formVille);
-  }
+  // function testFormVille(formVille) {
+  //   return /^[A-Z-]{3,20}$/.test(formVille);
+  // }
 
-  function testFormMail(formMail) {
-    return /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/.test(formMail);
-  }
- 
-    ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
-    const formulaire = {
-      nom: document.querySelector("#nomClient").value,
-      prenom: document.querySelector("#prenomClient").value,
-      adresse: document.querySelector("#adresseClient").value,
-      codePostal: document.querySelector("#codePostalClient").value,
-      ville: document.querySelector("#villeClient").value,
-      mail: document.querySelector("#mailClient").value,
-    };
-  
-  
-    /// if valid form and content localstorage ???
-    localStorage.setItem("formulaire", JSON.stringify(formulaire));
-  
-  /////////////////////If pdt cmd and valid form then POST
-    const envoiFormulaire = {
-      contentLocalStorage,
-      formulaire,
-    }
-  console.log(envoiFormulaire);
-  
-    const envoiServer = fetch("http://url-service-web.com/api/teddies", {
-      method : "POST",
-      body: JSON.stringify(envoiFormulaire),
-      headers: { 
-        "Content-Type": "application/json",
-      },
-    });
-    envoiServer();
+  // function testFormMail(formMail) {
+  //   return /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/.test(
+  //     formMail
+  //   );
+  // }
+
+  // ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
+  // const formulaire = {
+  //   nom: localStorage.setItem("nom", document.querySelector("#nomClient").value),
+  //   prenom: localStorage.setItem("prenom", document.querySelector("#prenomClient").value),
+  //   adresse: localStorage.setItem("adresse", document.querySelector("#adresseClient").value),
+  //   codePostal: localStorage.setItem("code postal", document.querySelector("#codePostalClient").value),
+  //   ville: localStorage.setItem("ville", document.querySelector("#villeClient").value),
+  //   mail: localStorage.setItem("mail", document.querySelector("#mailClient").value),
+  // };
+
+  // console.log(document.querySelector("#nomClient").value);
+  // /// if valid form and content localstorage ???
+
+  // // const formulaireStorage = localStorage.getItem("formulaire");
+  // // localStorage.setItem("formulaire", JSON.stringify(formulaireStorage));
+
+  // /////////////////////If pdt cmd and valid form then POST
+  // const envoiFormulaire = {
+  //   contact,
+  //   products,
+  // };
+  // console.log(envoiFormulaire);
+
+  // const envoiServer = fetch("http://url-service-web.com/api/teddies", {
+  //   method: "POST",
+  //   body: JSON.stringify(envoiFormulaire),
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+  // envoiServer();
   // form.addEventListener("submit")
   // function validNom() {
   //   const regexNom = /[A-Z]{3,20}/;

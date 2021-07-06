@@ -109,34 +109,24 @@ document.addEventListener("DOMContentLoaded", function () {
         data.colors[3]
       }</option>
                      </select>
-
-
-                    <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="0"/>
-                        
+                      
                     <button type="button" name="ajouter" id="btnAjouter" class="fiche__produit--panier">Ajouter au panier</button>
                     </div>
                 </div>
     `;
       fiche.innerHTML = bodyFiche;
       
-      const quantitySelect = document.querySelector("#quantity");
       const ajouterPanier = document.querySelector("#btnAjouter");
 
       // Staockage dans le localStorage
       ajouterPanier.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const choixQuantity = quantitySelect.value;
-        console.log(choixQuantity);
-
-        const quantityLocalStorage = parseInt(choixQuantity);
-        console.log(quantity);
         // Récupération des valeurs du panier
         const choixProduit = {
           image: data.imageUrl,
           idProduit: data._id,
           nom: data.name,
-          quantity: quantityLocalStorage,
           prix: data.price / 100,
         };
         console.log(choixProduit);
@@ -148,7 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
           contentLocalStorage.push(choixProduit);
           localStorage.setItem("article", JSON.stringify(contentLocalStorage));
         }
-        // Vérification contenu présent dans le localStorage
+        // // Vérification contenu présent dans le localStorage
+        // contentLocalStorage[this.name] = choixProduit;
+        // localStorage.setItem("itemsObject", JSON.stringify(oldItems));
+
         if (contentLocalStorage) {
           ajoutProduit();
         } else {
