@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clicHomepage.addEventListener("click", ouvreHomepage);
   // function ouvreHomepage() {
   function ouvreHomepage() {
-    window.location.href = "http://127.0.0.1:5500/front-end/index.html";
+    window.location.href = "http://LOCALHOST:5500/front-end/index.html";
   }
 
   /////////// Menu panier Orinoco
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
   openPanier.addEventListener("click", panierWindow);
 
   function panierWindow() {
-    window.location.href = "http://127.0.0.1:5500/front-end/pages/panier.html";
+    window.location.href = "http://LOCALHOST:5500/front-end/pages/panier.html";
   }
 
   // document.querySelector("#nom").innerHTML = localStorage.getItem("Nom");
@@ -85,22 +85,22 @@ document.addEventListener("DOMContentLoaded", function () {
   // // orderDisplayCheck();
   // document.getElementById("confirmation").textContent = orderDisplayCheck;
   // Confirmation
-  const formulaireStorage = JSON.parse(localStorage.getItem("formulaire"));
+  const formulaireStorage = JSON.parse(localStorage.getItem("contact"));
   console.log(formulaireStorage);
   function orderValidation() {
     const msgConfirmation = document.querySelector("#confirmation");
-    // const nomClient = localStorage.getItem("nom");
+    // const lastName = localStorage.getItem("nom").value;
     // const prenomClient = localStorage.getItem("prenom");
     // const montantClient = localStorage.getItem("total");
     // const orderId = localStorage.getItem("orderId");
 
-    msgConfirmation.innerHTML +=`
-      ${formulaireStorage.nom} +
-      ${formulaireStorage.prenom} +
+    msgConfirmation.innerHTML += `
+      ${lastName.value} +
+      ${formulaireStorage.firstName} +
       "Votre commande d'un montant de " +
       montantClient +
       "€ a bien été enregistrée sous le : N° " +
-      orderId +
+      ${order_id} +
       "Nous vous remercions de votre confiance. L'équipe d'"
       `;
   }

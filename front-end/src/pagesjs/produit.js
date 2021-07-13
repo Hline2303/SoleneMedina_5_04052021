@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clicHomepage.addEventListener("click", ouvreHomepage);
   // function ouvreHomepage() {
   function ouvreHomepage() {
-    window.location.href = "http://127.0.0.1:5500/front-end/index.html";
+    window.location.href = "http://LOCALHOST:5500/front-end/index.html";
   }
 
   /////////// Menu panier Orinoco
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
   openPanier.addEventListener("click", panierWindow);
 
   function panierWindow() {
-    window.location.href = "http://127.0.0.1:5500/front-end/pages/panier.html";
+    window.location.href = "http://LOCALHOST:5500/front-end/pages/panier.html";
   }
 
   // Extraction de l'id
@@ -115,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
     `;
       fiche.innerHTML = bodyFiche;
-      
-      const ajouterPanier = document.querySelector("#btnAjouter");
 
+      const ajouterPanier = document.querySelector("#btnAjouter");
+      // console.log(ajouterPanier);
       // Staockage dans le localStorage
       ajouterPanier.addEventListener("click", (e) => {
         e.preventDefault();
@@ -130,14 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
           prix: data.price / 100,
         };
         console.log(choixProduit);
-
         // Contenu du localStorage
         let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
 
         const ajoutProduit = () => {
           contentLocalStorage.push(choixProduit);
           localStorage.setItem("article", JSON.stringify(contentLocalStorage));
-        }
+        };
         // // Vérification contenu présent dans le localStorage
         // contentLocalStorage[this.name] = choixProduit;
         // localStorage.setItem("itemsObject", JSON.stringify(oldItems));
@@ -151,4 +150,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 });
-

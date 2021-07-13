@@ -64,14 +64,14 @@
               <span class="fa fa-home" aria-hidden="true"></span>
             </a>
           </li>
-          <li>
+          <li class="panier">
             <a href="#" id="panierNav">
               <span
                 class="fas fa-shopping-cart"
                 class="cart"
                 aria-hidden="true"
               ></span>
-              <span class="nbQuantity">0</span>
+              <!-- <span class="nbQuantity" id="nbQuantity">0</span> -->
             </a>
           </li>
         </ul>
@@ -87,6 +87,8 @@
               <tr>
                 <th class="panier__produit" id="productBasket">Produit</th>
                 <th class="panier__produit--nom">Référence</th>
+                <th class="panier__quantity" id="quantityBasket">Quantité</th>
+                <th class="panier__delete" id="deleteProduct">Supprimer</th>
                 <th class="panier__prix" id="priceBasket">Prix</th>
                 <th class="panier__total" id="totalBasket">Montant</th>
               </tr>
@@ -95,7 +97,8 @@
             <tbody class="bodycart" id="bodyCart"></tbody>
             <tfoot>
               <tr>
-                <td colspan="4">Montant Total du panier</td>
+                <td colspan="3">Montant Total du panier</td>
+                <td colspan="2"><button class="delete_all" id="delete_all"><i class="fas fa-trash"></i></button></td>
                 <td id="total"></td>
               </tr>
             </tfoot>
@@ -103,105 +106,99 @@
         </div>
 
         <!-- A mettre dans la balise form => method="post" action="" id="clientForm"-->
-        <form action="confirmation.html" id="form">
+        <form action="confirmation.html" id="form" class="contact">
           <fieldset>
             <legend><strong>Formulaire client</strong></legend>
 
             <div class="form-validation">
-            <label>Nom</label>
             <input
               type="text"
               name="nomClient"
               class="nomClient"
               id="nomClient"
-              placeholder="Entrez votre nom"
+              placeholder="Nom"
               pattern="[A-Z-\s]{3,20}"
             />
-            <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+          <i class="fas fa-exclamation-circle false"></i><br>
 
-            <small>Message d'erreur</small>
+            <small></small>
         </div>
 
         <div class="form-validation">
-            <label>Prénom</label>
             <input
               type="text"
               name="prenomClient"
               class="prenomClient"
               id="prenomClient"
-              placeholder="Entrez votre prénom"
+              placeholder="Prénom"
               pattern="[A-Z][a-z\xc0-\xff-\s]{3,20}"
             />
-            <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+            <i class="fas fa-exclamation-circle false"></i><br>
             
-          <small>Message d'erreur</small>
+          <small></small>
         </div>
 
         <div class="form-validation"></div>
-            <label>Adresse</label>
             <input
               type="text"
               name="adresseClient"
               class="adresseClient"
               id="adresseClient"
-              placeholder="Entrez votre adresse"
+              placeholder="Adresse"
               pattern="[0-9a-zA-Z\xc0-\xff-\s]{5,50}"
             />
             
-            <i class="fas fa-check-circle"></i>
-            <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+            <i class="fas fa-exclamation-circle false"></i><br>
 
-            <small>Message d'erreur</small>
+            <small></small>
         </div>
 
-            <div class="form-validation">
-            <label>Code Postal</label>
+            <!-- <div class="form-validation">
             <input
               type="text"
               name="codepostalClient"
               class="codePostalClient"
               id="codePostalClient"
-              placeholder="Entrez votre code postal"
+              placeholder="Code postal"
               pattern="[0-9]{5}"
             />
-            <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+            <i class="fas fa-exclamation-circle false"></i><br>
 
-          <small>Message d'erreur</small>
+          <small></small> -->
         </div>
 
             <div class="form-validation">
-            <label>Ville</label>
             <input
               type="text"
               name="villeClient"
               class="villeClient"
               id="villeClient"
-              placeholder="Entrez votre ville"
+              placeholder="Ville"
               pattern="[A-Z]{3,20}"
             />
-            <i class="fas fa-check-circle"></i>
-          <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+            <i class="fas fa-exclamation-circle false"></i><br>
             
-          <small>Message d'erreur</small>
+          <small></small>
         </div>
 
             <div class="form-validation">
-            <label>E-mail</label>
             <input
               type="email"
               name="mailClient"
               class="mailClient"
               id="mailClient"
-              placeholder="Entrez votre e-mail"
+              placeholder="E-mail"
               pattern="([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})"
             />
-            <i class="fas fa-check-circle check"></i>
-          <i class="fas fa-exclamation-circle"></i>
+            <i class="fas fa-check-circle checked"></i>
+            <i class="fas fa-exclamation-circle false"></i><br>
         
-          <small>Message d'erreur</small>
+          <small></small>
 
             </div>
             <button type="submit" class="buttonFormClient" id="validFormClient">VALIDER</button>

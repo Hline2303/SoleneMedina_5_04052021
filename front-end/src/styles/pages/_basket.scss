@@ -26,13 +26,13 @@ fieldset {
   margin-right: auto;
 }
 
-label {
-  display: inline-block;
-  min-width: 100px;
-  height: 30px;
-  padding-left: 25px;
-  padding-right: 10px;
-}
+// label {
+//   display: inline-block;
+//   min-width: 100px;
+//   height: 30px;
+//   padding-left: 25px;
+//   padding-right: 10px;
+// }
 
 input {
   height: 20px;
@@ -54,12 +54,12 @@ input {
   border-color: #e74c3c;
 }
 
-.form-validation.success i.check {
+.form-validation.success i.checked {
   color: #2ecc71;
   visibility: visible;
 }
 
-.form-validation.erreur i.fa-exclamation-circle {
+.form-validation.erreur i.false {
   color: #e74c3c;
   visibility: visible;
 }

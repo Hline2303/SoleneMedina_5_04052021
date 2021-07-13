@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // function ouvreHomepage()
   function ouvreHomepage() {
-    window.location.href = "http://127.0.0.1:5500/front-end/index.html";
+    window.location.href = "http://localhost:5500/front-end/index.html";
   }
 
   function changeTexte1() {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function panierWindow() {
-    window.location.href = "http://127.0.0.1:5500/front-end/pages/panier.html";
+    window.location.href = "http://localhost:5500/front-end/pages/panier.html";
   }
 
   // Contenu du localStorage
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const netAPayer = document.querySelector("#total");
   // console.log(netAPayer);
 
-  let i;
+  // let i;
 
   if (contentLocalStorage === null) {
     const emptyCart = `
@@ -81,74 +81,59 @@ document.addEventListener("DOMContentLoaded", function () {
      `;
     fillCart.innerHTML = emptyCart;
   } else {
-
     let result = contentLocalStorage.reduce(function (array, item) {
       array[item.idProduit] = array[item.idProduit] || [];
       array[item.idProduit].push(item);
       return array;
     }, Object.create(null));
 
+    result = Object.entries(result);
     //
-    console.log(result);
+    // console.log(result);
+    result.forEach((article) => {
+      const quantity = article[1].length;
+      // console.log(quantity);
+      let product_id = article[1][0];
+      // console.log(products);
+      // console.log(result);
 
-    const addTeddie = function(image, name, price) {
-      const oldTeddies = JSON.parse(localStorage.getItem('article')) || [];
-      const match = oldTeddies.find(function (teddie) {
-        return teddie['product-image'] === image;
-      });
-      if(match) {
-        match['product-name'] += name;
-        match['product-price'] += price;
-      } else {
-        const newTeddie = {
-          'product-image': image,
-          'product-name': name,
-          'product-price'  : price 
-        };
-        oldTeddies.push(newTeddie);
-      }
-      localStorage.setItem('article', JSON.stringify(oldTeddies));
-    };
-    
-    addTeddie();
-    // if (!result) {
-    //   result();
-    // } else {
-    //   contentLocalStorage = [];
-    //   result += result + 1;
-    // }
+      // const total = quantity * products.prix;
+      // console.log(total);
+      const montant = quantity * product_id.prix;
+      // console.log(montant);
 
-    // for (let i = 0; i < result.length; i++) {
-    //   if (result[i].id === idProduit) {
-    //     result();
-    //   } else {
-    //     result + [];
-    //     result = result + 1;
-    //   }
-      // let products = [];
-      // objet[item.idProduit] = objet[item.idProduit] + i;
-      addTeddie.forEach((idProduit) => {
-        console.log(idProduit);
-        fullCart += `
-              <tr>
-                <td><img src="${result.image}" width="200"></td>
-                <td><h2>${result.nom}</h2></td>
-                <td id="price">${contentLocalStorage.prix}€</td>
-                <td id="montant">€</td>
+      fullCart =
+        fullCart +
+        `
+              <tr class="row_article" id="row_article">
+                <td><img src="${article[1][0].image}" width="200"></td>
+                <td><h2>${article[1][0].nom}</h2></td>
+                <td>
+                    <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
+                </td>
+                <td id="delete"><button class="delete_product" id="delete_product"><i class="fas fa-trash"></i></button></td>
+                <td id="price">${article[1][0].prix}€</td>
+                <td id="montant"> ${montant}€</td>
               </tr>
               `;
-      // fillCart.innerHTML = fullCart;
-    
-    // const montant =
-    //   contentLocalStorage[i].prix * contentLocalStorage[i].quantity;
-    // totalPanier.push(montant);
-    //       console.log(totalPanier);
-    // } a remettre
-
-    if (i == result.length) {
       fillCart.innerHTML = fullCart;
-    }
-  });
+
+      totalPanier.push(montant);
+      // console.log(totalPanier);
+
+      localStorage.setItem("product_id", JSON.stringify(contentLocalStorage));
+
+      const deleteProduct = document.querySelectorAll(".delete_product");
+      console.log(deleteProduct);
+
+      for (product_id = 0; product_id < deleteProduct; product_id++) {
+        deleteProduct[products].addEventListener("click", (e) => {
+          e.preventDefault();
+          document.getElementById("row_article");
+          removeItem("row_article");
+        });
+      }
+    });
   }
 
   const total = (collect, montantInitial) => collect + montantInitial;
@@ -163,98 +148,123 @@ document.addEventListener("DOMContentLoaded", function () {
   netAPayer.innerHTML = amountOrder;
 
   localStorage.setItem("article", JSON.stringify(contentLocalStorage));
-
+  //////////////////////// FORMULAIRE //////////////////////////
   const form = document.getElementById("form");
-  const formNom = document.getElementById("nomClient");
-  const formPrenom = document.getElementById("prenomClient");
-  const formAdresse = document.getElementById("adresseClient");
-  const formCodePostal = document.getElementById("codePostalClient");
-  const formVille = document.getElementById("villeClient");
-  const formMail = document.getElementById("mailClient");
 
   form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const contact = new FormData(form);
+
+    const order = {
+      produits: contentLocalStorage,
+      contact,
+    };
+
+    const envoi = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    };
+
+    fetch("http://localhost:3000/api/order", envoi)
+      .then((response) => response.json())
+      .then((command) => console.log(command));
+    //  const contact = {
+    //   firstName : document.getElementById("nomClient"),
+    //   lastName : document.getElementById("prenomClient"),
+    //   adress : document.getElementById("adresseClient"),
+    //   // const formCodePostal = document.getElementById("codePostalClient");
+    //   city : document.getElementById("villeClient"),
+    //   email : document.getElementById("mailClient"),
+    // };
+
+    localStorage.setItem("contact", JSON.stringify(contact));
+
     function validationInputs() {
-      const formNomValue = formNom.value.trim();
-      const formPrenomValue = formPrenom.value.trim();
-      const formAdresseValue = formAdresse.value.trim();
-      const formCodePostalValue = formCodePostal.value.trim();
-      const formVilleValue = formVille.value.trim();
-      const formMailValue = formMail.value.trim();
+      const formNomValue = firstName.value.trim();
+      const formPrenomValue = lastName.value.trim();
+      const formAdresseValue = adress.value.trim();
+      // const formCodePostalValue = formCodePostal.value.trim();
+      const formVilleValue = city.value.trim();
+      const formMailValue = email.value.trim();
 
       if (formNomValue === "") {
-        erreur(formNom, "Le champs nom doit être complété.");
+        erreur(firstName, "Le champs nom doit être complété.");
         e.preventDefault();
       } else if (!testFormNom(formNomValue)) {
         erreur(
-          formNom,
+          firstName,
           "Le nom doit comporter entre 3 à 20 lettres majuscules."
         );
         e.preventDefault();
       } else {
-        success(formNom);
+        success(firstName);
       }
 
       if (formPrenomValue === "") {
-        erreur(formPrenom, "Le champs prénom doit être complété.");
+        erreur(lastName, "Le champs prénom doit être complété.");
         e.preventDefault();
       } else if (!testFormPrenom(formPrenomValue)) {
         erreur(
-          formPrenom,
+          lastName,
           "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3."
         );
         e.preventDefault();
       } else {
-        success(formPrenom);
+        success(lastName);
       }
 
       if (formAdresseValue === "") {
-        erreur(formAdresse, "Le champs adresse doit être complété.");
+        erreur(adress, "Le champs adresse doit être complété.");
         e.preventDefault();
       } else if (!testFormAdresse(formAdresseValue)) {
-        erreur(formAdresse, "Veuillez entrer une adresse valide.");
+        erreur(adress, "Veuillez entrer une adresse valide.");
         e.preventDefault();
       } else {
-        success(formAdresse);
+        success(adress);
       }
 
-      if (formCodePostalValue === "") {
-        erreur(formCodePostal, "Le champs code postal doit être complété.");
-        e.preventDefault();
-      } else if (!testFormCodePostal(formCodePostalValue)) {
-        erreur(formCodePostal, "Le code postal doit contenir 5 chiffres.");
-        e.preventDefault();
-      } else {
-        success(formCodePostal);
-      }
+      // if (formCodePostalValue === "") {
+      //   erreur(formCodePostal, "Le champs code postal doit être complété.");
+      //   e.preventDefault();
+      // } else if (!testFormCodePostal(formCodePostalValue)) {
+      //   erreur(formCodePostal, "Le code postal doit contenir 5 chiffres.");
+      //   e.preventDefault();
+      // } else {
+      //   success(formCodePostal);
+      // }
 
       if (formVilleValue === "") {
-        erreur(formVille, "Le champs ville doit être complété.");
+        erreur(city, "Le champs ville doit être complété.");
         e.preventDefault();
       } else if (!testFormVille(formVilleValue)) {
         erreur(
-          formVille,
+          city,
           "La ville doit contenir uniquement des majuscules, 3 minimum."
         );
         e.preventDefault();
       } else {
-        success(formVille);
+        success(city);
       }
 
       if (formMailValue === "") {
-        erreur(formMail, "Le champs email doit être complété.");
+        erreur(email, "Le champs email doit être complété.");
         e.preventDefault();
       } else if (!testFormMail(formMailValue)) {
         erreur(
-          formMail,
+          email,
           "L'email doit être composé sous cette forme : email@nomdedomaine.fr"
         );
         e.preventDefault();
       } else {
-        success(formMail);
+        success(email);
       }
     }
 
-    validationInputs();
+    // validationInputs();
   });
 
   function erreur(input, message) {
@@ -271,263 +281,31 @@ document.addEventListener("DOMContentLoaded", function () {
     formValidation.className = "form-validation success";
   }
 
-  // function testFormNom(formNom) {
-  //   return /^[A-Z-\s]{3,20}$/.test(formNom);
-  // }
+  function testFormNom(formNom) {
+    return /^[A-Z-\s]{3,20}$/.test(formNom);
+  }
 
-  // function testFormPrenom(formPrenom) {
-  //   return /^[A-Z-\s][a-z\xc0-\xff-\s]{3,20}$/.test(formPrenom);
-  // }
+  function testFormPrenom(formPrenom) {
+    return /^[A-Z-\s][a-z\xc0-\xff-\s]{3,20}$/.test(formPrenom);
+  }
 
-  // function testFormAdresse(formAdresse) {
-  //   return /^[0-9a-zA-Z\xc0-\xff-\s]{5,50}$/.test(formAdresse);
-  // }
+  function testFormAdresse(formAdresse) {
+    return /^[0-9a-zA-Z\xc0-\xff-\s]{5,50}$/.test(formAdresse);
+  }
 
   // function testFormCodePostal(formCodePostal) {
   //   return /^[0-9]{5}$/.test(formCodePostal);
   // }
 
-  // function testFormVille(formVille) {
-  //   return /^[A-Z-]{3,20}$/.test(formVille);
-  // }
+  function testFormVille(formVille) {
+    return /^[A-Z-]{3,20}$/.test(formVille);
+  }
 
-  // function testFormMail(formMail) {
-  //   return /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/.test(
-  //     formMail
-  //   );
-  // }
-
-  // ////////////////////// Créer une clé pour les éléments à envoyer dans le localstorage
-  // const formulaire = {
-  //   nom: localStorage.setItem("nom", document.querySelector("#nomClient").value),
-  //   prenom: localStorage.setItem("prenom", document.querySelector("#prenomClient").value),
-  //   adresse: localStorage.setItem("adresse", document.querySelector("#adresseClient").value),
-  //   codePostal: localStorage.setItem("code postal", document.querySelector("#codePostalClient").value),
-  //   ville: localStorage.setItem("ville", document.querySelector("#villeClient").value),
-  //   mail: localStorage.setItem("mail", document.querySelector("#mailClient").value),
-  // };
-
-  // console.log(document.querySelector("#nomClient").value);
-  // /// if valid form and content localstorage ???
-
-  // // const formulaireStorage = localStorage.getItem("formulaire");
-  // // localStorage.setItem("formulaire", JSON.stringify(formulaireStorage));
-
-  // /////////////////////If pdt cmd and valid form then POST
-  // const envoiFormulaire = {
-  //   contact,
-  //   products,
-  // };
-  // console.log(envoiFormulaire);
-
-  // const envoiServer = fetch("http://url-service-web.com/api/teddies", {
-  //   method: "POST",
-  //   body: JSON.stringify(envoiFormulaire),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // envoiServer();
-  // form.addEventListener("submit")
-  // function validNom() {
-  //   const regexNom = /[A-Z]{3,20}/;
-
-  //   if (formNom.value.trim === "" || formNom.value.trim === regexNom) {
-  //     errorNom.innerText = "";
-  //     errorNom.style.color = "green";
-  //     return true;
-  //   } else {
-  //     errorNom.innerText = "Nom invalide";
-  //     errorNom.style.color = "red";
-  //     formNom.setCustomValidity(
-  //       "Le nom est uniquement composé de 3 à 20 lettres majuscules."
-  //     );
-  //     return false;
-  //   }
-  // }
-
-  // validNom();
-
-  // formNom.addEventListener("keyup", function (event) {
-  //   if (formNom.validity.typeMismatch) {
-  //     formNom.setCustomValidity(
-  //       "Le nom est uniquement composé de 3 à 20 lettres majuscules."
-  //     );
-  //   } else {
-  //     formNom.setCustomValidity("");
-  //   }
-  // });
-
-  // formNom.onkeydown = function () {
-  // OK    const regexNom = /^[A-Z]{3,20}$/;
-
-  //     if (regexNom.test(formNom)) {
-  //         errorNom.innerText = "Nom valide";
-  //         errorNom.style.color = "green";
-  //       } else {
-  //         errorNom.innerText = "Nom invalide";
-  //         errorNom.style.color = "red";
-  //         formNom.setCustomValidity("Le nom est uniquement composé de 3 à 20 lettres majuscules.")
-  //       }
-  // };
-
-  // formPrenom.onkeydown = function () {
-  // OK  const regexPrenom = /^[A-Z][a-z]{3,20}$/;
-
-  //   if (regexPrenom.test(formPrenom.value)) {
-  //     errorPrenom.innerText = "Prénom valide";
-  //     errorPrenom.style.color = "green";
-  //   } else {
-  //     errorPrenom.innerText = "Prénom invalide";
-  //     errorPrenom.style.color = "red";
-  //     formPrenom.setCustomValidity(
-  //       "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3."
-  //     );
-  //   }
-  // };
-
-  // formAdresse.onkeydown = function () {
-  //  OK const regexAdresse = /^[0-9a-zA-Z-\s]{5,50}$/;
-
-  //   if (regexAdresse.test(formAdresse.value)) {
-  //     errorAdresse.innerText = "Adresse valide";
-  //     errorAdresse.style.color = "green";
-  //   } else {
-  //     errorAdresse.innerText = "Adresse invalide";
-  //     errorAdresse.style.color = "red";
-  //     formPrenom.setCustomValidity("Veuillez entrer une adresse valide.");
-  //   }
-  // };
-
-  // formCodePostal.onkeydown = function () {
-  // OK  const regexCodePostal = /^[0-9]{5}$/;
-
-  //   if (regexCodePostal.test(formCodePostal.value)) {
-  //     errorCodePostal.innerText = "Code postal valide";
-  //     errorCodePostal.style.color = "green";
-  //   } else {
-  //     errorCodePostal.innerText = "Code postal invalide";
-  //     errorCodePostal.style.color = "red";
-  //     formPrenom.setCustomValidity("Le code postal doit contenir 5 chiffres.");
-  //   }
-  // };
-
-  // formVille.onkeydown = function () {
-  //   const regexVille = /^[A-Z-]{3,20}$/;
-
-  //   if (regexVille.test(formVille.value)) {
-  //     errorVille.innerText = "Ville valide";
-  //     errorVille.style.color = "green";
-  //   } else {
-  //     errorVille.innerText = "Ville invalide";
-  //     errorVille.style.color = "red";
-  //     formPrenom.setCustomValidity("La ville doit contenir uniquement des majuscules, 3 minimum.");
-  //   }
-  // };
-
-  // formMail.onkeydown = function () {
-  //   const regexEmail =
-  //     /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/;
-  //   // /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-  //   if (regexEmail.test(formMail.value)) {
-  //     errorMail.innerText = "Email valide";
-  //     errorMail.style.color = "green";
-  //   } else {
-  //     errorMail.innerText = "Email invalide";
-  //     errorMail.style.color = "red";
-  //     formPrenom.setCustomValidity("L'email doit être composé sous cette forme : email@nomdedomaine.fr");
-  //   }
-  // };
-
-  // form.addEventListener( //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
-  //   "submit",
-  //   function (event) {
-  //     // Chaque fois que l'utilisateur tente d'envoyer les données
-  //     // on vérifie que le champ email est valide.
-  //     if (!formNom.validity.valid) {
-  //       // S'il est invalide, on affiche un message d'erreur personnalisé
-  //       errorNom.innerHTML = "Veuillez entrer un nom valide.";
-  //       errorNom.className = "error active";
-  //       errorNom.style.color = "red";
-  //       // Et on empêche l'envoi des données du formulaire
-  //       event.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
-
-  // form.addEventListener(
-  //   //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
-  //   "submit",
-  //   function (event) {
-  //     // Chaque fois que l'utilisateur tente d'envoyer les données
-  //     // on vérifie que le champ email est valide.
-  //     if (!formPrenom.validity.valid) {
-  //       // S'il est invalide, on affiche un message d'erreur personnalisé
-  //       errorPrenom.innerHTML = "Veuillez entrer votre prénom.";
-  //       errorPrenom.className = "error active";
-  //       errorPrenom.style.color = "red";
-  //       // Et on empêche l'envoi des données du formulaire
-  //       event.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
-
-  // form.addEventListener(
-  //   //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
-  //   "submit",
-  //   function (event) {
-  //     // Chaque fois que l'utilisateur tente d'envoyer les données
-  //     // on vérifie que le champ email est valide.
-  //     if (!formAdresse.validity.valid) {
-  //       // S'il est invalide, on affiche un message d'erreur personnalisé
-  //       errorAdresse.innerHTML = "Veuillez votre adresse.";
-  //       errorAdresse.className = "error active";
-  //       errorAdresse.style.color = "red";
-  //       // Et on empêche l'envoi des données du formulaire
-  //       event.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
-
-  // form.addEventListener(
-  //   //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
-  //   "submit",
-  //   function (event) {
-  //     // Chaque fois que l'utilisateur tente d'envoyer les données
-  //     // on vérifie que le champ email est valide.
-  //     if (!formCodePostal.validity.valid) {
-  //       // S'il est invalide, on affiche un message d'erreur personnalisé
-  //       errorCodePostal.innerHTML = "Veuillez entrer votre code postal.";
-  //       errorCodePostal.className = "error active";
-  //       errorCodePostal.style.color = "red";
-  //       // Et on empêche l'envoi des données du formulaire
-  //       event.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
-
-  // form.addEventListener(
-  //   //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
-  //   "submit",
-  //   function (event) {
-  //     // Chaque fois que l'utilisateur tente d'envoyer les données
-  //     // on vérifie que le champ email est valide.
-  //     if (!formVille.validity.valid) {
-  //       // S'il est invalide, on affiche un message d'erreur personnalisé
-  //       errorVille.innerHTML = "Veuillez entrer votre ville.";
-  //       errorVille.className = "error active";
-  //       errorVille.style.color = "red";
-  //       // Et on empêche l'envoi des données du formulaire
-  //       event.preventDefault();
-  //     }
-  //   },
-  //   false
-  // );
+  function testFormMail(formMail) {
+    return /^([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})$/.test(
+      formMail
+    );
+  }
 
   // form.addEventListener(
   //   //FAIRE CELA POUR TOUS LES AUTRES CHAMPS
@@ -548,14 +326,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // );
 
   ////////////////////////////////////////////////////
-  //   const envoi = fetch("http://url-service-web.com/api/teddies", {
+
+  //   const envoi = {
   //   method: “POST”,
   //   headers: {
   // 'Accept': 'application/json',
   // 'Content-Type': 'application/json',
   // },
   //   body: JSON.stringify(jsonBody),
-  // });
+  // };
+  // fetch("http://url-service-web.com/api/teddies", envoi)
 });
 
 // fetch(API_POST_URL)
