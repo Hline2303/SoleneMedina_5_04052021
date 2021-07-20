@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const panier = document.querySelector("body.panier");
   if (!panier) return;
-  console.log(panier);
+  // console.log(panier);
 
   /////////// Menu navigation Orinoco ATTENTION DOIT SE REPETER SUR TT LES PAGES
 
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // function ouvreHomepage()
   function ouvreHomepage() {
-    window.location.href = "http://localhost:5500/front-end/index.html";
+    window.location.href = "http://127.0.0.1:5500/front-end/index.html";
   }
 
   function changeTexte1() {
@@ -54,108 +54,131 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function panierWindow() {
-    window.location.href = "http://LOCALHOST:5500/front-end/pages/panier.html";
+    window.location.href = "http://127.0.0.1:5500/front-end/pages/panier.html";
   }
 
   // Contenu du localStorage
   let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
-  console.log(contentLocalStorage);
+  // console.log(contentLocalStorage);
 
   const fillCart = document.querySelector("#bodyCart");
-  console.log(fillCart);
+  // console.log(fillCart);
 
-  let fullCart = [];
-  console.log(fullCart);
+  // let fullCart = [];
+  // console.log(fullCart);
 
   const totalPanier = [];
-  console.log(totalPanier);
+  // console.log(totalPanier);
 
   const netAPayer = document.querySelector("#total");
-  console.log(netAPayer);
+  // console.log(netAPayer);
 
-  var i;
-
-  // function displayCartQuantity(){
-
-  // }
-
-  // function idemProducts () {
-  //   const idemProducts = localStorage.getItem("article");
-
-  //   if(idemProducts) {
-  //     localStorage.setItem("article", idemProducts + 1);
-  //     document.querySelector("#nbQuantity").textContent = idemProducts + 1;
-  //   } else {
-  //     localStorage.setItem("article", 1);
-  //     document.querySelector("#nbQuantity").textContent = 1;
-  //   }
-  // }
-
-  // if(peluchesQuantity) {
-
-  // } else {
-  //   localStorage.setItem(contentLocalStorage.quantity);
-  // }
+  // let i;
 
   if (contentLocalStorage === null) {
     const emptyCart = `
-       <td>Votre panier est vide</td>
-       `;
+     <td>Votre panier est vide</td>
+     `;
     fillCart.innerHTML = emptyCart;
+
   } else {
-    for (i = 0; i < contentLocalStorage.length; i++) {
-      const montantArticles =
-        contentLocalStorage[i].quantity * contentLocalStorage[i].prix;
-      console.log(montantArticles);
+    let result = contentLocalStorage.reduce(function (array, item) {
+      array[item.idProduit] = array[item.idProduit] || [];
+      array[item.idProduit].push(item);
+      return array;
+    }, Object.create(null));
 
-      function groupByName(contentLocalStorage, propriete) {
-        return contentLocalStorage.reduce(function (collector, article) {
-          const key = article[propriete];
-          if (!collector[key]) {
-            collector[key] = [];
-          }
-          collector[key].push(article);
-          return collector;
-        }, {});
+    result = Object.entries(result);
+    //
+    //console.log(result);
+
+    const addTeddie = function (image, name, price) {
+      const oldTeddies = JSON.parse(localStorage.getItem("article")) || [];
+      const match = oldTeddies.find(function (teddie) {
+        return teddie["product-image"] === image;
+      });
+      if (match) {
+        match["product-name"] += name;
+        match["product-price"] += price;
+      } else {
+        const newTeddie = {
+          "product-image": image,
+          "product-name": name,
+          "product-price": price,
+        };
+        oldTeddies.push(newTeddie);
       }
-      // console.log(groupByName(obj[propriete]));
-      const peluchesQuantity = groupByName(contentLocalStorage, "nom");
-      console.log(peluchesQuantity);
+      localStorage.setItem("article", JSON.stringify(oldTeddies));
+    };
 
-      fullCart =
-        fullCart +
-        `
-                <tr>
-                  <td><img src="${contentLocalStorage[i].image}" width="200"></td>
-                  <td><h2>${contentLocalStorage[i].nom}</h2></td>
-                  <td>
-                      <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${contentLocalStorage[i].quantity}"/>
-                  </td>
-                  <td id="price">${contentLocalStorage[i].prix}€</td>
-                  <td id="montant">${montantArticles}€</td>
-                </tr>
-                `;
-      // fillCart.innerHTML = fullCart;
+    addTeddie();
 
-      const montant =
-        contentLocalStorage[i].prix * contentLocalStorage[i].quantity;
-      totalPanier.push(montant);
-      //       console.log(totalPanier);
-    }
+    result.forEach((article) => {
+      const quantity = article.length;
+      // console.log(quantity);
+      const products = article[1][0];
+      // console.log(products);
+      // console.log(result);
 
-    if (i == contentLocalStorage.length) {
+      const total = quantity * products.prix;
+      console.log(total);
+      // console.log(typeof fillCart);
+
+      //  console.log(result[0][1]); = objet il faut recup un array
+      // console.log(result[0][1][0].idProduit);
+      // console.log(result[0][1][0].prix);
+
+      // Version qui renvoie l'erreur undefined
+      // let fullCart = `
+      //         <tr>
+      //           <td><img src="${article[1][0].image}" width="200"></td>
+      //           <td><h2>${article[1][0].nom}</h2></td>
+      //           <td>
+      //               <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${article.quantity}"/>pb nommage
+      //           </td>
+      //           <td id="price">${article[1][0].prix}€</td>
+      //           <td id="montant"> ${article.total}€</td> pb nommage observer et comparer dans le log les array au niveau target
+      //         </tr>
+      //         `;
+
+      // La bonne version
+      let fullCart = `
+              <tr>
+                <td><img src="${article[1][0].image}" width="200"></td>
+                <td><h2>${article[1][0].nom}</h2></td>
+                <td>
+                    <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
+                </td>
+                <td id="price">${article[1][0].prix}€</td>
+                <td id="montant"> ${total}€</td>
+              </tr>
+              `;
+
       fillCart.innerHTML = fullCart;
-    }
+      console.log(article.total);
+      console.log(typeof quantity);
+      // const montant =
+      //   contentLocalStorage[i].prix * contentLocalStorage[i].quantity;
+      // totalPanier.push(montant);
+      //       console.log(totalPanier);
+      // } a remettre
+      // result.innerHTML = fullCart;
+
+      // if (i == result.length) {
+
+      // }
+    });
   }
+
   const total = (collect, montantInitial) => collect + montantInitial;
-  console.log(total);
+  // console.log(total);
 
   const montantTotal = totalPanier.reduce(total, 0);
-  console.log(montantTotal);
+  // console.log(montantTotal);
 
   const amountOrder = `
-       <td>${montantTotal} €</td>
-       `;
+     <td>${montantTotal} €</td>
+     `;
   netAPayer.innerHTML = amountOrder;
 
   localStorage.setItem("article", JSON.stringify(contentLocalStorage));
@@ -167,13 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const formCodePostal = document.getElementById("codePostalClient");
   const formVille = document.getElementById("villeClient");
   const formMail = document.getElementById("mailClient");
-
-  // const errorNom = document.querySelector("#errorNom");
-  // const errorPrenom = document.querySelector("#errorPrenom");
-  // const errorAdresse = document.querySelector("#errorAdresse");
-  // const errorCodePostal = document.querySelector("#errorCodePostal");
-  // const errorVille = document.querySelector("#errorVille");
-  // const errorMail = document.querySelector("#errorMail");
 
   form.addEventListener("submit", (e) => {
     function validationInputs() {
