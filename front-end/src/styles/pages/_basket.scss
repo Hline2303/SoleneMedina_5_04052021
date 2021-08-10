@@ -15,10 +15,6 @@ th {
   padding: 0;
 }
 
-
-
-
-
 /**************** FORMULAIRE *******************/
 fieldset {
   width: 40%;
@@ -40,26 +36,26 @@ input {
 }
 
 .buttonForm {
-    margin-left: 27px;
-    margin-top: 5px;
-    width: 88%;
-    height: 30px;
+  margin-left: 27px;
+  margin-top: 5px;
+  width: 88%;
+  height: 30px;
 }
 
-.form-validation.success input {
-  border-color: #2ecc71;
-}
+// .form-validation.success input {
+//   border-color: #2ecc71;
+// }
 
-.form-validation.erreur input {
-  border-color: #e74c3c;
-}
+// .form-validation.erreur input {
+//   border-color: #e74c3c;
+// }
 
-.form-validation.success i.checked {
+.form-validation.success {
   color: #2ecc71;
   visibility: visible;
 }
 
-.form-validation.erreur i.false {
+.form-validation.erreur {
   color: #e74c3c;
   visibility: visible;
 }
@@ -68,3 +64,21 @@ input {
   color: #e74c3c;
   visibility: visible;
 }
+
+.form-validation input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+
+// .form-validation input:focus:invalid {
+//   outline: none;
+//   box-shadow: 0 0 5px 1px red;
+// }
+
+.form-validation input:valid {
+  box-shadow: 0 0 5px 1px green;
+}
+
+// .form-validation input:focus:valid {
+//   box-shadow: 0 0 5px 1px green;
+//   outline: none;
+// }

@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // function ouvreHomepage()
   function ouvreHomepage() {
-    window.location.href = "http://localhost:5500/front-end/index.html";
+    window.location.href = "/front-end/index.html";
   }
 
   function changeTexte1() {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function panierWindow() {
-    window.location.href = "http://LOCALHOST:5500/front-end/pages/panier.html";
+    window.location.href = "/front-end/pages/panier.html";
   }
 
   // Contenu du localStorage

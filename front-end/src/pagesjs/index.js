@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   clicHomepage.addEventListener("click", ouvreHomepage);
   // function ouvreHomepage() {
   function ouvreHomepage() {
-    window.location.href = "http://localhost:5500/front-end/index.html";
+    window.location.href = "/front-end/index.html";
   }
 
   /////////// Menu panier Orinoco
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
   openPanier.addEventListener("click", panierWindow);
 
   function panierWindow() {
-    window.location.href = "http://localhost:5500/front-end/pages/panier.html";
+    window.location.href = "/front-end/pages/panier.html";
   }
 
   /////////// Récup des données dans l'API

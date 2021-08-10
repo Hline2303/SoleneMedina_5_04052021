@@ -71,7 +71,7 @@
                 class="cart"
                 aria-hidden="true"
               ></span>
-              <!-- <span class="nbQuantity" id="nbQuantity">0</span> -->
+              <span class="quantityCart" id="quantityCart">0</span>
             </a>
           </li>
         </ul>
@@ -95,6 +95,7 @@
             </thead>
             <!-- En attente d'injection dans le JS -->
             <tbody class="bodycart" id="bodyCart"></tbody>
+            
             <tfoot>
               <tr>
                 <td colspan="3">Montant Total du panier</td>
@@ -113,14 +114,13 @@
             <div class="form-validation">
             <input
               type="text"
-              name="nomClient"
-              class="nomClient"
-              id="nomClient"
+              name="firstName"
+              class="firstName"
+              id="firstName"
               placeholder="Nom"
               pattern="[A-Z-\s]{3,20}"
+              required
             />
-            <i class="fas fa-check-circle checked"></i>
-          <i class="fas fa-exclamation-circle false"></i><br>
 
             <small></small>
         </div>
@@ -128,30 +128,27 @@
         <div class="form-validation">
             <input
               type="text"
-              name="prenomClient"
-              class="prenomClient"
-              id="prenomClient"
+              name="lastName"
+              class="lastName"
+              id="lastName"
               placeholder="Prénom"
               pattern="[A-Z][a-z\xc0-\xff-\s]{3,20}"
+              required
             />
-            <i class="fas fa-check-circle checked"></i>
-            <i class="fas fa-exclamation-circle false"></i><br>
             
           <small></small>
         </div>
 
-        <div class="form-validation"></div>
+        <div class="form-validation">
             <input
               type="text"
-              name="adresseClient"
-              class="adresseClient"
-              id="adresseClient"
+              name="address"
+              class="address"
+              id="address"
               placeholder="Adresse"
               pattern="[0-9a-zA-Z\xc0-\xff-\s]{5,50}"
+              required
             />
-            
-            <i class="fas fa-check-circle checked"></i>
-            <i class="fas fa-exclamation-circle false"></i><br>
 
             <small></small>
         </div>
@@ -174,14 +171,13 @@
             <div class="form-validation">
             <input
               type="text"
-              name="villeClient"
-              class="villeClient"
-              id="villeClient"
+              name="city"
+              class="city"
+              id="city"
               placeholder="Ville"
               pattern="[A-Z]{3,20}"
+              required
             />
-            <i class="fas fa-check-circle checked"></i>
-            <i class="fas fa-exclamation-circle false"></i><br>
             
           <small></small>
         </div>
@@ -189,14 +185,13 @@
             <div class="form-validation">
             <input
               type="email"
-              name="mailClient"
-              class="mailClient"
-              id="mailClient"
+              name="email"
+              class="email"
+              id="email"
               placeholder="E-mail"
               pattern="([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})"
+              required
             />
-            <i class="fas fa-check-circle checked"></i>
-            <i class="fas fa-exclamation-circle false"></i><br>
         
           <small></small>
 

@@ -170,7 +170,7 @@ header .banniere__content--navigation a {
   cursor: pointer;
 }
 
-header .banniere__content--navigation .nbQuantity {
+header .banniere__content--navigation .quantityCart {
   bottom: 13px;
   right: 20px;
   padding: auto 150px;
@@ -323,20 +323,12 @@ input {
   height: 30px;
 }
 
-.form-validation.success input {
-  border-color: #2ecc71;
-}
-
-.form-validation.erreur input {
-  border-color: #e74c3c;
-}
-
-.form-validation.success i.checked {
+.form-validation.success {
   color: #2ecc71;
   visibility: visible;
 }
 
-.form-validation.erreur i.false {
+.form-validation.erreur {
   color: #e74c3c;
   visibility: visible;
 }
@@ -344,6 +336,16 @@ input {
 .form-validation.erreur small {
   color: #e74c3c;
   visibility: visible;
+}
+
+.form-validation input:invalid {
+  -webkit-box-shadow: 0 0 5px 1px red;
+          box-shadow: 0 0 5px 1px red;
+}
+
+.form-validation input:valid {
+  -webkit-box-shadow: 0 0 5px 1px green;
+          box-shadow: 0 0 5px 1px green;
 }
 
 .confirmation__content {
