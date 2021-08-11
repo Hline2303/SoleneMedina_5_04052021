@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>
                     <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
                 </td>
+                <button type="button" name="ajouter" id="btnAjouter" class="fiche__produit--panier">Ajouter au panier</button>
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
                 <td id="montant"> ${montant}€</td>
@@ -501,7 +502,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     console.log(order);
 
-    fetch("http://localhost:3000/api/teddies/order", {
+    const orderResult = fetch("http://localhost:3000/api/teddies/order", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -510,7 +511,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify(order),
     });
 
-   promise01.then(async(response)=>{
+   orderResult.then(async(response)=>{
       try{
       const contenu = await response.json();
       console.log("contenu de response");
@@ -520,6 +521,10 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(`Résultat de response.ok : ${response.ok}`);
 
         console.log("id de response");
+        
+        window.location.href = "/front-end/pages/confirmation.html";
+        const orderId = orderId;
+        localStorage.setItem("orderId", orderId);
       
     } else {
       console.log(`Réponse du serveur : ${response.status}`);
@@ -536,8 +541,8 @@ document.addEventListener("DOMContentLoaded", function () {
     //   console.log(res);
 
     //   if (res.ok) {
-    //     const orderId = orderId;
-    //     localStorage.setItem("orderId", orderId);
+        // const orderId = orderId;
+        // localStorage.setItem("orderId", orderId);
     //     // window.location = "confirmation.html";
     //   } else {
     //     console.log("erreur");
