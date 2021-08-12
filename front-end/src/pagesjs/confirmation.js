@@ -91,28 +91,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const msgConfirmation = document.querySelector("#confirmation");
     const lastName = localStorage.getItem("nom");
     const prenomClient = localStorage.getItem("prenom");
-    const montantClient = localStorage.getItem("total");
+    const amount = localStorage.getItem("amount");
     const orderId = localStorage.getItem("orderId");
 
+    // msgConfirmation.innerHTML += `
+    //   ${formulaireStorage.lastName} +
+    //   ${formulaireStorage.firstName} +
+    //   "Votre commande d'un montant de " +
+    //   ${amount} +
+    //   "€ a bien été enregistrée sous le : N° " +
+    //   ${orderId} +
+    //   "Nous vous remercions de votre confiance. L'équipe d'"
+    //   `;
+
     msgConfirmation.innerHTML += `
-      ${formulaireStorage.lastName} +
-      ${formulaireStorage.firstName} +
-      "Votre commande d'un montant de " +
-      montantClient +
-      "€ a bien été enregistrée sous le : N° " +
-      ${orderId} +
-      "Nous vous remercions de votre confiance. L'équipe d'"
-      `;
+    <div class="confirmation__content">
+      <p class="confirmation__content--justify">${formulaireStorage.lastName} ${formulaireStorage.firstName}</p>
+      <p class="confirmation__content--justify">Votre commande d'un montant de  ${amount}€ a bien été enregistrée sous le :</p>
+      <p class="confirmation__content--center">N° ${orderId} <br> <br>Nous vous remercions <br>de votre confiance. <br> <p>L'équipe d' <img src="../images/logo_orinoco.png"></p>
+    </div>
+    `;
+    
   }
   orderValidation();
   // const msgConfirmation = document.querySelector(".confirmation");
   // function orderId() {
-  //   msgConfirmation.innerHTML += `
-  //   <div class="confirmation__content">
-  //     <p class="confirmation__content--justify">prenomClient</p>
-  //     <p class="confirmation__content--justify">Votre commande d'un montant de  price.value€ a bien été enregistrée sous le :</p>
-  //     <p class="confirmation__content--center">N° orderId <br> <br>Nous vous remercions <br>de votre confiance. <br> <p>L'équipe d' <img src="../images/logo_orinoco.png"></p>
-  //   </div>
-  //   `;}
+    // msgConfirmation.innerHTML += `
+    // <div class="confirmation__content">
+    //   <p class="confirmation__content--justify">${formulaireStorage.lastName} ${formulaireStorage.firstName}</p>
+    //   <p class="confirmation__content--justify">Votre commande d'un montant de  ${amount}€ a bien été enregistrée sous le :</p>
+    //   <p class="confirmation__content--center">N° ${orderId} <br> <br>Nous vous remercions <br>de votre confiance. <br> <p>L'équipe d' <img src="../images/logo_orinoco.png"></p>
+    // </div>
+    // `;}
   //   orderId();
 });

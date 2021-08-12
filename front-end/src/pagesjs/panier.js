@@ -323,14 +323,16 @@ document.addEventListener("DOMContentLoaded", function () {
   ///// Mettre dans un addEventListener
   const montantTotal = totalPanier.reduce(total, 0);
   // console.log(montantTotal);
+  localStorage.setItem("amount", montantTotal);
   const totalQuantity = totalProducts.reduce(total, 0);
   const displayQuantity = `<td>${totalQuantity}<td>`;
   // /////////cartQuantity.innerHTML = displayQuantity;
 
   const amountOrder = `
-     <td>${montantTotal} €</td>
+     <td id="amount">${montantTotal} €</td>
      `;
   netAPayer.innerHTML = amountOrder;
+  console.log(montantTotal);
 
   // localStorage.setItem("article", JSON.stringify(contentLocalStorage));
   // function arrayId() {
@@ -511,38 +513,26 @@ document.addEventListener("DOMContentLoaded", function () {
       body: JSON.stringify(order),
     });
 
-   orderResult.then(async(response)=>{
-      try{
-      const contenu = await response.json();
-      console.log("contenu de response");
-      console.log(contenu);
-
-      if(response.ok){
-        console.log(`Résultat de response.ok : ${response.ok}`);
-
-        console.log("id de response");
-        
-        window.location.href = "/front-end/pages/confirmation.html";
-        const orderId = orderId;
-        localStorage.setItem("orderId", orderId);
-      
-    } else {
-      console.log(`Réponse du serveur : ${response.status}`);
-      alert(`Problème avec le serveur : erreur ${response.status}`);
-    };
-  } catch(e) {
-    console.log("ERREUR qui vient du catch()");
-    console.log(e);
-    alert(`ERREUR qui vient du catch() ${e}`);
-  }
-});
+    orderResult.then(async (response) => {
+      try {
+        const command = await response.json();
+        if (response.ok) {
+          localStorage.setItem("orderId", command.orderId);
+          window.location.href = "/front-end/pages/confirmation.html";
+        } else {
+          alert(`Problème avec le serveur : erreur ${response.status}`);
+        }
+      } catch (e) {
+        alert(`ERREUR`);
+      }
+    });
 
     // }).then((res) => {
     //   console.log(res);
 
     //   if (res.ok) {
-        // const orderId = orderId;
-        // localStorage.setItem("orderId", orderId);
+    // const orderId = orderId;
+    // localStorage.setItem("orderId", orderId);
     //     // window.location = "confirmation.html";
     //   } else {
     //     console.log("erreur");
