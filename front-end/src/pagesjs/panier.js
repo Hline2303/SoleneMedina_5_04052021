@@ -99,6 +99,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // console.log(result);
     result.forEach((article) => {
       const quantity = article[1].length;
+      const quantityProduct = document.querySelector("#quantity").value;
+      quantityProduct.addEventListener("click", storage);
+
+      function storage() {
+        localStorage.setItem("quantityP", quantityProduct);
+      }
+
+      console.log(quantityProduct);
       // console.log(quantity);
       // let product_id = article[1][0];
       let productId = article[1][0];
@@ -115,7 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // const total = quantity * products.prix;
       // console.log(total);
-      const montant = quantity * productId.prix;
+      const montant = quantityProduct * productId.prix;
+      console.log(montant);
+      // ::::::const montant = quantity * productId.prix;
       // console.log(product_id.prix);
 
       fullCart =
@@ -124,10 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
               <tr class="storage_article" id="storage_article" data-id="${article[0]}">
                 <td><img src="${article[1][0].image}" width="200"></td>
                 <td><h2>${article[1][0].nom}</h2></td>
-                <td>
-                    <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
+                <td class="quantityInput">
+                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
+                  <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
+                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()">+</button>
                 </td>
-                <button type="button" name="ajouter" id="btnAjouter" class="fiche__produit--panier">Ajouter au panier</button>
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
                 <td id="montant"> ${montant}€</td>
@@ -202,6 +213,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // });
   }
 
+  // let addBtns = document.querySelectorAll("#btnAjouter");
+
+  // for(i = 0; i < addBtns.length; i++) {
+  //   addBtns[i].addEventListener('click', function(e){
+  //     e.preventDefault();
+  //   });
+  // }
+  //   for(let addBtn of addBtns){
+  //   addBtn.addEventListener("click", addProduct);
+  //   function addProduct() {
+  //     const idBtn = document.querySelector("storage_article");
+  //     idBtn.dataset.id;
+  //     if(addBtn === 'storage_article') {
+  //       console.log(ok);
+  //     }
+  //     addBtn++;
+  //     // if(i < 0 )
+  //   }
+  // }
+  // function removeProduct() {
+  //   //  addEventListener btn add
+  //   // i--
+  // }
   // const matchId = article.idProduit;
   // btn_delete.addEventListener("click", (e) => {
   //   e.preventDefault();
