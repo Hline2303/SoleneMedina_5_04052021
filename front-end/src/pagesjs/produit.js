@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
           image: data.imageUrl,
           idProduit: data._id,
           nom: data.name,
+          quantité: 1,
           prix: data.price / 100,
         };
         console.log(choixProduit);

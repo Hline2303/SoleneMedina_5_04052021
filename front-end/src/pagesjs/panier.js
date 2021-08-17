@@ -99,14 +99,17 @@ document.addEventListener("DOMContentLoaded", function () {
     // console.log(result);
     result.forEach((article) => {
       const quantity = article[1].length;
-      const quantityProduct = document.querySelector("#quantity").value;
-      quantityProduct.addEventListener("click", storage);
+      // console.log(article[1].length);
 
-      function storage() {
-        localStorage.setItem("quantityP", quantityProduct);
-      }
+      //////// faire fonction pour récup total quantity et envoi vers cart
+      // const quantityProduct = document.querySelector("#quantity").value;
+      // quantityProduct.addEventListener("click", storage);
 
-      console.log(quantityProduct);
+      // function storage() {
+      //   localStorage.setItem("quantityP", quantityProduct);
+      // }
+
+      // console.log(quantityProduct);
       // console.log(quantity);
       // let product_id = article[1][0];
       let productId = article[1][0];
@@ -123,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // const total = quantity * products.prix;
       // console.log(total);
-      const montant = quantityProduct * productId.prix;
-      console.log(montant);
+      const montant = quantity * productId.prix;
+      // console.log(montant);
       // ::::::const montant = quantity * productId.prix;
       // console.log(product_id.prix);
 
@@ -135,19 +138,58 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td><img src="${article[1][0].image}" width="200"></td>
                 <td><h2>${article[1][0].nom}</h2></td>
                 <td class="quantityInput">
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()">-</button>
-                  <input type="number" min="0" max="10" step="1" id="quantity" name="quantity" value="${quantity}"/>
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()">+</button>
+                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="addBtn" id="addBtn">-</button>
+                  <input type="number" min="0" max="10" step="1" class="quantity" id="quantity" name="quantity" value="${quantity}"/>
+                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="subtractBtn" id="subtractBtn">+</button>
                 </td>
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
-                <td id="montant"> ${montant}€</td>
+                <td id="montant">${montant}€</td>
               </tr>
               `;
       fillCart.innerHTML = fullCart;
 
       totalPanier.push(montant);
       totalProducts.push(quantity);
+      console.log(totalProducts);
+
+      const addBtn = document.querySelector("#addBtn");
+      console.log(addBtn);
+      const adding = addBtn.value;
+      console.log(adding);
+      // const subtractBtn = document.querySelector("#subtractBtn");
+      // console.log(subtractBtn);
+
+      addBtn.addEventListener("click", addQuantity);
+
+      function addQuantity() {
+        quantity = quantity + 1;
+        localStorage.setItem("addProduct", quantity);
+        const addProduct = localStorage.getItem("addProduct");
+        console.log(addProduct);
+      }
+      console.log(quantity);
+
+      // const cart = document.querySelector("#quantityCart");
+      // console.log(cart);
+
+      // console.log(quantity.length);
+
+      // console.log(article.idProduit);
+      // function totalCart(){
+      //   cart = `${totalQuantity}`;
+      // }
+
+      // totalCart();
+
+      // subtractBtn.addEventListener("click", subtractQuantity);
+
+      // function subtractQuantity() {
+      //   quantity = quantity - 1;
+      //   localStorage.setItem("subtractProduct", quantity);
+      //   const subtractProduct = localStorage.getItem("subtractProduct");
+      //   console.log(subtractProduct);
+      // }
       // console.log(totalPanier);
       // const panier = [];
       // panier.push(product_id);
@@ -163,7 +205,27 @@ document.addEventListener("DOMContentLoaded", function () {
     //     this.quantity= quantity;
     //     this.prix = prix;
     //   }
+    ////////////////////////////////////////////////////////////
+    /////////// revoir le fonctionnement de l'ajout du produit au panier, pour affichage quantité
+    ////////////////////////////////////////////
+    // console.log("number");
+    // console.log(contentLocalStorage);
+    // const cart = document.querySelector("#quantityCart");
+    // console.log(cart);
+    // const selectQuantity = document.querySelectorAll("#quantity");
+    // console.log(selectQuantity[1].value);
+    // // console.log(selectQuantity.value);
+    // console.log(contentLocalStorage.value);
 
+    // selectQuantity.addEventListener("click", function() {
+    //   localStorage.setItem("quantity", selectQuantity);
+    // });
+    // const cart =
+    // 1 select cart et créer une variable
+    // 2 select les quantity et je créer une variable
+    // 3 addEventListener sur les quantity
+    // 4 envoi des quantity dans le localStorage
+    // 5 récup des quantity dans le localstorage pour les mettre dans le cart
     // function savepanier() {
     //   // localStorage.setItem("contentLocalStorage", JSON.stringify(products));
     //   localStorage.setItem("Cart", JSON.stringify(arrayId));
@@ -359,14 +421,31 @@ document.addEventListener("DOMContentLoaded", function () {
   // console.log(montantTotal);
   localStorage.setItem("amount", montantTotal);
   const totalQuantity = totalProducts.reduce(total, 0);
-  const displayQuantity = `<td>${totalQuantity}<td>`;
+  const displayQuantity = `${totalQuantity}`;
+  // console.log(displayQuantity);
   // /////////cartQuantity.innerHTML = displayQuantity;
 
   const amountOrder = `
      <td id="amount">${montantTotal} €</td>
      `;
   netAPayer.innerHTML = amountOrder;
-  console.log(montantTotal);
+
+  let cart = document.querySelector("#quantityCart");
+  // console.log(cart);
+
+  cart.innerHTML = displayQuantity;
+
+// console.log(displayQuantity);
+
+  // console.log(quantity.length);
+
+  // console.log(article.idProduit);
+  // function totalCart() {
+  //   cart = displayQuantity;
+  // }
+
+  // totalCart();
+  // console.log(montantTotal);
 
   // localStorage.setItem("article", JSON.stringify(contentLocalStorage));
   // function arrayId() {
@@ -389,6 +468,7 @@ document.addEventListener("DOMContentLoaded", function () {
       city: document.getElementById("city").value,
       email: document.getElementById("email").value,
     };
+
     // fetch("http://localhost:3000/api/teddies/order", envoi)
     //   .then((response) => response.json())
     //   .then((order) => {
