@@ -98,8 +98,13 @@ document.addEventListener("DOMContentLoaded", function () {
     //
     // console.log(result);
     result.forEach((article) => {
-      const quantity = article[1].length;
+      let quantity = article[1].length;
+      // let quantity = document.getElementById("quantity").value;
+
+      console.log(quantity);
       // console.log(article[1].length);
+      // let inputNb = document.querySelector("#quantity").value;
+      // console.log(inputNb);
 
       //////// faire fonction pour récup total quantity et envoi vers cart
       // const quantityProduct = document.querySelector("#quantity").value;
@@ -113,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // console.log(quantity);
       // let product_id = article[1][0];
       let productId = article[1][0];
-      // console.log(article[1][0]);
+      console.log(article[1][0]);
       // let array_id = result;
       // array_id.sort();
       // console.log(array_id);
@@ -130,6 +135,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // console.log(montant);
       // ::::::const montant = quantity * productId.prix;
       // console.log(product_id.prix);
+      // this.parentNode.querySelector('input[type=number]').stepDown()
+      // function removing(ajout) {
+      //   quantity-=ajout;
+      //   document.querySelectorAll("#quantity").value=quantity;
+      // }
+      // removing();
 
       fullCart =
         fullCart +
@@ -138,9 +149,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td><img src="${article[1][0].image}" width="200"></td>
                 <td><h2>${article[1][0].nom}</h2></td>
                 <td class="quantityInput">
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="addBtn" id="addBtn">-</button>
+                  <button onClick="this.parentNode.querySelector('input[type=number]').stepDown()" class="subtractBtn" id="subtractBtn">-</button>
                   <input type="number" min="0" max="10" step="1" class="quantity" id="quantity" name="quantity" value="${quantity}"/>
-                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="subtractBtn" id="subtractBtn">+</button>
+                  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="addBtn" id="addBtn">+</button>
                 </td>
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
@@ -155,21 +166,144 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const addBtn = document.querySelector("#addBtn");
       console.log(addBtn);
-      const adding = addBtn.value;
-      console.log(adding);
+      // const adding = addBtn.value;
+      // console.log(adding);
       // const subtractBtn = document.querySelector("#subtractBtn");
       // console.log(subtractBtn);
 
-      addBtn.addEventListener("click", addQuantity);
+      // let oldQuantity = quantity;
+      // console.log(oldQuantity);
 
+      // let inputQuantities = document.getElementById("quantity").value;
+      // console.log(inputQuantities);
+      // let inputQuantities = document.querySelectorAll("#quantity").value;
+      // console.log(inputQuantities);
+
+      addBtn.addEventListener("click", addQuantity);
+      // for (let inputQuantity of inputQuantities) {
+      // inputQuantities.addEventListener("click", addQuantity);
       function addQuantity() {
-        quantity = quantity + 1;
-        localStorage.setItem("addProduct", quantity);
-        const addProduct = localStorage.getItem("addProduct");
+        let newQuantity = productId.quantité;
+        console.log(newQuantity);
+        // // quantity++;
+        // console.log(addQuantity);
+
+        // localStorage.setItem("addProduct", newQuantity);
+        // let addProduct = localStorage.getItem("nbProduct", addProduct);
+        let addProduct = quantity++;
+        localStorage.setItem("nbProduct", JSON.stringify(quantity));
+
         console.log(addProduct);
       }
-      console.log(quantity);
 
+      let trash = document.getElementsByClassName("btn_delete");
+      for (let i = 0; i < trash.length; i++) {
+        trash[i].addEventListener("click", (e) => {
+          e.preventDefault();
+          let removeProduct = contentLocalStorage[i].idProduit;
+          console.log(removeProduct);
+
+          contentLocalStorage = contentLocalStorage.filter(
+            (pdt) => pdt.idProduit != removeProduct
+          );
+          localStorage.setItem("article", JSON.stringify(contentLocalStorage));
+          window.location.href = "/front-end/pages/panier.html";
+        });
+      }
+      
+      // addQuantity();
+      // function removing(ajout) {
+      //   quantity-=ajout;
+      //   document.querySelectorAll("#quantity").value=quantity;
+      // }
+
+      // const quantityLocal = [];
+      // const contact = new FormData(form);
+
+      // article.forEach((article) => {
+      //   // productsId.push(article.productId);
+      //   quantityLocal.push(article.quantité);
+      //   console.log(article.quantité);
+      // });
+      // console.log(contentLocalStorage.quantité);
+
+      //   function addQuantity() {
+      //     console.log(inputQuantity.value);
+      //     const newQuantity = inputQuantity.value;
+      //     console.log(newQuantity);
+      //     // newQuantity = inputQuantity + quantity;
+      //     // inputQuantities = inputQuantity++;
+      //     console.log();
+      //     localStorage.setItem("addProduct", JSON.stringify(quantity));
+      //     // localStorage.setItem("addProduct", newQuantity);
+      //     const addProduct = localStorage.getItem("addProduct");
+      //     addProduct = newQuantity + quantity;
+      //     // console.log(addProduct);
+      //   }
+
+      //   console.log(quantity);
+
+      //   // function subtractQuantity() {
+      //   //   quantity = quantity + 1;
+      //   //   localStorage.setItem("addProduct", quantity);
+      //   //   const addProduct = localStorage.getItem("addProduct");
+      //   //   console.log(addProduct);
+      //   // }
+
+      //   if (contentLocalStorage) {
+      //     addQuantity();
+      //   } else {
+      //     subtractQuantity();
+      //   }
+      // }
+      ////////////////////////////////////
+      /////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      // const ajouterPanier = document.querySelector("#btnAjouter");
+      // // console.log(ajouterPanier);
+      // // Staockage dans le localStorage
+      // ajouterPanier.addEventListener("click", (e) => {
+      //   e.preventDefault();
+
+      //   // Récupération des valeurs du panier
+      //   const choixProduit = {
+      //     image: data.imageUrl,
+      //     idProduit: data._id,
+      //     nom: data.name,
+      //     quantité: 1,
+      //     prix: data.price / 100,
+      //   };
+      //   console.log(choixProduit);
+      //   // Contenu du localStorage
+      //   let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
+
+      //   const ajoutProduit = () => {
+      //     contentLocalStorage.push(choixProduit);
+      //     localStorage.setItem("article", JSON.stringify(contentLocalStorage));
+      //   };
+      //   // // Vérification contenu présent dans le localStorage
+      //   // contentLocalStorage[this.name] = choixProduit;
+      //   // localStorage.setItem("itemsObject", JSON.stringify(oldItems));
+
+      //   if (contentLocalStorage) {
+      //     ajoutProduit();
+      //   } else {
+      //     contentLocalStorage = [];
+      //     ajoutProduit();
+      //   }
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+      console.log(article);
+      console.log(productId.quantité);
+      // si la quantité est déjà dans le localstorage alors ++ faire comme pour les produits
+      //Voir pour vider le localstorage à la page confirmation////
+      console.log(contentLocalStorage);
+      // if (contentLocalStorage) {
+      //   addQuantity();
+      // } else {
+      //   subtractQuantity();
+      // }
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       // const cart = document.querySelector("#quantityCart");
       // console.log(cart);
 
@@ -294,10 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //     // if(i < 0 )
   //   }
   // }
-  // function removeProduct() {
-  //   //  addEventListener btn add
-  //   // i--
-  // }
+  
   // const matchId = article.idProduit;
   // btn_delete.addEventListener("click", (e) => {
   //   e.preventDefault();
@@ -313,31 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // const storage_article = document.getElementById("storage_article");
   // const btn_delete = document.querySelectorAll(".btn_delete");
   // console.log(btn_delete);
-
-  let trashes = document.querySelectorAll(".btn_delete");
-  // console.log(trashes);
-  for (let trash of trashes) {
-    trash.addEventListener("click", deleteProduct);
-    // console.log(trash);
-    function deleteProduct() {
-      const idTrash = document.querySelector(".storage_article");
-      idTrash.dataset.id;
-
-      const productTrash = trash.closest(".storage_article");
-      console.log(productTrash);
-
-      // trashes.forEach((productTrash) => {
-      //   if (idTrash != id) {
-      //     contentLocalStorage = contentLocalStorage.filter(productTrash);
-      //   }
-      // });
-      const idProd = contentLocalStorage.filter(
-        (idNumber) => idNumber != productTrash
-      );
-      console.log(idProd);
-    }
-  }
-
+  
   // btn_delete.addEventListener("click", (e) => {
   //   e.preventDefault();
   //   const eltDeletes = btn_delete.closest(".storage_article");
@@ -377,7 +484,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   //   // console.log();
   //   // });
   // });
-
+  
   // Vider le panier
   delete_all.addEventListener("click", (e) => {
     e.preventDefault();
@@ -435,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   cart.innerHTML = displayQuantity;
 
-// console.log(displayQuantity);
+  // console.log(displayQuantity);
 
   // console.log(quantity.length);
 
@@ -640,6 +747,13 @@ document.addEventListener("DOMContentLoaded", function () {
         alert(`ERREUR`);
       }
     });
+
+    ////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////
+    // NE PAS OUBLIER DE RAJOUTER LE LOGO
+    // DANS LE PJT ET DANS LA PRESENTATION BROCHURE MAQUETTE
+    //////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////
 
     // }).then((res) => {
     //   console.log(res);
