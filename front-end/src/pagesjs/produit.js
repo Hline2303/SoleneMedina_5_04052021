@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // fetch("http://localhost:3000/api/teddies/" + idProduit)
   fetch("http://localhost:3000/api/teddies/" + idProduit)
     .then((response) => response.json()) // Convertir en json
-    .then((data) => {
+    .then((article) => {
       // Récupération de la réponse et affichage des produits
       const fiche = document.querySelector("section.fiche");
       // console.log(fiche);
@@ -76,37 +76,37 @@ document.addEventListener("DOMContentLoaded", function () {
       const bodyFiche = `
     <div class="fiche__produit">
                 <div class="fiche__produit--img"><img src="${
-                  data.imageUrl
+                  article.imageUrl
                 }" class="ficheImage"></div>
                
                 <div class="fiche__produit--content">
                 <div class="fiche__produit--global">
                     <div class="fiche__produit--description"> 
-                        <h2>${data.name}</h2>
+                        <h2>${article.name}</h2>
 
-                        <p>${data.description}</p>
+                        <p>${article.description}</p>
 
                          <p class="fiche__produit--stock">En stock</p>
                      </div>
                     
                      <div class="fiche__produit--price">
-                         <p>${data.price / 100}€</p>
+                         <p>${article.price / 100}€</p>
                      </div>
                  </div>
 
                  <div class="fiche__produit--selection">
                      <select id="listColors">
-                         <option value="${data.colors[0]}">${
-        data.colors[0]
+                         <option value="${article.colors[0]}">${
+        article.colors[0]
       }</option>
-                         <option value="${data.colors[1]}">${
-        data.colors[1]
+                         <option value="${article.colors[1]}">${
+        article.colors[1]
       }</option>
-                         <option value="${data.colors[2]}">${
-        data.colors[2]
+                         <option value="${article.colors[2]}">${
+        article.colors[2]
       }</option>
-                         <option value="${data.colors[3]}">${
-        data.colors[3]
+                         <option value="${article.colors[3]}">${
+        article.colors[3]
       }</option>
                      </select>
                       
@@ -118,19 +118,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const ajouterPanier = document.querySelector("#btnAjouter");
       // console.log(ajouterPanier);
-      // Staockage dans le localStorage
+      // Stockage dans le localStorage
       ajouterPanier.addEventListener("click", (e) => {
         e.preventDefault();
 
         // Récupération des valeurs du panier
         const choixProduit = {
-          image: data.imageUrl,
-          idProduit: data._id,
-          nom: data.name,
+          image: article.imageUrl,
+          idProduit: article._id,
+          nom: article.name,
           quantité: 1,
-          prix: data.price / 100,
+          prix: article.price / 100,
         };
         console.log(choixProduit);
+
         // Contenu du localStorage
         let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
 
