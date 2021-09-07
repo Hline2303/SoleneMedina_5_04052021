@@ -79,21 +79,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     result = Object.entries(result);
     result.forEach((article) => {
+      const quantity = article[1].length;
+      console.log(quantity);
+
+      const productId = article[1][0];
+
+      const montant = quantity * productId.prix;
+      console.log(montant);
+
+
       fullCart =
         fullCart +
         `
               <tr class="storage_article" id="storage_article" data-id="${article[0]}">
                 <td><img src="${article[1][0].image}" width="200"></td>
                 <td><h2>${article[1][0].nom}</h2></td>
-                <td class="quantityInput">
-                  <input type="number" min="0" step="1" class="quantity" id="quantity" name="quantity" value="${article[1][0].quantité}"/>
-                  <button type="button" name="ajouter" id="btnAjouter" class="fiche__produit--panier btnAjouter">Ajouter au panier</button>
+                <td class="quantityInput" >
+                ${quantity}
+
                 </td>
           
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
-                <td id="montant"> ${article[1][0].prix}€</td>
-              </tr>
+                <td id="montant"> ${montant}€</td>
+              </tr> 
               `;
       fillCart.innerHTML = fullCart;
 
@@ -101,65 +110,34 @@ document.addEventListener("DOMContentLoaded", function () {
       let idArticle = document.getElementById("storage_article");
       let id = idArticle.dataset.id;
 
-      const quantity = article[1].length;
-      console.log(quantity);
+      
 
-      const inputQty = document.getElementById("quantity").value;
-      console.log(inputQty);
+      //const inputQty = document.getElementById("quantity").value;
+      // console.log(inputQty);
 
-      const inputQuantity = parseInt(inputQty);
-      console.log(typeof inputQuantity);
+      // const inputQuantity = parseInt(inputQty);
+      // console.log(typeof inputQuantity);
 
-      const allQuantity = quantity + inputQuantity;
-      console.log(allQuantity);
+      // const allQuantity = quantity + inputQuantity;
+      // console.log(allQuantity);
 
-      let productId = article[1][0];
-      console.log(productId.nom);
-
-      const montant = allQuantity * productId.prix;
-      console.log(montant);
-
+      
       totalPanier.push(montant);
       totalProducts.push(quantity);
 
       let btnAjouter = document.getElementsByClassName("btnAjouter");
 
-      for (let i = 0; i < btnAjouter.length; i++) {
-        btnAjouter[i].addEventListener("click", (e) => {
-          e.preventDefault();
-          let inputNb = document.querySelector("#quantity").value;
-          console.log(inputNb);
-          // Récupération des valeurs du panier
-          const choixProduit = {
-            image: article[1][0].image,
-            idProduit: article[1][0].idProduit,
-            nom: article[1][0].nom,
-            quantité: inputNb,
-            prix: article[1][0].prix * inputNb,
-          };
 
-          const ajoutProduit = () => {
-            contentLocalStorage.push(choixProduit);
-            localStorage.setItem(
-              "article",
-              JSON.stringify(contentLocalStorage)
-            );
-          };
+      // const productsQty = [];
 
-          let idProduct = contentLocalStorage[i].idProduit;
+      // contentLocalStorage.forEach((contentLocalStorage) => {
+      // productsQty.push(contentLocalStorage.quantité);
+      // });
 
-          if (id === idProduct) {
-            if (contentLocalStorage) {
-              ajoutProduit();
-            } else {
-              contentLocalStorage = [];
-              ajoutProduit();
-            }
-          }
+      // console.log(productsQty);
 
-          localStorage.setItem("article", JSON.stringify(contentLocalStorage));
-        });
-      }
+          
+
       let trash = document.getElementsByClassName("btn_delete");
       for (let i = 0; i < trash.length; i++) {
         trash[i].addEventListener("click", (e) => {
@@ -209,9 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let cart = document.querySelector("#quantityCart");
   cart.innerHTML = displayQuantity;
 
-  let qtyContentLocalStorage = JSON.parse(
-    localStorage.getItem("article".quantité)
-  );
+  let qtyContentLocalStorage = JSON.parse(localStorage.getItem("article"));
   console.log(contentLocalStorage);
 
   //////////////////////// FORMULAIRE //////////////////////////
@@ -372,6 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const command = await response.json();
         if (response.ok) {
           localStorage.setItem("orderId", command.orderId);
+          // Vider le panier avant
           window.location.href = "/front-end/pages/confirmation.html";
         } else {
           alert(`Problème avec le serveur : erreur ${response.status}`);
