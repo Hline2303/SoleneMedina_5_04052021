@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
           
                 <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
                 <td id="price">${article[1][0].prix}€</td>
-                <td id="montant"> ${montant}€</td>
+                <td id="montant">${montant}€</td>
               </tr> 
               `;
       fillCart.innerHTML = fullCart;
@@ -348,15 +348,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const command = await response.json();
         if (response.ok) {
           localStorage.setItem("orderId", command.orderId);
-          // Vider le panier avant
+          
           window.location.href = "/front-end/pages/confirmation.html";
+          // Vider le panier avant
+          // function emptyCart() {
+            // localStorage.clear();
+          //   document.location.href = "/front-end/index.html";
+          // }
+          // emptyCart();
         } else {
           alert(`Problème avec le serveur : erreur ${response.status}`);
         }
       } catch (e) {
         alert(`ERREUR`);
-      }
-    });
+      } 
+
+     
+    
 
     ////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
@@ -365,4 +373,23 @@ document.addEventListener("DOMContentLoaded", function () {
     //////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////
   });
+
+  
 });
+});
+
+
+// *****************************************************
+// ******************* QUANTITY PANIER *****************
+// *****************************************************
+
+// const totalProducts = [];
+// const totalQuantity = totalProducts.reduce(total, 0);
+// const displayQuantity = `${totalQuantity}`;
+// let cart = document.querySelector("#quantityCart");
+  
+// cart.innerHTML = displayQuantity;
+
+// *****************************************************
+// ******************* QUANTITY PANIER *****************
+// *****************************************************

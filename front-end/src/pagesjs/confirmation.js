@@ -124,4 +124,13 @@ document.addEventListener("DOMContentLoaded", function () {
     // </div>
     // `;}
   //   orderId();
+
+   // Vider le localstorage
+   function emptyStorage(key) {
+    localStorage.removeItem(key);
+  }
+
+  emptyStorage("amount");
+  emptyStorage("article");
+  emptyStorage("orderId");
 });
