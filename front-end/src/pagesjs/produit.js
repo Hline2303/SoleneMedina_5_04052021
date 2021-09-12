@@ -1,41 +1,20 @@
+// Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const produit = document.querySelector("body.produit");
   if (!produit) return;
 
-  /////////// Menu navigation Orinoco ATTENTION DOIT SE REPETER SUR TT LES PAGES
-
-  const menuHover = document.querySelector("#accueilNav");
-  // p2.addEventListener('click', changeTexte);
-  menuHover.addEventListener("mouseover", changeTexte1);
-  menuHover.addEventListener("mouseout", changeTexte2);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
+  // Changement du style au passage de la souris sur le menu de navigation
+  const accueilHover = document.querySelector("#accueilNav");
   const clicHomepage = document.querySelector("#accueilNav");
-  // p2.addEventListener('click', ouvreHomepage);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-  // function ouvreHomepage() {
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
-
-  /////////// Menu panier Orinoco
-
   const panierHover = document.querySelector("#panierNav");
+  const openPanier = document.querySelector("#panierNav");
 
-  // p2.addEventListener('click', changeTexte);
+  accueilHover.addEventListener("mouseover", changeTexte1);
+  accueilHover.addEventListener("mouseout", changeTexte2);
   panierHover.addEventListener("mouseover", changeTexte1);
   panierHover.addEventListener("mouseout", changeTexte2);
+  clicHomepage.addEventListener("click", ouvreHomepage);
+  openPanier.addEventListener("click", panierWindow);
 
   function changeTexte1() {
     this.style.color = "white";
@@ -50,10 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.backgroundColor = "";
   }
 
-  // function openPanier()
-  const openPanier = document.querySelector("#panierNav");
-
-  openPanier.addEventListener("click", panierWindow);
+  function ouvreHomepage() {
+    window.location.href = "/front-end/index.html";
+  }
 
   function panierWindow() {
     window.location.href = "/front-end/pages/panier.html";
@@ -61,18 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Extraction de l'id
   const params = new URLSearchParams(window.location.search);
-  // // console.log(params);
   const idProduit = params.get("id");
 
-  // // Affichage du produit
-  // fetch("http://localhost:3000/api/teddies/" + idProduit)
+  // Affichage du produit
   fetch("http://localhost:3000/api/teddies/" + idProduit)
-    .then((response) => response.json()) // Convertir en json
+    .then((response) => response.json())
     .then((article) => {
-      // Récupération de la réponse et affichage des produits
+      // Récupération de la réponse
       const fiche = document.querySelector("section.fiche");
-      // console.log(fiche);
-
+      // Affichage de tous les produits
       const bodyFiche = `
     <div class="fiche__produit">
                 <div class="fiche__produit--img"><img src="${
@@ -117,12 +92,12 @@ document.addEventListener("DOMContentLoaded", function () {
       fiche.innerHTML = bodyFiche;
 
       const ajouterPanier = document.querySelector("#btnAjouter");
-      // console.log(ajouterPanier);
+
       // Stockage dans le localStorage
       ajouterPanier.addEventListener("click", (e) => {
         e.preventDefault();
 
-        // Récupération des valeurs du panier
+        // Récupération des valeurs du produit
         const choixProduit = {
           image: article.imageUrl,
           idProduit: article._id,
@@ -130,19 +105,17 @@ document.addEventListener("DOMContentLoaded", function () {
           quantité: 1,
           prix: article.price / 100,
         };
-        console.log(choixProduit);
 
         // Contenu du localStorage
         let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
 
+        // Ajouter un produit dans le panier
         const ajoutProduit = () => {
           contentLocalStorage.push(choixProduit);
           localStorage.setItem("article", JSON.stringify(contentLocalStorage));
         };
-        // // Vérification contenu présent dans le localStorage
-        // contentLocalStorage[this.name] = choixProduit;
-        // localStorage.setItem("itemsObject", JSON.stringify(oldItems));
 
+        // Vérification contenu déjà présent dans le localStorage et ajouter le produit
         if (contentLocalStorage) {
           ajoutProduit();
         } else {

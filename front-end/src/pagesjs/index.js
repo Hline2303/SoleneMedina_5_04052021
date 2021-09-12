@@ -1,43 +1,20 @@
+// Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const accueil = document.querySelector("body.accueil"); // Regarde si accueil apparaît dans la partie body
   if (!accueil) return; // Si accueil n'apparait pas (différent d'accueil) alors ne charge pas la page
 
-  console.log(accueil); // Si accueil apparaît alors charge la page
-
-  /////////// Menu navigation Orinoco ATTENTION DOIT SE REPETER SUR TT LES PAGES
-
-  const menuHover = document.querySelector("#accueilNav");
-  // p2.addEventListener('click', changeTexte);
-  menuHover.addEventListener("mouseover", changeTexte1);
-  menuHover.addEventListener("mouseout", changeTexte2);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
+  // Changement du style au passage de la souris sur le menu de navigation
+  const accueilHover = document.querySelector("#accueilNav");
   const clicHomepage = document.querySelector("#accueilNav");
-  // p2.addEventListener('click', ouvreHomepage);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-  // function ouvreHomepage() {
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
-
-  /////////// Menu panier Orinoco
-
   const panierHover = document.querySelector("#panierNav");
+  const openPanier = document.querySelector("#panierNav");
 
-  // p2.addEventListener('click', changeTexte);
+  accueilHover.addEventListener("mouseover", changeTexte1);
+  accueilHover.addEventListener("mouseout", changeTexte2);
   panierHover.addEventListener("mouseover", changeTexte1);
   panierHover.addEventListener("mouseout", changeTexte2);
+  clicHomepage.addEventListener("click", ouvreHomepage);
+  openPanier.addEventListener("click", panierWindow);
 
   function changeTexte1() {
     this.style.color = "white";
@@ -52,24 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.backgroundColor = "";
   }
 
-  // function openPanier()
-  const openPanier = document.querySelector("#panierNav");
-
-  openPanier.addEventListener("click", panierWindow);
+  function ouvreHomepage() {
+    window.location.href = "/front-end/index.html";
+  }
 
   function panierWindow() {
     window.location.href = "/front-end/pages/panier.html";
   }
 
-  /////////// Récup des données dans l'API
-
+  // Récupération des données dans l'API
   fetch("http://localhost:3000/api/teddies")
-    .then((response) => response.json()) // Convertir en json
+    .then((response) => response.json())
     .then((data) => {
-      // Récupération de la réponse et affichage des produits
+      // Récupération de la réponse 
       const cardHtml = document.querySelector("section.card");
 
-      console.log(data);
       // Récupérer les données suivantes de chaque produit pour les afficher
       data.forEach((produit) => {
         cardHtml.innerHTML += `<a href="pages/produit.html?id=${

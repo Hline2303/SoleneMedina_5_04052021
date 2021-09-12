@@ -1,43 +1,20 @@
+// Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const panier = document.querySelector("body.panier");
   if (!panier) return;
 
-  /////////// Menu navigation Orinoco ATTENTION DOIT SE REPETER SUR TT LES PAGES
-
-  const menuHover = document.querySelector("#accueilNav");
+  // Changement du style au passage de la souris sur le menu de navigation
+  const accueilHover = document.querySelector("#accueilNav");
   const clicHomepage = document.querySelector("#accueilNav");
   const panierHover = document.querySelector("#panierNav");
   const openPanier = document.querySelector("#panierNav");
 
-  // p2.addEventListener('click', changeTexte);
-  menuHover.addEventListener("mouseover", changeTexte1);
-  menuHover.addEventListener("mouseout", changeTexte2);
-
-  // p2.addEventListener('click', ouvreHomepage);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-
-  // p2.addEventListener('click', changeTexte);
+  accueilHover.addEventListener("mouseover", changeTexte1);
+  accueilHover.addEventListener("mouseout", changeTexte2);
   panierHover.addEventListener("mouseover", changeTexte1);
   panierHover.addEventListener("mouseout", changeTexte2);
-
+  clicHomepage.addEventListener("click", ouvreHomepage);
   openPanier.addEventListener("click", panierWindow);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
-  // function ouvreHomepage()
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
 
   function changeTexte1() {
     this.style.color = "white";
@@ -52,19 +29,23 @@ document.addEventListener("DOMContentLoaded", function () {
     this.style.backgroundColor = "";
   }
 
+  function ouvreHomepage() {
+    window.location.href = "/front-end/index.html";
+  }
+
   function panierWindow() {
     window.location.href = "/front-end/pages/panier.html";
   }
 
   // Contenu du localStorage
   let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
-
   const fillCart = document.querySelector("#bodyCart");
   let fullCart = [];
   const totalPanier = [];
   const totalProducts = [];
   const netAPayer = document.querySelector("#total");
 
+  // Affichage du panier
   if (contentLocalStorage === null) {
     const emptyCart = `
      <td>Votre panier est vide</td>
@@ -80,13 +61,8 @@ document.addEventListener("DOMContentLoaded", function () {
     result = Object.entries(result);
     result.forEach((article) => {
       const quantity = article[1].length;
-      console.log(quantity);
-
       const productId = article[1][0];
-
       const montant = quantity * productId.prix;
-      console.log(montant);
-
 
       fullCart =
         fullCart +
@@ -106,44 +82,16 @@ document.addEventListener("DOMContentLoaded", function () {
               `;
       fillCart.innerHTML = fullCart;
 
-      // Identifiant article
-      let idArticle = document.getElementById("storage_article");
-      let id = idArticle.dataset.id;
-
-      
-
-      //const inputQty = document.getElementById("quantity").value;
-      // console.log(inputQty);
-
-      // const inputQuantity = parseInt(inputQty);
-      // console.log(typeof inputQuantity);
-
-      // const allQuantity = quantity + inputQuantity;
-      // console.log(allQuantity);
-
-      
+      // Mettre les quantités et montant dans le panier
       totalPanier.push(montant);
       totalProducts.push(quantity);
 
-      let btnAjouter = document.getElementsByClassName("btnAjouter");
-
-
-      // const productsQty = [];
-
-      // contentLocalStorage.forEach((contentLocalStorage) => {
-      // productsQty.push(contentLocalStorage.quantité);
-      // });
-
-      // console.log(productsQty);
-
-          
-
-      let trash = document.getElementsByClassName("btn_delete");
+      // Suppression d'un produit
+      const trash = document.getElementsByClassName("btn_delete");
       for (let i = 0; i < trash.length; i++) {
         trash[i].addEventListener("click", (e) => {
           e.preventDefault();
-          let removeProduct = contentLocalStorage[i].idProduit;
-          console.log(removeProduct);
+          const removeProduct = contentLocalStorage[i].idProduit;
 
           contentLocalStorage = contentLocalStorage.filter(
             (pdt) => pdt.idProduit != removeProduct
@@ -166,36 +114,26 @@ document.addEventListener("DOMContentLoaded", function () {
     emptyCart();
   });
 
+  //  Calculs du panier et affichage des montants
   const total = (collect, montantInitial) => collect + montantInitial;
-
-  ///// Mettre dans un addEventListener
   const montantTotal = totalPanier.reduce(total, 0);
-  console.log(montantTotal);
-  // console.log(totalPanier.reduce(montantTotal));
-  // let quant = contentLocalStorage[i].quantité;
-  // console.log(quant);
   localStorage.setItem("amount", montantTotal);
   const totalQuantity = totalProducts.reduce(total, 0);
-  console.log(totalQuantity);
   const displayQuantity = `${totalQuantity}`;
-  console.log(displayQuantity);
   const amountOrder = `
      <td id="amount">${montantTotal} €</td>
      `;
   netAPayer.innerHTML = amountOrder;
 
-  let cart = document.querySelector("#quantityCart");
+  // Affichage des quantités totales sur l'icône du panier
+  const cart = document.querySelector("#quantityCart");
   cart.innerHTML = displayQuantity;
-
-  let qtyContentLocalStorage = JSON.parse(localStorage.getItem("article"));
-  console.log(contentLocalStorage);
 
   //////////////////////// FORMULAIRE //////////////////////////
   const form = document.getElementById("form");
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    // const contact = new FormData(form);
 
     const formulaire = {
       firstName: document.getElementById("firstName").value,
@@ -205,11 +143,11 @@ document.addEventListener("DOMContentLoaded", function () {
       email: document.getElementById("email").value,
     };
 
+    // Validation du formulaire
     function validationInputs() {
       const formNomValue = firstName.value.trim();
       const formPrenomValue = lastName.value.trim();
       const formAdresseValue = address.value.trim();
-      // const formCodePostalValue = formCodePostal.value.trim();
       const formVilleValue = city.value.trim();
       const formMailValue = email.value.trim();
 
@@ -276,16 +214,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    validationInputs(); ///////////////////////// REMETTRE ///////////////////////
-    ////////////////////////////////////////////////////////////////////////////////
-    // });
+    validationInputs();
 
+    // Style en fonction de la validation ou non du formulaire
     function erreur(input, message) {
       const formValidation = input.parentElement;
       const small = formValidation.querySelector("small");
-
       small.innerText = message;
-
       formValidation.className = "form-validation erreur i.checked";
     }
 
@@ -294,6 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formValidation.className = "form-validation success";
     }
 
+    // Test regex
     function testFormNom(formNom) {
       return /^[A-Z-\s]{3,20}$/.test(formNom);
     }
@@ -316,15 +252,14 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }
 
+    // Envoi du formulaire
     localStorage.setItem("contact", JSON.stringify(formulaire));
-    console.log(formulaire);
 
     const productsId = [];
 
     contentLocalStorage.forEach((contentLocalStorage) => {
       productsId.push(contentLocalStorage.idProduit);
     });
-    console.log(productsId);
 
     const contact = formulaire;
 
@@ -332,7 +267,6 @@ document.addEventListener("DOMContentLoaded", function () {
       products: productsId,
       contact: contact,
     };
-    console.log(order);
 
     const orderResult = fetch("http://localhost:3000/api/teddies/order", {
       method: "POST",
@@ -348,36 +282,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const command = await response.json();
         if (response.ok) {
           localStorage.setItem("orderId", command.orderId);
-          
           window.location.href = "/front-end/pages/confirmation.html";
-          // Vider le panier avant
-          // function emptyCart() {
-            // localStorage.clear();
-          //   document.location.href = "/front-end/index.html";
-          // }
-          // emptyCart();
         } else {
           alert(`Problème avec le serveur : erreur ${response.status}`);
         }
       } catch (e) {
         alert(`ERREUR`);
-      } 
-
-     
-    
-
-    ////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////
-    // NE PAS OUBLIER DE RAJOUTER LE LOGO
-    // DANS LE PJT ET DANS LA PRESENTATION BROCHURE MAQUETTE
-    //////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////
+      }
+    });
   });
-
-  
 });
-});
-
 
 // *****************************************************
 // ******************* QUANTITY PANIER *****************
@@ -387,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // const totalQuantity = totalProducts.reduce(total, 0);
 // const displayQuantity = `${totalQuantity}`;
 // let cart = document.querySelector("#quantityCart");
-  
+
 // cart.innerHTML = displayQuantity;
 
 // *****************************************************
