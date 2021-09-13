@@ -109,8 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Contenu du localStorage
         let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
 
-        // Ajouter un produit dans le panier
-        const ajoutProduit = () => {
+        // Ajouter un produit dans le localStorage
+        function ajoutProduit() {
           contentLocalStorage.push(choixProduit);
           localStorage.setItem("article", JSON.stringify(contentLocalStorage));
         };

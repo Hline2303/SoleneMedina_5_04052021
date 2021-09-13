@@ -12,10 +12,14 @@ body {
   display: grid;
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
+  gap: 100px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 25px 25px 76px;
+}
+
+#conteneur h1 {
+  margin-bottom: 0;
 }
 
 .produitImage {
@@ -40,7 +44,7 @@ body {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  gap: 25px;
+  gap: 30px;
   width: 100%;
 }
 
@@ -51,8 +55,13 @@ body {
   border-radius: 25px;
   position: relative;
   top: 0;
-  width: 30%;
+  width: 35%;
   height: 428px;
+}
+
+.card__produit:hover {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .card__produit--content {
@@ -65,6 +74,7 @@ body {
   color: #55d81c;
   font-weight: bold;
   font-size: 14px;
+  text-align: center;
 }
 
 .card__produit--price {
@@ -72,6 +82,11 @@ body {
   font-weight: bold;
   text-align: center;
   padding-top: 20px;
+}
+
+.card__produit--img:hover {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .card h2 {
@@ -146,7 +161,7 @@ header .banniere__content--share ul {
 
 header .banniere__content--navigation {
   position: absolute;
-  top: 40%;
+  top: 50%;
   right: 8%;
 }
 
@@ -183,7 +198,6 @@ header .banniere__content--navigation .quantityCart {
 
 .fiche {
   max-width: 1400px;
-  border: 1px solid yellow;
   margin-left: auto;
   margin-right: auto;
 }
@@ -371,7 +385,7 @@ input {
 
 .service {
   /*width: 100%;*/
-  height: 150px;
+  height: 175px;
   background: #cdc7c4;
   color: #8f7361;
   display: -ms-grid;

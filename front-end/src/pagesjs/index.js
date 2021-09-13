@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch("http://localhost:3000/api/teddies")
     .then((response) => response.json())
     .then((data) => {
-      // Récupération de la réponse 
+      // Récupération de la réponse
       const cardHtml = document.querySelector("section.card");
 
       // Récupérer les données suivantes de chaque produit pour les afficher
