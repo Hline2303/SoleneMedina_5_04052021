@@ -86,3 +86,13 @@
     } a rajouter pour le mode accessibilité*/
 }
 
+@mixin button {
+    color: $colorPrimary;
+    button:hover {
+        cursor: pointer;
+      transform: scale(0.95);
+      background: $colorPrimary;
+      color: white;
+      border-radius: 5px;
+    }
+  }

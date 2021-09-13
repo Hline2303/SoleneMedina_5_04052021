@@ -1,62 +1,67 @@
 .fiche {
-    max-width: 1400px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
+
+  .ficheImage {
+    object-fit: cover;
+    background-position: center;
+    width: 100%;
+    height: 450px;
+    border-radius: 25px 0 0 25px;
+  }
+  &__produit {
     margin-left: auto;
     margin-right: auto;
-    .ficheImage {
-        background-size: cover;
-        background-position: left center;
-        width: 100%;
-        height: auto;
-        border-radius: 25px 0 0 25px;
+    background: white;
+    border-radius: 25px;
+    position: relative;
+    top: 0;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 450px; /*****/
+    // padding-left: 150px;
+    &--content {
+      width: 50%;
+      padding: 25px;
     }
-    &__produit {
-        margin-left: auto;
-        margin-right: auto;
-        background: white;
-        border-radius: 25px;
-        position: relative;
-        top: 0;
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        padding-left: 150px;
-        &--content {
-            width: 50%;
-            padding: 25px;
-        }
-        &--stock {
-            @include ficheStock;
-        }
-        &--price {
-            @include fichePrice;
-        }
-        &--global {
-            display: flex;
-            justify-content: space-between;
-        }
-        &--selection {
-            display: flex;
-            flex-direction: column;
-            margin-top: 70px;
-        }
-        &--panier {
-            @include btn;
-            &:hover {
-                background: rgb(0, 162, 0);
-            }
-        }
-        & h2 {
-            @include ficheH2;
-        }
-        & p {
-            text-align: justify;
-        }
-        & span {
-            color: $yellow;
-        }
-        & i {
-            color: $colorPrimary;    
-        }
+    &--stock {
+      @include ficheStock;
     }
+    &--price {
+      @include fichePrice;
+    }
+    &--global {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--selection {
+      display: flex;
+      flex-direction: column;
+      margin-top: 70px;
+    }
+    &--panier {
+      @include btn;
+      &:hover {
+        cursor: pointer;
+        background: rgb(0, 162, 0);
+        transform: scale(0.95);
+      }
+    }
+    & h2 {
+      @include ficheH2;
+    }
+    & p {
+      text-align: justify;
+    }
+    & span {
+      color: $yellow;
+    }
+    & i {
+      color: $colorPrimary;
+    }
+  }
 }

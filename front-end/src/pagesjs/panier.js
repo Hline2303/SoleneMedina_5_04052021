@@ -68,16 +68,16 @@ document.addEventListener("DOMContentLoaded", function () {
         fullCart +
         `
               <tr class="storage_article" id="storage_article" data-id="${article[0]}">
-                <td><img src="${article[1][0].image}" width="200"></td>
-                <td><h2>${article[1][0].nom}</h2></td>
-                <td class="quantityInput" >
+                <td class="bodycart__produit"><img src="${article[1][0].image}" width="200"></td>
+                <td class="bodycart__nom"><h2>${article[1][0].nom}</h2></td>
+                <td class="quantityInput bodycart__quantity" >
                 ${quantity}
 
                 </td>
           
-                <td id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
-                <td id="price">${article[1][0].prix}€</td>
-                <td id="montant">${montant}€</td>
+                <td class="bodycart__delete" id="delete"><button class="btn_delete" id="btn_delete"><i class="fas fa-trash"></i></button></td>
+                <td class="bodycart__prix" id="price">${article[1][0].prix}€</td>
+                <td class="bodycart__montant" id="montant">${montant}€</td>
               </tr> 
               `;
       fillCart.innerHTML = fullCart;
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalQuantity = totalProducts.reduce(total, 0);
   const displayQuantity = `${totalQuantity}`;
   const amountOrder = `
-     <td id="amount">${montantTotal} €</td>
+     <td id="amount">${montantTotal}€</td>
      `;
   netAPayer.innerHTML = amountOrder;
 

@@ -1,20 +1,40 @@
 .confirmation {
-   
-    &__content {
-        width: 50%;
-        height: 450px;
-        padding: 50px 40px 0 40px;
-        background: #fff;
-        font-family: $navFont;
-        font-size: 30px;
-        font-weight: bold;
-        color: $colorPrimary;
-        @include centrageH;
-        &--justify {
-            text-align: justify;
-        }
-        &--center {
-            text-align: center;
-        }
+  &__content {
+    width: 50%;
+    height: 450px;
+    padding: 50px 40px 0 40px;
+    margin-bottom: 100px;
+    background: #fff;
+    border-radius: 10px;
+    font-family: $navFont;
+    font-size: 20px;
+    font-weight: bold;
+    color: $colorPrimary;
+    @include centrageH;
+    // & img {
+    //   border: 3px solid purple;
+    //   width: 300px;
+    //   margin-left: 200px;
+    // //   margin-bottom: 2500px;
+    // //   display: flex;
+    // }
+    &--justify {
+      text-align: justify;
     }
-}
+    &--center {
+      text-align: center;
+    }
+    &--signature {
+      margin-left: 25px;
+    }
+    // &--image {
+    //   width: 30%;
+    //   height: 100px;
+    //   border: 3px solid yellow;
+    // //   position: absolute;
+
+    //   //   display: flex;
+    //   margin-bottom: 150px;
+    }
+  }
+

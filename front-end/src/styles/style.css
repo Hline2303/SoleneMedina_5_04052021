@@ -200,13 +200,15 @@ header .banniere__content--navigation .quantityCart {
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 100px;
 }
 
 .fiche .ficheImage {
-  background-size: cover;
-  background-position: left center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center;
   width: 100%;
-  height: auto;
+  height: 450px;
   border-radius: 25px 0 0 25px;
 }
 
@@ -226,7 +228,8 @@ header .banniere__content--navigation .quantityCart {
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  padding-left: 150px;
+  height: 450px;
+  /*****/
 }
 
 .fiche__produit--content {
@@ -278,7 +281,10 @@ header .banniere__content--navigation .quantityCart {
 }
 
 .fiche__produit--panier:hover {
+  cursor: pointer;
   background: #00a200;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .fiche__produit h2 {
@@ -318,11 +324,137 @@ th {
   padding: 0;
 }
 
+.panier__produit {
+  width: 100px;
+}
+
+.panier__produit--nom {
+  width: 200px;
+}
+
+.panier__quantity {
+  width: 100px;
+}
+
+.panier__delete {
+  width: 100px;
+}
+
+.panier__prix {
+  width: 100px;
+}
+
+.panier__total {
+  width: 100px;
+}
+
+.bodycart__produit {
+  margin-left: 30px;
+  margin-right: auto;
+  padding: 5px;
+  display: block;
+}
+
+.bodycart__nom {
+  text-align: center;
+}
+
+.bodycart__quantity {
+  text-align: center;
+}
+
+.bodycart__delete {
+  text-align: center;
+  color: #8f7361;
+}
+
+.bodycart__delete button {
+  color: #8f7361;
+}
+
+.bodycart__delete button:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  background: #8f7361;
+  color: white;
+  border-radius: 5px;
+}
+
+.bodycart__prix {
+  text-align: center;
+}
+
+.bodycart__montant {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.footcart {
+  background: #9f7f6c;
+  color: #f3e9f1;
+  border: 10px solid #f3e9f1;
+  height: 100px;
+  padding: 0;
+  font-weight: bold;
+}
+
+.footcart__montant {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.footcart__delete {
+  text-align: center;
+  color: #8f7361;
+}
+
+.footcart__delete button {
+  color: #8f7361;
+}
+
+.footcart__delete button:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  background: #8f7361;
+  color: white;
+  border-radius: 5px;
+}
+
+.footcart__total {
+  text-align: right;
+  padding-right: 30px;
+}
+
 /**************** FORMULAIRE *******************/
 fieldset {
   width: 40%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 30px auto;
+  padding: 30px;
+  color: #8f7361;
+  border: 3px solid #8f7361;
+  color: #8f7361;
+}
+
+fieldset button {
+  color: #8f7361;
+  font-weight: bold;
+  border-color: white;
+  border-radius: 5px;
+}
+
+fieldset button:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  background: #8f7361;
+  color: white;
+  border-radius: 5px;
+}
+
+.form-validation input {
+  margin: 10px 80px;
 }
 
 input {
@@ -330,9 +462,9 @@ input {
   width: 60%;
 }
 
-.buttonForm {
-  margin-left: 27px;
-  margin-top: 5px;
+.buttonFormClient {
+  margin-left: 23px;
+  margin-top: 15px;
   width: 88%;
   height: 30px;
 }
@@ -366,9 +498,11 @@ input {
   width: 50%;
   height: 450px;
   padding: 50px 40px 0 40px;
+  margin-bottom: 100px;
   background: #fff;
+  border-radius: 10px;
   font-family: "Open Sans Light", sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #8f7361;
   margin-left: auto;
@@ -381,6 +515,10 @@ input {
 
 .confirmation__content--center {
   text-align: center;
+}
+
+.confirmation__content--signature {
+  margin-left: 25px;
 }
 
 .service {
