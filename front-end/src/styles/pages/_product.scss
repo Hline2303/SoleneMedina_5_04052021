@@ -1,5 +1,5 @@
 .fiche {
-  max-width: 1400px;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 100px;
@@ -22,8 +22,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 450px; /*****/
-    // padding-left: 150px;
+    height: 450px; 
     &--content {
       width: 50%;
       padding: 25px;
@@ -41,7 +40,7 @@
     &--selection {
       display: flex;
       flex-direction: column;
-      margin-top: 70px;
+      margin-top: 25px;
     }
     &--panier {
       @include btn;
@@ -50,6 +49,15 @@
         background: rgb(0, 162, 0);
         transform: scale(0.95);
       }
+    }
+    .listColors {
+      border: 1px solid $colorPrimary;
+      background: $colorPrimary;
+      color: white;
+      text-align: center;
+      width: 190px;
+      margin-right: auto;
+      margin-left: auto;
     }
     & h2 {
       @include ficheH2;

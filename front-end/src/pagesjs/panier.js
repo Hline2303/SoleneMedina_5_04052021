@@ -292,18 +292,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
-// *****************************************************
-// ******************* QUANTITY PANIER *****************
-// *****************************************************
-
-// const totalProducts = [];
-// const totalQuantity = totalProducts.reduce(total, 0);
-// const displayQuantity = `${totalQuantity}`;
-// let cart = document.querySelector("#quantityCart");
-
-// cart.innerHTML = displayQuantity;
-
-// *****************************************************
-// ******************* QUANTITY PANIER *****************
-// *****************************************************

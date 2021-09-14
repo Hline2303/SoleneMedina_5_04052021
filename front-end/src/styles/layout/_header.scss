@@ -1,6 +1,5 @@
 header {
-  // display: none;
-  display: flex; /*********A remettre quand j'enlèverai display none **********************/
+  display: flex; 
   .banniere__content {
     background-image: url(../../images/Teddy.jpg);
     background-size: cover;
@@ -53,11 +52,6 @@ header {
         display: flex;
         padding: 0;
       }
-
-      // li .accueilPanier{
-      //     padding-left: 0;
-      //     margin-left: 15px;
-      // }
       a {
         @include lien;
       }
@@ -70,11 +64,6 @@ header {
         color: white;
         font-weight: bold;
         position: relative;
-        // &:hover {
-        //     color: $colorSecondary;
-        //     width: 15px;
-        //     height: 15px;
-        // }
       }
     }
   }

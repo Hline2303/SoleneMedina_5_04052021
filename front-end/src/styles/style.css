@@ -1,10 +1,9 @@
-@charset "UTF-8";
 body {
   background: #f3e9f1;
 }
 
 #conteneur {
-  max-width: 1400px;
+  max-width: 100%;
   margin: auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -31,11 +30,9 @@ body {
 }
 
 .card {
-  /*display: grid; /******** A REVOIR ****************/
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /*****************************Remettre quand j'enlève display none ******************************/
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -114,7 +111,6 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  /*********A remettre quand j'enlèverai display none **********************/
 }
 
 header .banniere__content {
@@ -197,7 +193,7 @@ header .banniere__content--navigation .quantityCart {
 }
 
 .fiche {
-  max-width: 1400px;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 100px;
@@ -229,7 +225,6 @@ header .banniere__content--navigation .quantityCart {
   -ms-flex-line-pack: center;
       align-content: center;
   height: 450px;
-  /*****/
 }
 
 .fiche__produit--content {
@@ -266,7 +261,7 @@ header .banniere__content--navigation .quantityCart {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 70px;
+  margin-top: 25px;
 }
 
 .fiche__produit--panier {
@@ -285,6 +280,16 @@ header .banniere__content--navigation .quantityCart {
   background: #00a200;
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
+}
+
+.fiche__produit .listColors {
+  border: 1px solid #8f7361;
+  background: #8f7361;
+  color: white;
+  text-align: center;
+  width: 190px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .fiche__produit h2 {
@@ -454,7 +459,7 @@ fieldset button:hover {
 }
 
 .form-validation input {
-  margin: 10px 80px;
+  margin: 10px 110px;
 }
 
 input {
@@ -495,16 +500,16 @@ input {
 }
 
 .confirmation__content {
-  width: 50%;
-  height: 450px;
+  width: 30%;
+  height: 350px;
   padding: 50px 40px 0 40px;
   margin-bottom: 100px;
-  background: #fff;
+  background: #8f7361;
   border-radius: 10px;
   font-family: "Open Sans Light", sans-serif;
   font-size: 20px;
   font-weight: bold;
-  color: #8f7361;
+  color: white;
   margin-left: auto;
   margin-right: auto;
 }
@@ -518,17 +523,15 @@ input {
 }
 
 .confirmation__content--signature {
-  margin-left: 25px;
+  text-align: center;
 }
 
 .service {
-  /*width: 100%;*/
   height: 175px;
   background: #cdc7c4;
   color: #8f7361;
   display: -ms-grid;
   display: grid;
-  /*******************A remettre quand j'enlèverai le display none*********************/
   -ms-grid-columns: 1fr 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr 1fr;
 }
@@ -683,9 +686,6 @@ footer .infos__newsletter input {
   border-width: 0 0 2px;
   border-radius: 10px;
   border-color: #fff;
-  /*input:focus {
-        outline: dashed black;
-    } a rajouter pour le mode accessibilité*/
   margin-top: 10px;
 }
 

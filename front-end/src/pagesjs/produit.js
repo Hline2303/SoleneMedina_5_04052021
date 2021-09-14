@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
                  </div>
 
                  <div class="fiche__produit--selection">
-                     <select id="listColors">
+                     <select class="listColors" id="listColors">
                          <option value="${article.colors[0]}">${
         article.colors[0]
       }</option>

@@ -49,8 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <p class="confirmation__content--justify">${formulaireStorage.lastName} ${formulaireStorage.firstName}</p>
       <p class="confirmation__content--justify">Votre commande d'un montant de  ${amount}€ a bien été enregistrée sous le :</p>
       <p class="confirmation__content--center">N° ${orderId} <br> <br>Nous vous remercions <br>de votre confiance. <br> 
-      <p class="confirmation__content--signature">L'équipe d'</p>
-      <div class="confirmation__content--image"><img src="../images/logo_orinoco.png"></div>
+      <p class="confirmation__content--signature">L'équipe d'Orinoco</p>
     </div>
     `;
   }

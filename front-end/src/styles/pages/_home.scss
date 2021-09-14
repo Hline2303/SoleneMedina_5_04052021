@@ -3,14 +3,13 @@ body {
 }
 
 #conteneur {
-  max-width: 1400px;
+  max-width: 100%;
   margin: auto;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr;
   gap: 100px;
   justify-content: center;
-  // padding: 25px 25px 0px;
   & h1 {
     margin-bottom: 0;
   }
@@ -22,9 +21,7 @@ body {
   width: 100%;
 }
 .card {
-  // display: none;
-  /*display: grid; /******** A REVOIR ****************/
-  display: flex; /*****************************Remettre quand j'enlève display none ******************************/
+  display: flex; 
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -46,7 +43,6 @@ body {
       padding: 5px;
       background: white;
       border-radius: 0 0 25px 25px;
-    //   text-align: center;
     }
     &--stock {
       color: $green;
@@ -63,40 +59,6 @@ body {
     &--img:hover {
         transform: scale(0.95);
       }
-    // &--img {
-    //     // background-size: cover;
-    //     // border-radius: 25px 25px 0 0;
-    //     width: 100%;
-    //     height: 200px;
-    //     // background-image: url(../images/Smokey.jpg);
-    // }
-    // &--img1 {
-    //     width: 100%;
-    //     height: 200px;
-    //     background-position: center bottom;  /******* A modif media queries ******/
-    //     // background-image: url(../images/Smokey.jpg);
-    // }
-    // &--img2 {
-    //     width: 100%;
-    //     height:200px;
-    //     background-position: center;
-    //     // background-image: url(../images/Oscar_et_Poupy.jpg);
-    // }
-    // &--img3 {
-    //     width: 100%;
-    //     height: 200px;
-    //     // background-image: url(../images/Fenton.jpg);
-    // }
-    // &--img4 {
-    //     width: 100%;
-    //     height: 200px;
-    //     // background-image: url(../images/Rowen.jpg);
-    // }
-    // &--img5 {
-    //     width: 100%;
-    //     height: 200px;
-    //     background-image: url(../images/Teddy.jpg);
-    // }
   }
   & h2 {
     font-size: 30px;

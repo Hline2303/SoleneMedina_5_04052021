@@ -14,12 +14,6 @@ th {
   height: 100px;
   padding: 0;
 }
-
-// input[type=number]::-webkit-inner-spin-button,
-// input[type=number]::-webkit-outer-spin-button {
-//   -webkit-appearance: none;
-// }
-
 .panier {
   &__produit {
     width: 100px;
@@ -99,7 +93,6 @@ fieldset {
   margin: 30px auto;
   padding: 30px;
   color: $colorPrimary;
-  // border-color: $colorPrimary;
   border: 3px solid $colorPrimary;
   & button {
     color: $colorPrimary;
@@ -111,21 +104,10 @@ fieldset {
 }
 
 .form-validation {
-  // display: block;
-  // margin-left: auto;
-  // margin-right: auto;
   & input {
-    margin: 10px 80px;
+    margin: 10px 110px;
   }
 }
-// label {
-//   display: inline-block;
-//   min-width: 100px;
-//   height: 30px;
-//   padding-left: 25px;
-//   padding-right: 10px;
-// }
-
 input {
   height: 20px;
   width: 60%;
@@ -137,14 +119,6 @@ input {
   width: 88%;
   height: 30px;
 }
-
-// .form-validation.success input {
-//   border-color: #2ecc71;
-// }
-
-// .form-validation.erreur input {
-//   border-color: #e74c3c;
-// }
 
 .form-validation.success {
   color: #2ecc71;
@@ -165,16 +139,6 @@ input {
   box-shadow: 0 0 5px 1px red;
 }
 
-// .form-validation input:focus:invalid {
-//   outline: none;
-//   box-shadow: 0 0 5px 1px red;
-// }
-
 .form-validation input:valid {
   box-shadow: 0 0 5px 1px green;
 }
-
-// .form-validation input:focus:valid {
-//   box-shadow: 0 0 5px 1px green;
-//   outline: none;
-// }
