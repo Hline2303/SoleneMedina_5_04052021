@@ -37,9 +37,10 @@ th {
 
 .bodycart {
   &__produit {
-    margin-left: 30px;
+    margin-left: auto;
     margin-right: auto;
-    padding: 5px;
+    width: 200px;
+    // padding: 5px;
     display: block;
   }
   &__nom {
@@ -118,21 +119,6 @@ input {
   margin-top: 15px;
   width: 88%;
   height: 30px;
-}
-
-.form-validation.success {
-  color: #2ecc71;
-  visibility: visible;
-}
-
-.form-validation.erreur {
-  color: #e74c3c;
-  visibility: visible;
-}
-
-.form-validation.erreur small {
-  color: #e74c3c;
-  visibility: visible;
 }
 
 .form-validation input:invalid {

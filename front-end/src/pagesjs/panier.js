@@ -152,62 +152,50 @@ document.addEventListener("DOMContentLoaded", function () {
       const formMailValue = email.value.trim();
 
       if (formNomValue === "") {
-        erreur(firstName, "Le champs nom doit être complété.");
+        erreur;
         e.preventDefault();
       } else if (!testFormNom(formNomValue)) {
-        erreur(
-          firstName,
-          "Le nom doit comporter entre 3 à 20 lettres majuscules."
-        );
+        erreur;
         e.preventDefault();
       } else {
         success(firstName);
       }
 
       if (formPrenomValue === "") {
-        erreur(lastName, "Le champs prénom doit être complété.");
+        erreur;
         e.preventDefault();
       } else if (!testFormPrenom(formPrenomValue)) {
-        erreur(
-          lastName,
-          "Le prénom doit commencer par une lettre majuscule et être composer uniquement de lettres, au minimum 3."
-        );
+        erreur;
         e.preventDefault();
       } else {
         success(lastName);
       }
 
       if (formAdresseValue === "") {
-        erreur(address, "Le champs adresse doit être complété.");
+        erreur;
         e.preventDefault();
       } else if (!testFormAdresse(formAdresseValue)) {
-        erreur(address, "Veuillez entrer une adresse valide.");
+        erreur;
         e.preventDefault();
       } else {
         success(address);
       }
 
       if (formVilleValue === "") {
-        erreur(city, "Le champs ville doit être complété.");
+        erreur;
         e.preventDefault();
       } else if (!testFormVille(formVilleValue)) {
-        erreur(
-          city,
-          "La ville doit contenir uniquement des majuscules, 3 minimum."
-        );
+        erreur;
         e.preventDefault();
       } else {
         success(city);
       }
 
       if (formMailValue === "") {
-        erreur(email, "Le champs email doit être complété.");
+        erreur;
         e.preventDefault();
       } else if (!testFormMail(formMailValue)) {
-        erreur(
-          email,
-          "L'email doit être composé sous cette forme : email@nomdedomaine.fr"
-        );
+        erreur;
         e.preventDefault();
       } else {
         success(email);

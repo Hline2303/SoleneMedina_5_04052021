@@ -22,7 +22,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 450px; 
+    height: 450px;
     &--content {
       width: 50%;
       padding: 25px;
@@ -40,7 +40,8 @@
     &--selection {
       display: flex;
       flex-direction: column;
-      margin-top: 25px;
+      margin-top: auto;
+      margin-bottom: auto;
     }
     &--panier {
       @include btn;

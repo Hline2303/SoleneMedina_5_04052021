@@ -261,7 +261,8 @@ header .banniere__content--navigation .quantityCart {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 25px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .fiche__produit--panier {
@@ -354,9 +355,9 @@ th {
 }
 
 .bodycart__produit {
-  margin-left: 30px;
+  margin-left: auto;
   margin-right: auto;
-  padding: 5px;
+  width: 200px;
   display: block;
 }
 
@@ -472,21 +473,6 @@ input {
   margin-top: 15px;
   width: 88%;
   height: 30px;
-}
-
-.form-validation.success {
-  color: #2ecc71;
-  visibility: visible;
-}
-
-.form-validation.erreur {
-  color: #e74c3c;
-  visibility: visible;
-}
-
-.form-validation.erreur small {
-  color: #e74c3c;
-  visibility: visible;
 }
 
 .form-validation input:invalid {
