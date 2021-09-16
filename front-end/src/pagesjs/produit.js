@@ -1,41 +1,12 @@
+import { animateMenu } from "./functions.js";
+
 // Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const produit = document.querySelector("body.produit");
   if (!produit) return;
 
   // Changement du style au passage de la souris sur le menu de navigation
-  const accueilHover = document.querySelector("#accueilNav");
-  const clicHomepage = document.querySelector("#accueilNav");
-  const panierHover = document.querySelector("#panierNav");
-  const openPanier = document.querySelector("#panierNav");
-
-  accueilHover.addEventListener("mouseover", changeTexte1);
-  accueilHover.addEventListener("mouseout", changeTexte2);
-  panierHover.addEventListener("mouseover", changeTexte1);
-  panierHover.addEventListener("mouseout", changeTexte2);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-  openPanier.addEventListener("click", panierWindow);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "5px";
-    this.style.marginLeft = "15px";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
-
-  function panierWindow() {
-    window.location.href = "/front-end/pages/panier.html";
-  }
+  animateMenu();
 
   // Extraction de l'id
   const params = new URLSearchParams(window.location.search);
@@ -113,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         function ajoutProduit() {
           contentLocalStorage.push(choixProduit);
           localStorage.setItem("article", JSON.stringify(contentLocalStorage));
-        };
+        }
 
         // Vérification contenu déjà présent dans le localStorage et ajouter le produit
         if (contentLocalStorage) {

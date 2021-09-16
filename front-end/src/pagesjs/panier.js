@@ -1,41 +1,12 @@
+import { animateMenu } from "./functions.js";
+
 // Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const panier = document.querySelector("body.panier");
   if (!panier) return;
 
   // Changement du style au passage de la souris sur le menu de navigation
-  const accueilHover = document.querySelector("#accueilNav");
-  const clicHomepage = document.querySelector("#accueilNav");
-  const panierHover = document.querySelector("#panierNav");
-  const openPanier = document.querySelector("#panierNav");
-
-  accueilHover.addEventListener("mouseover", changeTexte1);
-  accueilHover.addEventListener("mouseout", changeTexte2);
-  panierHover.addEventListener("mouseover", changeTexte1);
-  panierHover.addEventListener("mouseout", changeTexte2);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-  openPanier.addEventListener("click", panierWindow);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "5px";
-    this.style.marginLeft = "15px";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
-
-  function panierWindow() {
-    window.location.href = "/front-end/pages/panier.html";
-  }
+  animateMenu();
 
   // Contenu du localStorage
   let contentLocalStorage = JSON.parse(localStorage.getItem("article"));
@@ -125,10 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
      `;
   netAPayer.innerHTML = amountOrder;
 
-  // Affichage des quantités totales sur l'icône du panier
-  const cart = document.querySelector("#quantityCart");
-  cart.innerHTML = displayQuantity;
-
   //////////////////////// FORMULAIRE //////////////////////////
   const form = document.getElementById("form");
 
@@ -144,71 +111,33 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // Validation du formulaire
-    function validationInputs() {
-      const formNomValue = firstName.value.trim();
-      const formPrenomValue = lastName.value.trim();
-      const formAdresseValue = address.value.trim();
-      const formVilleValue = city.value.trim();
-      const formMailValue = email.value.trim();
+    const formNomValue = firstName.value.trim();
+    const formPrenomValue = lastName.value.trim();
+    const formAdresseValue = address.value.trim();
+    const formVilleValue = city.value.trim();
+    const formMailValue = email.value.trim();
 
-      if (formNomValue === "") {
+    function validationInputs(input, message, func) {
+      if (input === "") {
         erreur;
         e.preventDefault();
-      } else if (!testFormNom(formNomValue)) {
+      } else if (!func(input)) {
         erreur;
         e.preventDefault();
       } else {
-        success(firstName);
-      }
-
-      if (formPrenomValue === "") {
-        erreur;
-        e.preventDefault();
-      } else if (!testFormPrenom(formPrenomValue)) {
-        erreur;
-        e.preventDefault();
-      } else {
-        success(lastName);
-      }
-
-      if (formAdresseValue === "") {
-        erreur;
-        e.preventDefault();
-      } else if (!testFormAdresse(formAdresseValue)) {
-        erreur;
-        e.preventDefault();
-      } else {
-        success(address);
-      }
-
-      if (formVilleValue === "") {
-        erreur;
-        e.preventDefault();
-      } else if (!testFormVille(formVilleValue)) {
-        erreur;
-        e.preventDefault();
-      } else {
-        success(city);
-      }
-
-      if (formMailValue === "") {
-        erreur;
-        e.preventDefault();
-      } else if (!testFormMail(formMailValue)) {
-        erreur;
-        e.preventDefault();
-      } else {
-        success(email);
+        success(message);
       }
     }
 
-    validationInputs();
+    validationInputs(formNomValue, firstName, testFormNom);
+    validationInputs(formPrenomValue, lastName, testFormPrenom);
+    validationInputs(formAdresseValue, address, testFormAdresse);
+    validationInputs(formVilleValue, city, testFormVille);
+    validationInputs(formMailValue, email, testFormMail);
 
-    // Style en fonction de la validation ou non du formulaire
-    function erreur(input, message) {
+
+    function erreur(input) {
       const formValidation = input.parentElement;
-      const small = formValidation.querySelector("small");
-      small.innerText = message;
       formValidation.className = "form-validation erreur i.checked";
     }
 
@@ -217,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formValidation.className = "form-validation success";
     }
 
-    // Test regex
+      // Test regex
     function testFormNom(formNom) {
       return /^[A-Z-\s]{3,20}$/.test(formNom);
     }

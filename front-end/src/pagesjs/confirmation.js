@@ -1,42 +1,12 @@
+import { animateMenu } from "./functions.js";
+
 // Chargement de la page
 document.addEventListener("DOMContentLoaded", function () {
   const confirmation = document.querySelector("body.confirmation");
   if (!confirmation) return;
 
   // Changement du style au passage de la souris sur le menu de navigation
-  const accueilHover = document.querySelector("#accueilNav");
-  const clicHomepage = document.querySelector("#accueilNav");
-  const panierHover = document.querySelector("#panierNav");
-  const openPanier = document.querySelector("#panierNav");
-
-  accueilHover.addEventListener("mouseover", changeTexte1);
-  accueilHover.addEventListener("mouseout", changeTexte2);
-  panierHover.addEventListener("mouseover", changeTexte1);
-  panierHover.addEventListener("mouseout", changeTexte2);
-  clicHomepage.addEventListener("click", ouvreHomepage);
-  openPanier.addEventListener("click", panierWindow);
-
-  function changeTexte1() {
-    this.style.color = "white";
-    this.style.padding = "5px";
-    this.style.marginLeft = "15px";
-    this.style.backgroundColor = "#8f7361";
-  }
-
-  function changeTexte2() {
-    this.style.color = "";
-    this.style.padding = "";
-    this.style.backgroundColor = "";
-  }
-
-  function ouvreHomepage() {
-    window.location.href = "/front-end/index.html";
-  }
-
-  function panierWindow() {
-    window.location.href = "/front-end/pages/panier.html";
-  }
-
+  animateMenu();
   // Confirmation de commande
   const formulaireStorage = JSON.parse(localStorage.getItem("contact"));
   function orderValidation() {
