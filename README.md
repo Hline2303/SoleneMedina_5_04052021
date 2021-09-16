@@ -1,6 +1,6 @@
 Orinoco
 
-Projet e-commerce d'oursons en peluches pour mettre en application le javascript
+Projet e-commerce d'oursons en peluches pour mettre en application le JavaScript
 
 Pré-requis :
 
