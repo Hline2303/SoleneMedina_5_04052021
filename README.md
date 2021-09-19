@@ -6,10 +6,6 @@ Pré-requis :
 
 Nécessite Node et l'installation de npm
 
-Installation :
-
-Clôner le repository
-
 Editeur utilisé: 
 
 Visual Studio Code
@@ -22,10 +18,16 @@ Installation :
 
 1- Clôner le repository
 
-2- Dans le terminal entrer cd back_end 
+2- Ouvrir l'éditeur
 
-3- Ensuite entrer node server 
+3- Ouvrir le dossier SoleneMedina_5_04052021.main
 
-4- Lancer Watch Sass
+4- Ouvrir le terminal et entrer cd back_end 
 
-5- Clic droit sur le fichier index.html et sélectionner Open Live Server
+5- Ensuite entrer node server 
+
+6- Lancer Watch Sass
+
+7- Clic droit sur le fichier index.html et sélectionner Open Live Server
+
+8- Vous avez enfin accès au site. Bonne visite !
