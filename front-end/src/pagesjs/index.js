@@ -26,11 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="card__produit--content">
                 <h2>${produit.name}</h2> 
 
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <span class="fas fa-star"></span>
-                <i class="fas fa-star"></i>
+                <div class="likes">
+                  <span class="fas fa-star"></span>
+                  <span class="fas fa-star"></span>
+                  <span class="fas fa-star"></span>
+                  <span class="fas fa-star"></span>
+                  <i class="fas fa-star"></i>
+                </div>
 
                 <p class="card__produit--stock">En stock</p>
 

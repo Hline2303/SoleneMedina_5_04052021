@@ -24,63 +24,66 @@
   </head>
   <body class="panier">
     <header>
-      <div class="banniere__content"></div>
-      <p class="banniere__content--slogan">Un réconfort pour les enfants</p>
+      <div class="banniere__content">
+        <div class="banniere__content--slogan">
+          <img src="../images/Orinoco_3.jpg" alt="logo" />
+          <p>Un réconfort pour les enfants</p>
+        </div>
+        <div class="banniere__content--share">
+          <ul>
+            <li>
+              <a href="#"
+                ><span class="fa fa-facebook" aria-hidden="true"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><span class="fa fa-instagram" aria-hidden="true"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><span class="fa fa-twitter" aria-hidden="true"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><span class="fa fa-pinterest" aria-hidden="true"></span
+              ></a>
+            </li>
+            <li>
+              <a href="#"
+                ><span class="fa fa-share-alt" aria-hidden="true"></span
+              ></a>
+            </li>
+          </ul>
+        </div>
 
-      <div class="banniere__content--share">
-        <ul>
-          <li>
-            <a href="#"
-              ><span class="fa fa-facebook" aria-hidden="true"></span
-            ></a>
-          </li>
-          <li>
-            <a href="#"
-              ><span class="fa fa-instagram" aria-hidden="true"></span
-            ></a>
-          </li>
-          <li>
-            <a href="#"
-              ><span class="fa fa-twitter" aria-hidden="true"></span
-            ></a>
-          </li>
-          <li>
-            <a href="#"
-              ><span class="fa fa-pinterest" aria-hidden="true"></span
-            ></a>
-          </li>
-          <li>
-            <a href="#"
-              ><span class="fa fa-share-alt" aria-hidden="true"></span
-            ></a>
-          </li>
-        </ul>
+        <nav class="banniere__content--navigation">
+          <ul>
+            <li>
+              <a href="#" class="accueilNav" id="accueilNav">
+                <span class="fa fa-home" aria-hidden="true"></span>
+              </a>
+            </li>
+            <li class="panier">
+              <a href="#" id="panierNav">
+                <span
+                  class="fas fa-shopping-cart"
+                  class="cart"
+                  aria-hidden="true"
+                ></span>
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
-
-      <nav class="banniere__content--navigation">
-        <ul>
-          <li>
-            <a href="#" class="accueilNav" id="accueilNav">
-              <span class="fa fa-home" aria-hidden="true"></span>
-            </a>
-          </li>
-          <li class="panier">
-            <a href="#" id="panierNav">
-              <span
-                class="fas fa-shopping-cart"
-                class="cart"
-                aria-hidden="true"
-              ></span>
-            </a>
-          </li>
-        </ul>
-      </nav>
     </header>
 
     <main>
       <h1>Votre panier</h1>
       <section id="bodyPanier">
-        <div>
+        <div class="commande">
           <table cellspacing="3">
             <thead>
               <tr>
@@ -94,11 +97,17 @@
             </thead>
             <!-- En attente d'injection dans le JS -->
             <tbody class="bodycart" id="bodyCart"></tbody>
-            
+
             <tfoot class="footcart">
               <tr>
-                <td class="footcart__montant" colspan="3">Montant Total du panier</td>
-                <td class="footcart__delete" colspan="1"><button class="delete_all" id="delete_all"><i class="fas fa-trash"></i></button></td>
+                <td class="footcart__montant" colspan="3">
+                  Montant Total du panier
+                </td>
+                <td class="footcart__delete" colspan="1">
+                  <button class="delete_all" id="delete_all">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </td>
                 <td class="footcart__total" id="total" colspan="2"></td>
               </tr>
             </tfoot>
@@ -110,81 +119,72 @@
           <fieldset>
             <legend><strong>Coordonnées client</strong></legend>
 
+            <!-- <div class="validation-input"> -->
             <div class="form-validation">
-            <input
-              type="text"
-              name="firstName"
-              class="firstName"
-              id="firstName"
-              placeholder="Nom"
-              pattern="[A-Z-\s]{3,20}"
-              required
-            />
-
-            <small></small>
-        </div>
-
-        <div class="form-validation">
-            <input
-              type="text"
-              name="lastName"
-              class="lastName"
-              id="lastName"
-              placeholder="Prénom"
-              pattern="[A-Z][a-z\xc0-\xff-\s]{3,20}"
-              required
-            />
-            
-          <small></small>
-        </div>
-
-        <div class="form-validation">
-            <input
-              type="text"
-              name="address"
-              class="address"
-              id="address"
-              placeholder="Adresse"
-              pattern="[0-9a-zA-Z\xc0-\xff-\s]{5,50}"
-              required
-            />
-
-            <small></small>
-        </div>
-
-        </div>
-
-            <div class="form-validation">
-            <input
-              type="text"
-              name="city"
-              class="city"
-              id="city"
-              placeholder="Ville"
-              pattern="[A-Z]{3,20}"
-              required
-            />
-            
-          <small></small>
-        </div>
-
-            <div class="form-validation">
-            <input
-              type="email"
-              name="email"
-              class="email"
-              id="email"
-              placeholder="E-mail"
-              pattern="([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})"
-              required
-            />
-        
-          <small></small>
-
+              <input
+                type="text"
+                name="firstName"
+                class="firstName"
+                id="firstName"
+                placeholder="Nom"
+                pattern="[A-Z-\s]{3,20}"
+                required
+              />
             </div>
-            <button type="submit" class="buttonFormClient" id="validFormClient">VALIDEZ VOTRE COMMANDE</button>
+
+            <div class="form-validation">
+              <input
+                type="text"
+                name="lastName"
+                class="lastName"
+                id="lastName"
+                placeholder="Prénom"
+                pattern="[A-Z][a-z\xc0-\xff-\s]{3,20}"
+                required
+              />
+            </div>
+
+            <div class="form-validation">
+              <input
+                type="text"
+                name="address"
+                class="address"
+                id="address"
+                placeholder="Adresse"
+                pattern="[0-9a-zA-Z\xc0-\xff-\s]{5,50}"
+                required
+              />
+            </div>
+
+            <div class="form-validation">
+              <input
+                type="text"
+                name="city"
+                class="city"
+                id="city"
+                placeholder="Ville"
+                pattern="[A-Z]{3,20}"
+                required
+              />
+            </div>
+
+            <div class="form-validation">
+              <input
+                type="email"
+                name="email"
+                class="email"
+                id="email"
+                placeholder="E-mail"
+                pattern="([+\.\w\+-]{3,})*@[\w-]+(\.[a-z]{2,6})*(\.[a-z]{2,6})"
+                required
+              />
+            </div>
+            <!-- </div> -->
+            <button type="submit" class="buttonFormClient" id="validFormClient">
+              VALIDEZ VOTRE COMMANDE
+            </button>
           </fieldset>
-<input type="hidden" name="orderId">
+          <input type="hidden" name="orderId" />
         </form>
       </section>
 
@@ -291,6 +291,10 @@
               ></a>
             </li>
           </ul>
+          <div class="infos__copyright">
+            © 2021 Copyright
+            <a href="www.linkedin.com/in/so-coding-631a371b0"> Solène MEDINA</a>
+          </div>
         </div>
 
         <div class="infos__newsletter">

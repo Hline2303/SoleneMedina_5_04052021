@@ -1,5 +1,5 @@
 header {
-  display: flex; 
+  display: flex;
   .banniere__content {
     background-image: url(../../images/Teddy.jpg);
     background-size: cover;
@@ -16,15 +16,35 @@ header {
       color: $colorSecondary;
       width: 25%;
       text-align: center;
+      & img {
+        width: 50px;
+        margin-top: 25px;
+      }
+      & p {
+        @media only screen and (min-width: 1000px) {
+          margin-top: 5px;
+        }
+      }
+      @media only screen and (min-width: 200px) and (max-width: 1200px) {
+        font-size: 30px;
+        width: 100%;
+        color: $colorPrimary;
+        right: 0%;
+      }
     }
-
     &--share {
       position: absolute;
       top: 5%;
+      @media only screen and (min-width: 301px) and (max-width: 450px) {
+        top: 180px;
+      }
       & span {
-        color: $colorSecondary;
+        color: #ffffff;
         font-size: 40px;
         margin-bottom: 15px;
+        @media only screen and (min-width: 301px) and (max-width: 450px) {
+          margin-bottom: 5px;
+        }
         &:hover {
           color: $colorPrimary;
           background: white;
@@ -34,13 +54,18 @@ header {
       & ul {
         list-style-type: none;
         padding: 20px;
+        @media only screen and (min-width: 200px) and (max-width: 300px) {
+          display: none;
+        }
       }
     }
-
     &--navigation {
       position: absolute;
-      top: 50%;
-      right: 8%;
+      top: 400px;
+      right: 5%;
+      @media only screen and (min-width: 200px) and (max-width: 300px) {
+        top: 440px;
+      }
       & a {
         color: $colorPrimary;
         font-size: 37px;

@@ -1,9 +1,14 @@
 .service {
-  height: 175px;
+  margin-top: 25px;
+  height: 250px;
   background: $grey;
   color: $colorPrimary;
-    display: grid; 
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  @media only screen and (min-width: 200px) and (max-width: 700px) {
+    grid-template-columns: 1fr;
+    height: 700px;
+  }
   &__content {
     padding-left: auto;
     padding-right: auto;
@@ -22,7 +27,7 @@
     & span {
       font-size: 50px;
       transform: rotate(90deg);
-      margin: 0 20px 0 10px;
+      margin: 0 40px 0 10px;
       color: black;
     }
     &--appels {
@@ -36,7 +41,7 @@
       font-size: 20px;
       text-align: center;
     }
-    
+
     &--satisfaction {
       margin-right: auto;
       margin-left: auto;

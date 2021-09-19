@@ -21,12 +21,16 @@ body {
   width: 100%;
 }
 .card {
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
   width: 100%;
+  @media only screen and (min-width: 200px) and (max-width: 550px) {
+    flex-direction: column;
+  }
+
   &__produit {
     background: white;
     text-decoration: none;
@@ -36,13 +40,19 @@ body {
     top: 0;
     width: 35%;
     height: 428px;
+    @media only screen and (min-width: 200px) and (max-width: 550px) {
+      width: 85%;
+    }
     &:hover {
-        transform: scale(0.95);
-      }
+      transform: scale(0.95);
+    }
     &--content {
       padding: 5px;
       background: white;
       border-radius: 0 0 25px 25px;
+      @media only screen and (min-width: 200px) and (max-width: 550px) {
+        text-align: center;
+      }
     }
     &--stock {
       color: $green;
@@ -57,8 +67,8 @@ body {
       padding-top: 20px;
     }
     &--img:hover {
-        transform: scale(0.95);
-      }
+      transform: scale(0.95);
+    }
   }
   & h2 {
     font-size: 30px;
@@ -71,6 +81,7 @@ body {
   }
   & span {
     color: $yellow;
+    text-align: center;
   }
   & i {
     color: $colorPrimary;

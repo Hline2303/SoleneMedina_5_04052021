@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fullCart +
         `
               <tr class="storage_article" id="storage_article" data-id="${article[0]}">
-                <td class="bodycart__produit"><img src="${article[1][0].image}" width="200"></td>
+                <td class="bodycart__produit"><img src="${article[1][0].image}" class="bodycart__produit--img"></td>
                 <td class="bodycart__nom"><h2>${article[1][0].nom}</h2></td>
                 <td class="quantityInput bodycart__quantity" >
                 ${quantity}
@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", function () {
     validationInputs(formVilleValue, city, testFormVille);
     validationInputs(formMailValue, email, testFormMail);
 
-
     function erreur(input) {
       const formValidation = input.parentElement;
       formValidation.className = "form-validation erreur i.checked";
@@ -146,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
       formValidation.className = "form-validation success";
     }
 
-      // Test regex
+    // Test regex
     function testFormNom(formNom) {
       return /^[A-Z-\s]{3,20}$/.test(formNom);
     }

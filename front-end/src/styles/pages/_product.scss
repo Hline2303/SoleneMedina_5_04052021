@@ -10,7 +10,12 @@
     width: 100%;
     height: 450px;
     border-radius: 25px 0 0 25px;
+    @media only screen and (min-width: 200px) and (max-width: 849px) {
+      border-radius: 25px 25px 0 0;
+      height: auto;
+    }
   }
+
   &__produit {
     margin-left: auto;
     margin-right: auto;
@@ -18,15 +23,43 @@
     border-radius: 25px;
     position: relative;
     top: 0;
-    width: 50%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-content: center;
     height: 450px;
+    @media only screen and (min-width: 850px) and (max-width: 1000px) {
+      width: auto;
+    }
+    @media only screen and (min-width: 200px) and (max-width: 849px) {
+      flex-direction: column;
+      height: auto;
+    }
     &--content {
       width: 50%;
       padding: 25px;
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        @include centrageH;
+      }
     }
+    &--global {
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    &--description {
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        text-align: center;
+        border: 3px solide green;
+      }
+      & p {
+        @media only screen and (min-width: 200px) and (max-width: 849px) {
+          display: none;
+        }
+      }
+    }
+
     &--stock {
       @include ficheStock;
     }
@@ -42,9 +75,17 @@
       flex-direction: column;
       margin-top: auto;
       margin-bottom: auto;
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        flex-wrap: wrap;
+        align-content: center;
+      }
     }
     &--panier {
       @include btn;
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        width: auto;
+        @include centrageH;
+      }
       &:hover {
         cursor: pointer;
         background: rgb(0, 162, 0);
@@ -59,18 +100,18 @@
       width: 190px;
       margin-right: auto;
       margin-left: auto;
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        width: auto;
+      }
     }
     & h2 {
       @include ficheH2;
     }
     & p {
       text-align: justify;
-    }
-    & span {
-      color: $yellow;
-    }
-    & i {
-      color: $colorPrimary;
+      @media only screen and (min-width: 200px) and (max-width: 849px) {
+        text-align: center;
+      }
     }
   }
 }
